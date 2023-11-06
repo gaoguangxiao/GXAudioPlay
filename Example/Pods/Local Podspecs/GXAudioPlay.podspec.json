@@ -1,0 +1,22 @@
+{
+  "name": "GXAudioPlay",
+  "version": "0.1.0",
+  "summary": "A short description of GXAudioPlay.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/小修/GXAudioPlay",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "小修": "gaoguangxiao125@sina.com"
+  },
+  "source": {
+    "git": "https://github.com/小修/GXAudioPlay.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "GXAudioPlay/Classes/**/*"
+}

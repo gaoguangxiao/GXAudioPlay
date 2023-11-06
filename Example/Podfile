@@ -5,6 +5,7 @@ platform :ios, '10.0'
 target 'GXAudioPlay_Example' do
   pod 'GXAudioPlay', :path => '../'
 
+  pod 'GGXSwiftExtension'
   target 'GXAudioPlay_Tests' do
     inherit! :search_paths
 

@@ -1,0 +1,6 @@
+framework module GXAudioPlay {
+  umbrella header "GXAudioPlay-umbrella.h"
+
+  export *
+  module * { export * }
+}

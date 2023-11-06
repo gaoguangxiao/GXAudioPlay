@@ -1,0 +1,6 @@
+framework module Pods_GXAudioPlay_Example {
+  umbrella header "Pods-GXAudioPlay_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

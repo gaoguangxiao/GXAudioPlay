@@ -1,0 +1,1327 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02A3E26019986742537A69B3FE9F222F /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E82AA32D2745CFB0DBD85F8ED830D /* Double+Extension.swift */; };
+		02F5DAB7D380B773D6EE92AE94AD84C8 /* GXAudioEnginePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA698509C9E0A26CE7802D15B51535D /* GXAudioEnginePlayer.swift */; };
+		04593808FE4BE905CFAD1B810BCC867E /* Pods-GXAudioPlay_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FD3C8D6294496E5198B21A41EA90F10B /* Pods-GXAudioPlay_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1081C56F36CFCA7C6E25F0E1534E8AFD /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D264B489BF425BB619601DC5CCB6DB8 /* DateFormatter+Extension.swift */; };
+		14E51B3B53A79A72E7622E0904717259 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8F67F8C3D0FEB8C779EFD5FB046721 /* String+Extension.swift */; };
+		18B12CC1A93CD547D91430E95A138115 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CA4161293ECC5FA5BCDA15ECE63733 /* Date+Extension.swift */; };
+		1BDE18735C32CE2710BB2886B93C06E5 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE68B74FCA506FBE05D7ABB42DC1E4E3 /* Int+Extension.swift */; };
+		1D1CA721806AAD3C3C36B2A85219E5A4 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9B41F10F3DDF262BC3AAB2DB4B7FDE /* UIImageView+Extension.swift */; };
+		1F84FE646CD1D7BAFFB58C243277AFF8 /* FBSnapshotTestCase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A2B923792427AC2C25435B31627E9E24 /* FBSnapshotTestCase-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		200FD5BA052E3769B3FEE3015047E748 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A949719314C44BBF2A9F4BBA74B31918 /* Bundle+Extension.swift */; };
+		26DB6D48F4EF360342530AE923E11C09 /* TimerInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176498941A0FB9DEEDCC99B656E43C9 /* TimerInterval+Extension.swift */; };
+		2975A09730FD83DC0897129A11EA6585 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A2980B7F47AEA521A0268BCA14572 /* SwiftSupport.swift */; };
+		2B88C28DD20CBFA7B3AEB21A365197FE /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 47FE3322B9FC4F715FED6BB021F3CDB6 /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CB61F6FA511CAACB43A50DC3A82E0DD /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA79D12DB7990473EE576455A051B5 /* UIImage+Snapshot.m */; };
+		2ECCAC52EF4C74E1032E0BC646BBE5B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
+		30D475DF57C0C682A723231E7BCA0D14 /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F052EF115A6ACE7EFD3DAB40252A6F34 /* FBSnapshotTestCasePlatform.m */; };
+		37087D69BA92851218B6BA45D11D85C6 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C9B002FCE9BDE5FB533575DD5F3B41 /* UINavigationBar+Extension.swift */; };
+		373413256658309F9053CE22BF62077E /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = D93DB13B96CF2779617B1F03A6F4736E /* UIImage+Snapshot.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		41D89EEDF3574A65FD2A32B2E4DDF877 /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C39928B7DA24DC4EDA7CA96FBEEC09D /* Array+extension.swift */; };
+		4580CE553A9409870C8F5C277FF3495C /* GXAudioPlay-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A01FE4AEC2570B76F2E3D7F68C02F11 /* GXAudioPlay-dummy.m */; };
+		506A98D4FD046AA4BD3D32E43D37F397 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082938BD859D84A2C1105DE109BDB24B /* ReplaceMe.swift */; };
+		52E25F685DEE8B730D179A01351278F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
+		540E81618E2072E6DAC51EB72005F2A9 /* Pods-GXAudioPlay_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2ECB17BEE749BA834A82DE4456118 /* Pods-GXAudioPlay_Tests-dummy.m */; };
+		545E38447DE7B27D1F82F813E159A03E /* Pods-GXAudioPlay_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 158A4B18756E3BC16CB7002BAC389D86 /* Pods-GXAudioPlay_Example-dummy.m */; };
+		5558B876B579BC1E79BD3D2B19148329 /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 727F6437D828049F5697AEBB7D22F38F /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5BE525FF6FA14B999ED2CCC0AA4FA0CF /* FBSnapshotTestCase-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC91B264BDA5D40E57303EC39DD657 /* FBSnapshotTestCase-dummy.m */; };
+		626DA6A800CFA0DD760D409D67D53AB7 /* UIEdgeInsets+CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E18FC03B4CCDABCD8A45C9BC905907 /* UIEdgeInsets+CommonExtension.swift */; };
+		63E1BA5696AB18D307570332149E094D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711FE55C542EC2AF3D11D90407C3C339 /* UIView+Extension.swift */; };
+		640CCE9C3A28AA3CA15510899F9140EE /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2B7F27373FE4AC9DF5404D4CF84ABF /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		67F1963AA7C9EDB78127AD5F566A4949 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BBF767B8EDDA3B6FA9633D37F274A82 /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		6AF1241B95FF39C3A32EA3D7CA464739 /* GGXSwiftExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7029DA271BF41D9C4CDBA308162DD6AA /* GGXSwiftExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		70E2E6C14507446AEB5943EB97C81969 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EACB0541A96584330D7528FC282CD9 /* Dictionary+Extension.swift */; };
+		7101EBF323F093A9674F0E79F9BA2D47 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242403E5561A37D1EE50451442A13CD8 /* URL+Extension.swift */; };
+		74339C58AC4E5631FB8C0E662668A796 /* UIApplication+StrictKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B9A0504EF29312C8AB308D630F5A90 /* UIApplication+StrictKeyWindow.m */; };
+		7C67CBD15D9B5D0B7769B2F469478332 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DB151FFEDC9132D1AD0BD73EB6A517 /* FBSnapshotTestCase.m */; };
+		86B5F0E5414BD6DC8976EFF2A3974D3C /* UIAlertViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CB63F75F9AA376A9FF642C90048AF0 /* UIAlertViewController+Extension.swift */; };
+		875A310EAF4D0C136C3FFFF5E0335BE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA24A38BA9EE106B59E3D4C8DD1CE0E /* UIKit.framework */; };
+		8AE19756F0126FE92AF625E36F3D70FE /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 11081C6F6E2C980B857F83EED078D897 /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8AEFADC6F6C055DEF7E849AE4E4F6ACB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
+		99ED39446AE57D52883AB840B3C9638B /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD27E2666AE56EA574239887F70BEBC /* CGSize+Extension.swift */; };
+		9AB44D5164AC9EB28D1CB667CD03C3B3 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5183A67DE82E10F3AF08B515C6C3146 /* UIApplication+Extension.swift */; };
+		9B2618EC57135AF32CA1AFEA8F76E0AF /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C2894D75190E19EA06E4C2C9E9A8F0 /* UITableViewCell+Extension.swift */; };
+		9C12DB8D86858F28B65871CEA505BFE0 /* GGXSwiftExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE57D32777A2326F5C0FD860B67F6AD0 /* GGXSwiftExtension-dummy.m */; };
+		9D3C5E2F56838937146191468A893244 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E658F388F01C72599CA75537950B6095 /* XCTest.framework */; };
+		A322106CB88C39C82C72A93B0ABE7B50 /* GXAudioPlay-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 85817922E169419F2985C3A71313E0ED /* GXAudioPlay-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A3A22A6B61A42E5668E237D6526FD716 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA43CB2DB024491B9850B945ACDB9A4 /* UIDevice+Extension.swift */; };
+		AE36297D9F31F064DAF9AB2055DE7200 /* UIImage+commonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6393548734A835A31C5928772002EF /* UIImage+commonExtension.swift */; };
+		B0425303CE1F2FFD0BB1051958375E42 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B58C8F7E92AA48E1F1FE08E3AF910D8 /* FileManager+Extension.swift */; };
+		B52281F9F4340D4FC8ABB2FEB1FEC08E /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 3024BBB7800F4A29607DE31D5BDFD75C /* UIImage+Compare.m */; };
+		B90E245C5637A760F050C9A33FCA191B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3CA3E07B0CC0D808F26EB92546F60A /* UIColor+Extension.swift */; };
+		C13589A39EC7545EE413365E091DEC1F /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9904228A25762EC5AFD99E0D07ACE4E /* UIKit+Extension.swift */; };
+		C14CB7D56C8E658C8C152BB0B94F4201 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
+		C1F75A731FD3CF4318D4F63A2731835C /* Pods-GXAudioPlay_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 078D86FE540AF73C66FF1A76682A7607 /* Pods-GXAudioPlay_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C390C6005353FB986CB52F474CEF8588 /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8599F571F0DA1998AFC55028975707B4 /* FBSnapshotTestController.m */; };
+		C9F76407497DF0205D7460B36D22259F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3280BB5E7B57C31D41117A74F76E9DF3 /* QuartzCore.framework */; };
+		CA015BD4F64A40B37A4A07D97E6AE173 /* AttributeString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9426593B131AE0ED30A1B47F7DDD587 /* AttributeString+Extension.swift */; };
+		CA54C09A12400567AFFCB407EEB7E154 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C07A5DF1F52D599FF580A53099E507 /* UIImage+Diff.m */; };
+		D3E61C5B27A170DF700F6EF72241A0C8 /* UIResponder+ Extension.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E83FA8704ACF0C196061B579BEC88E /* UIResponder+ Extension.swift.swift */; };
+		E9247DF72D5314775CC608DF25C08E45 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675ED81C8D6F821BFD256E85F4189D9D /* UIViewController+Extension.swift */; };
+		F190B58F55D87D3F664342514913A6A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
+		F1B240BD123BC841C6B024A0FEB86119 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB4BB79D513A687D495BD79681A458 /* ReplaceMe.swift */; };
+		FF8307B7346F4D3BA13C11AECFE6EDD0 /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D15BDEF4AF6A27BA261ACF5ECCCF161 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2EE7A683F94D58BF2A1EBE91BD448FBD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12F4ACCB6C92403E22F1B903BDD90CA4;
+			remoteInfo = "Pods-GXAudioPlay_Example";
+		};
+		95AA24739C21A1EC51D5067A328E0D6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB61B665BCFCC0A82762E72F1C11C95C;
+			remoteInfo = GXAudioPlay;
+		};
+		B4B6D29B059637942B8DD1E6AE6D64EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34208A50A6E2389A7BB30C187CD9E2A4;
+			remoteInfo = GGXSwiftExtension;
+		};
+		ECB69743D9142A2D5A66FF6A59728ABC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 98A98149697C80CEF8D5772791E92E66;
+			remoteInfo = FBSnapshotTestCase;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		078D86FE540AF73C66FF1A76682A7607 /* Pods-GXAudioPlay_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GXAudioPlay_Example-umbrella.h"; sourceTree = "<group>"; };
+		07CA4161293ECC5FA5BCDA15ECE63733 /* Date+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Extension.swift"; path = "GGXSwiftExtension/Classes/Date+Extension.swift"; sourceTree = "<group>"; };
+		082938BD859D84A2C1105DE109BDB24B /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GGXSwiftExtension/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
+		08CB4BB79D513A687D495BD79681A458 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GXAudioPlay/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
+		0C39928B7DA24DC4EDA7CA96FBEEC09D /* Array+extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+extension.swift"; path = "GGXSwiftExtension/Classes/Array+extension.swift"; sourceTree = "<group>"; };
+		11081C6F6E2C980B857F83EED078D897 /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
+		158A4B18756E3BC16CB7002BAC389D86 /* Pods-GXAudioPlay_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GXAudioPlay_Example-dummy.m"; sourceTree = "<group>"; };
+		160BBC6534D644F3EA716AB76E037328 /* GXAudioPlay.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GXAudioPlay.modulemap; sourceTree = "<group>"; };
+		19B488476A5DAE04CE28F8A9A9EB483A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1DA24A38BA9EE106B59E3D4C8DD1CE0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		20C2894D75190E19EA06E4C2C9E9A8F0 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableViewCell+Extension.swift"; path = "GGXSwiftExtension/Classes/UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
+		242403E5561A37D1EE50451442A13CD8 /* URL+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URL+Extension.swift"; path = "GGXSwiftExtension/Classes/URL+Extension.swift"; sourceTree = "<group>"; };
+		2502A063192E26C7CF4F27796F0AB7CC /* Pods-GXAudioPlay_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-GXAudioPlay_Example"; path = Pods_GXAudioPlay_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2608C01A01B843923381968B75450871 /* Pods-GXAudioPlay_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-GXAudioPlay_Tests"; path = Pods_GXAudioPlay_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27FC91B264BDA5D40E57303EC39DD657 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
+		2AA43CB2DB024491B9850B945ACDB9A4 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIDevice+Extension.swift"; path = "GGXSwiftExtension/Classes/UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		2FA698509C9E0A26CE7802D15B51535D /* GXAudioEnginePlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXAudioEnginePlayer.swift; path = GXAudioPlay/Classes/GXAudioEnginePlayer.swift; sourceTree = "<group>"; };
+		3024BBB7800F4A29607DE31D5BDFD75C /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
+		322FFB21A3EBB95047B585E384445CC3 /* Pods-GXAudioPlay_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GXAudioPlay_Tests-Info.plist"; sourceTree = "<group>"; };
+		3280BB5E7B57C31D41117A74F76E9DF3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		35AEA00653B6A7020994E0FED80F5F65 /* GGXSwiftExtension-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GGXSwiftExtension-Info.plist"; sourceTree = "<group>"; };
+		3A01FE4AEC2570B76F2E3D7F68C02F11 /* GXAudioPlay-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GXAudioPlay-dummy.m"; sourceTree = "<group>"; };
+		3BBF767B8EDDA3B6FA9633D37F274A82 /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
+		40B9A0504EF29312C8AB308D630F5A90 /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
+		43B7104F06B42E2DEC310620B8E036F5 /* Pods-GXAudioPlay_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GXAudioPlay_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		47FE3322B9FC4F715FED6BB021F3CDB6 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
+		4AC2ECB17BEE749BA834A82DE4456118 /* Pods-GXAudioPlay_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GXAudioPlay_Tests-dummy.m"; sourceTree = "<group>"; };
+		4C3BE8125625099D00CE5EF48CF74D1B /* GGXSwiftExtension-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GGXSwiftExtension-prefix.pch"; sourceTree = "<group>"; };
+		4DD27E2666AE56EA574239887F70BEBC /* CGSize+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CGSize+Extension.swift"; path = "GGXSwiftExtension/Classes/CGSize+Extension.swift"; sourceTree = "<group>"; };
+		5479BD458A535D7B4CEBC5DCAD3A03FE /* Pods-GXAudioPlay_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GXAudioPlay_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		57E83FA8704ACF0C196061B579BEC88E /* UIResponder+ Extension.swift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIResponder+ Extension.swift.swift"; path = "GGXSwiftExtension/Classes/UIResponder+ Extension.swift.swift"; sourceTree = "<group>"; };
+		5B20F91904E684F1F923325320A79EED /* GXAudioPlay.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = GXAudioPlay.podspec; sourceTree = "<group>"; tabWidth = 2; };
+		5C4F31330DFA99D699E4BDC8C3573D73 /* FBSnapshotTestCase */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSnapshotTestCase; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CC500E11AF3B5F2209BF1E46790FA41 /* GXAudioPlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXAudioPlay.release.xcconfig; sourceTree = "<group>"; };
+		5D264B489BF425BB619601DC5CCB6DB8 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DateFormatter+Extension.swift"; path = "GGXSwiftExtension/Classes/DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		5F8F177CC95CA3AEC992A2D336FA7056 /* GXAudioPlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXAudioPlay.debug.xcconfig; sourceTree = "<group>"; };
+		607E1AE85374AD5AF6953AE2B0415B55 /* GGXSwiftExtension */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GGXSwiftExtension; path = GGXSwiftExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		61477F1A0964171F52373CFF56B0F22A /* GGXSwiftExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GGXSwiftExtension.debug.xcconfig; sourceTree = "<group>"; };
+		675ED81C8D6F821BFD256E85F4189D9D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extension.swift"; path = "GGXSwiftExtension/Classes/UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		6CAA79D12DB7990473EE576455A051B5 /* UIImage+Snapshot.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Snapshot.m"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.m"; sourceTree = "<group>"; };
+		6E9D1AC20544796DA2518A7165091E6F /* Pods-GXAudioPlay_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GXAudioPlay_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7029DA271BF41D9C4CDBA308162DD6AA /* GGXSwiftExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GGXSwiftExtension-umbrella.h"; sourceTree = "<group>"; };
+		711FE55C542EC2AF3D11D90407C3C339 /* UIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "GGXSwiftExtension/Classes/UIView+Extension.swift"; sourceTree = "<group>"; };
+		7176498941A0FB9DEEDCC99B656E43C9 /* TimerInterval+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TimerInterval+Extension.swift"; path = "GGXSwiftExtension/Classes/TimerInterval+Extension.swift"; sourceTree = "<group>"; };
+		727F6437D828049F5697AEBB7D22F38F /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
+		7BB4847D4AD0215DC8DBC5C77359E3B5 /* Pods-GXAudioPlay_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GXAudioPlay_Tests.modulemap"; sourceTree = "<group>"; };
+		7D15BDEF4AF6A27BA261ACF5ECCCF161 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
+		85817922E169419F2985C3A71313E0ED /* GXAudioPlay-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXAudioPlay-umbrella.h"; sourceTree = "<group>"; };
+		8599F571F0DA1998AFC55028975707B4 /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
+		88EACB0541A96584330D7528FC282CD9 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+Extension.swift"; path = "GGXSwiftExtension/Classes/Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		8906348FF9C15721A5526D19F5E95105 /* Pods-GXAudioPlay_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GXAudioPlay_Example-Info.plist"; sourceTree = "<group>"; };
+		89C07A5DF1F52D599FF580A53099E507 /* UIImage+Diff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Diff.m"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.m"; sourceTree = "<group>"; };
+		8B2E82AA32D2745CFB0DBD85F8ED830D /* Double+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Double+Extension.swift"; path = "GGXSwiftExtension/Classes/Double+Extension.swift"; sourceTree = "<group>"; };
+		8B58C8F7E92AA48E1F1FE08E3AF910D8 /* FileManager+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FileManager+Extension.swift"; path = "GGXSwiftExtension/Classes/FileManager+Extension.swift"; sourceTree = "<group>"; };
+		9958CD69FA19E3A955E3D089742DB538 /* FBSnapshotTestCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.release.xcconfig; sourceTree = "<group>"; };
+		9A2B7F27373FE4AC9DF5404D4CF84ABF /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
+		9C3CA3E07B0CC0D808F26EB92546F60A /* UIColor+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "GGXSwiftExtension/Classes/UIColor+Extension.swift"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9F03BEBBC537DE387B96F636BE49B6B1 /* Pods-GXAudioPlay_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GXAudioPlay_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		A00A2980B7F47AEA521A0268BCA14572 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
+		A2B923792427AC2C25435B31627E9E24 /* FBSnapshotTestCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-umbrella.h"; sourceTree = "<group>"; };
+		A9426593B131AE0ED30A1B47F7DDD587 /* AttributeString+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AttributeString+Extension.swift"; path = "GGXSwiftExtension/Classes/AttributeString+Extension.swift"; sourceTree = "<group>"; };
+		A949719314C44BBF2A9F4BBA74B31918 /* Bundle+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Bundle+Extension.swift"; path = "GGXSwiftExtension/Classes/Bundle+Extension.swift"; sourceTree = "<group>"; };
+		AA454BCDD07960BE8E2C21474FF625B6 /* GXAudioPlay-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GXAudioPlay-Info.plist"; sourceTree = "<group>"; };
+		AD9B41F10F3DDF262BC3AAB2DB4B7FDE /* UIImageView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+Extension.swift"; path = "GGXSwiftExtension/Classes/UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		AE8F67F8C3D0FEB8C779EFD5FB046721 /* String+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Extension.swift"; path = "GGXSwiftExtension/Classes/String+Extension.swift"; sourceTree = "<group>"; };
+		AFFC72BBE0D676D94879B9AE28F19BA5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B4DB151FFEDC9132D1AD0BD73EB6A517 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
+		B64CDBA649C2E988845396565EC23526 /* Pods-GXAudioPlay_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GXAudioPlay_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		B857940A714B16DC6631CB5A27C89263 /* Pods-GXAudioPlay_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GXAudioPlay_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		BE68B74FCA506FBE05D7ABB42DC1E4E3 /* Int+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Int+Extension.swift"; path = "GGXSwiftExtension/Classes/Int+Extension.swift"; sourceTree = "<group>"; };
+		BEBD28008F5EE26CE676F52BCCBECB00 /* GXAudioPlay-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXAudioPlay-prefix.pch"; sourceTree = "<group>"; };
+		C054AC5177410B3C3CD3140C84060253 /* Pods-GXAudioPlay_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GXAudioPlay_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		C3CFD58821851531CC3E0E019B0708D5 /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
+		C715D19FD6E441BBBF376FE66E42EF5D /* GGXSwiftExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GGXSwiftExtension.modulemap; sourceTree = "<group>"; };
+		CFC95ED60F3A4F23E6934647274E9BE3 /* Pods-GXAudioPlay_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GXAudioPlay_Example-frameworks.sh"; sourceTree = "<group>"; };
+		D2FF240D50A70B674EFD5693C45158F5 /* FBSnapshotTestCase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-prefix.pch"; sourceTree = "<group>"; };
+		D7CB63F75F9AA376A9FF642C90048AF0 /* UIAlertViewController+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIAlertViewController+Extension.swift"; path = "GGXSwiftExtension/Classes/UIAlertViewController+Extension.swift"; sourceTree = "<group>"; };
+		D93DB13B96CF2779617B1F03A6F4736E /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
+		DAA44FE1E6ED023E9DB9914AAD707DFA /* GXAudioPlay */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GXAudioPlay; path = GXAudioPlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF2BE0F5DB6E8345B0DBC89028DF16C1 /* FBSnapshotTestCase-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FBSnapshotTestCase-Info.plist"; sourceTree = "<group>"; };
+		E016FBCF6191834A58D8A66DC1B1F444 /* Pods-GXAudioPlay_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GXAudioPlay_Example.modulemap"; sourceTree = "<group>"; };
+		E0C9B002FCE9BDE5FB533575DD5F3B41 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationBar+Extension.swift"; path = "GGXSwiftExtension/Classes/UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
+		E5183A67DE82E10F3AF08B515C6C3146 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIApplication+Extension.swift"; path = "GGXSwiftExtension/Classes/UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		E5D31FE26AAA825EB681CDA154BD9C55 /* GGXSwiftExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GGXSwiftExtension.release.xcconfig; sourceTree = "<group>"; };
+		E658F388F01C72599CA75537950B6095 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		E6E18FC03B4CCDABCD8A45C9BC905907 /* UIEdgeInsets+CommonExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIEdgeInsets+CommonExtension.swift"; path = "GGXSwiftExtension/Classes/UIEdgeInsets+CommonExtension.swift"; sourceTree = "<group>"; };
+		EC6393548734A835A31C5928772002EF /* UIImage+commonExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+commonExtension.swift"; path = "GGXSwiftExtension/Classes/UIImage+commonExtension.swift"; sourceTree = "<group>"; };
+		ECCAC01CF16CDE00C259AE7E38A53517 /* Pods-GXAudioPlay_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GXAudioPlay_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EFC8F0B1089D079A2FBD86B3F473F9B7 /* FBSnapshotTestCase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.debug.xcconfig; sourceTree = "<group>"; };
+		F052EF115A6ACE7EFD3DAB40252A6F34 /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCasePlatform.m; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
+		F9904228A25762EC5AFD99E0D07ACE4E /* UIKit+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIKit+Extension.swift"; path = "GGXSwiftExtension/Classes/UIKit+Extension.swift"; sourceTree = "<group>"; };
+		FCD6A66FBF76E7B12DC4705D58E5B80A /* Pods-GXAudioPlay_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GXAudioPlay_Example.release.xcconfig"; sourceTree = "<group>"; };
+		FD3C8D6294496E5198B21A41EA90F10B /* Pods-GXAudioPlay_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GXAudioPlay_Tests-umbrella.h"; sourceTree = "<group>"; };
+		FE57D32777A2326F5C0FD860B67F6AD0 /* GGXSwiftExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GGXSwiftExtension-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F75BD0350E594FFF820B4C3B9C52D10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C14CB7D56C8E658C8C152BB0B94F4201 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		56DDF5CD70B3C7429516FF8B49ADA206 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8AEFADC6F6C055DEF7E849AE4E4F6ACB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BC97F24C7C13D92ECFE758B6130E922 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52E25F685DEE8B730D179A01351278F9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3B880388FF17A336FBF90E30E537508 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ECCAC52EF4C74E1032E0BC646BBE5B9 /* Foundation.framework in Frameworks */,
+				C9F76407497DF0205D7460B36D22259F /* QuartzCore.framework in Frameworks */,
+				875A310EAF4D0C136C3FFFF5E0335BE4 /* UIKit.framework in Frameworks */,
+				9D3C5E2F56838937146191468A893244 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8A8B6C1903AC4F2E1A0BF6F31463F4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F190B58F55D87D3F664342514913A6A3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		128A0C86989E079D05C8D14A279A7F34 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C3CFD58821851531CC3E0E019B0708D5 /* FBSnapshotTestCase.modulemap */,
+				27FC91B264BDA5D40E57303EC39DD657 /* FBSnapshotTestCase-dummy.m */,
+				DF2BE0F5DB6E8345B0DBC89028DF16C1 /* FBSnapshotTestCase-Info.plist */,
+				D2FF240D50A70B674EFD5693C45158F5 /* FBSnapshotTestCase-prefix.pch */,
+				A2B923792427AC2C25435B31627E9E24 /* FBSnapshotTestCase-umbrella.h */,
+				EFC8F0B1089D079A2FBD86B3F473F9B7 /* FBSnapshotTestCase.debug.xcconfig */,
+				9958CD69FA19E3A955E3D089742DB538 /* FBSnapshotTestCase.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FBSnapshotTestCase";
+			sourceTree = "<group>";
+		};
+		18F3F53B050A24CACDA31D225E1C0814 /* SwiftSupport */ = {
+			isa = PBXGroup;
+			children = (
+				A00A2980B7F47AEA521A0268BCA14572 /* SwiftSupport.swift */,
+			);
+			name = SwiftSupport;
+			sourceTree = "<group>";
+		};
+		267E2463F03E80986CDE7A0F6D2ED762 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7D15BDEF4AF6A27BA261ACF5ECCCF161 /* FBSnapshotTestCase.h */,
+				B4DB151FFEDC9132D1AD0BD73EB6A517 /* FBSnapshotTestCase.m */,
+				9A2B7F27373FE4AC9DF5404D4CF84ABF /* FBSnapshotTestCasePlatform.h */,
+				F052EF115A6ACE7EFD3DAB40252A6F34 /* FBSnapshotTestCasePlatform.m */,
+				47FE3322B9FC4F715FED6BB021F3CDB6 /* FBSnapshotTestController.h */,
+				8599F571F0DA1998AFC55028975707B4 /* FBSnapshotTestController.m */,
+				727F6437D828049F5697AEBB7D22F38F /* UIApplication+StrictKeyWindow.h */,
+				40B9A0504EF29312C8AB308D630F5A90 /* UIApplication+StrictKeyWindow.m */,
+				11081C6F6E2C980B857F83EED078D897 /* UIImage+Compare.h */,
+				3024BBB7800F4A29607DE31D5BDFD75C /* UIImage+Compare.m */,
+				3BBF767B8EDDA3B6FA9633D37F274A82 /* UIImage+Diff.h */,
+				89C07A5DF1F52D599FF580A53099E507 /* UIImage+Diff.m */,
+				D93DB13B96CF2779617B1F03A6F4736E /* UIImage+Snapshot.h */,
+				6CAA79D12DB7990473EE576455A051B5 /* UIImage+Snapshot.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		2EFB196DB9761AAD0BA6C10436FCAD19 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4FB8A0EBF4188A143F29E5CA222A5B0 /* Pods-GXAudioPlay_Example */,
+				57DF0269F25F5B48A5B7A18C4EAC4206 /* Pods-GXAudioPlay_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		3804BB7306A69332B7A1F7AD5B1354FB /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				5B20F91904E684F1F923325320A79EED /* GXAudioPlay.podspec */,
+				19B488476A5DAE04CE28F8A9A9EB483A /* LICENSE */,
+				AFFC72BBE0D676D94879B9AE28F19BA5 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		3E330FAE29C37271072335F947554481 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5F0297B0F219C3719A7E21F639490F2B /* FBSnapshotTestCase */,
+				81C24094C9BA3E5D30AD51C87CC90ADF /* GGXSwiftExtension */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		41F684B7AED93E3F017F6A068EE05B4E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C715D19FD6E441BBBF376FE66E42EF5D /* GGXSwiftExtension.modulemap */,
+				FE57D32777A2326F5C0FD860B67F6AD0 /* GGXSwiftExtension-dummy.m */,
+				35AEA00653B6A7020994E0FED80F5F65 /* GGXSwiftExtension-Info.plist */,
+				4C3BE8125625099D00CE5EF48CF74D1B /* GGXSwiftExtension-prefix.pch */,
+				7029DA271BF41D9C4CDBA308162DD6AA /* GGXSwiftExtension-umbrella.h */,
+				61477F1A0964171F52373CFF56B0F22A /* GGXSwiftExtension.debug.xcconfig */,
+				E5D31FE26AAA825EB681CDA154BD9C55 /* GGXSwiftExtension.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/GGXSwiftExtension";
+			sourceTree = "<group>";
+		};
+		4586F1EF6853F7F835168C98A97A7746 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9D9A4C8314D673B93B3B89478375950F /* GXAudioPlay */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		5296C915F676F59E2C8BBC9FA4F50C9D /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				160BBC6534D644F3EA716AB76E037328 /* GXAudioPlay.modulemap */,
+				3A01FE4AEC2570B76F2E3D7F68C02F11 /* GXAudioPlay-dummy.m */,
+				AA454BCDD07960BE8E2C21474FF625B6 /* GXAudioPlay-Info.plist */,
+				BEBD28008F5EE26CE676F52BCCBECB00 /* GXAudioPlay-prefix.pch */,
+				85817922E169419F2985C3A71313E0ED /* GXAudioPlay-umbrella.h */,
+				5F8F177CC95CA3AEC992A2D336FA7056 /* GXAudioPlay.debug.xcconfig */,
+				5CC500E11AF3B5F2209BF1E46790FA41 /* GXAudioPlay.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/GXAudioPlay";
+			sourceTree = "<group>";
+		};
+		57DF0269F25F5B48A5B7A18C4EAC4206 /* Pods-GXAudioPlay_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				7BB4847D4AD0215DC8DBC5C77359E3B5 /* Pods-GXAudioPlay_Tests.modulemap */,
+				ECCAC01CF16CDE00C259AE7E38A53517 /* Pods-GXAudioPlay_Tests-acknowledgements.markdown */,
+				B857940A714B16DC6631CB5A27C89263 /* Pods-GXAudioPlay_Tests-acknowledgements.plist */,
+				4AC2ECB17BEE749BA834A82DE4456118 /* Pods-GXAudioPlay_Tests-dummy.m */,
+				43B7104F06B42E2DEC310620B8E036F5 /* Pods-GXAudioPlay_Tests-frameworks.sh */,
+				322FFB21A3EBB95047B585E384445CC3 /* Pods-GXAudioPlay_Tests-Info.plist */,
+				FD3C8D6294496E5198B21A41EA90F10B /* Pods-GXAudioPlay_Tests-umbrella.h */,
+				B64CDBA649C2E988845396565EC23526 /* Pods-GXAudioPlay_Tests.debug.xcconfig */,
+				C054AC5177410B3C3CD3140C84060253 /* Pods-GXAudioPlay_Tests.release.xcconfig */,
+			);
+			name = "Pods-GXAudioPlay_Tests";
+			path = "Target Support Files/Pods-GXAudioPlay_Tests";
+			sourceTree = "<group>";
+		};
+		5F0297B0F219C3719A7E21F639490F2B /* FBSnapshotTestCase */ = {
+			isa = PBXGroup;
+			children = (
+				267E2463F03E80986CDE7A0F6D2ED762 /* Core */,
+				128A0C86989E079D05C8D14A279A7F34 /* Support Files */,
+				18F3F53B050A24CACDA31D225E1C0814 /* SwiftSupport */,
+			);
+			path = FBSnapshotTestCase;
+			sourceTree = "<group>";
+		};
+		81C24094C9BA3E5D30AD51C87CC90ADF /* GGXSwiftExtension */ = {
+			isa = PBXGroup;
+			children = (
+				0C39928B7DA24DC4EDA7CA96FBEEC09D /* Array+extension.swift */,
+				A9426593B131AE0ED30A1B47F7DDD587 /* AttributeString+Extension.swift */,
+				A949719314C44BBF2A9F4BBA74B31918 /* Bundle+Extension.swift */,
+				4DD27E2666AE56EA574239887F70BEBC /* CGSize+Extension.swift */,
+				07CA4161293ECC5FA5BCDA15ECE63733 /* Date+Extension.swift */,
+				5D264B489BF425BB619601DC5CCB6DB8 /* DateFormatter+Extension.swift */,
+				88EACB0541A96584330D7528FC282CD9 /* Dictionary+Extension.swift */,
+				8B2E82AA32D2745CFB0DBD85F8ED830D /* Double+Extension.swift */,
+				8B58C8F7E92AA48E1F1FE08E3AF910D8 /* FileManager+Extension.swift */,
+				BE68B74FCA506FBE05D7ABB42DC1E4E3 /* Int+Extension.swift */,
+				082938BD859D84A2C1105DE109BDB24B /* ReplaceMe.swift */,
+				AE8F67F8C3D0FEB8C779EFD5FB046721 /* String+Extension.swift */,
+				7176498941A0FB9DEEDCC99B656E43C9 /* TimerInterval+Extension.swift */,
+				D7CB63F75F9AA376A9FF642C90048AF0 /* UIAlertViewController+Extension.swift */,
+				E5183A67DE82E10F3AF08B515C6C3146 /* UIApplication+Extension.swift */,
+				9C3CA3E07B0CC0D808F26EB92546F60A /* UIColor+Extension.swift */,
+				2AA43CB2DB024491B9850B945ACDB9A4 /* UIDevice+Extension.swift */,
+				E6E18FC03B4CCDABCD8A45C9BC905907 /* UIEdgeInsets+CommonExtension.swift */,
+				EC6393548734A835A31C5928772002EF /* UIImage+commonExtension.swift */,
+				AD9B41F10F3DDF262BC3AAB2DB4B7FDE /* UIImageView+Extension.swift */,
+				F9904228A25762EC5AFD99E0D07ACE4E /* UIKit+Extension.swift */,
+				E0C9B002FCE9BDE5FB533575DD5F3B41 /* UINavigationBar+Extension.swift */,
+				57E83FA8704ACF0C196061B579BEC88E /* UIResponder+ Extension.swift.swift */,
+				20C2894D75190E19EA06E4C2C9E9A8F0 /* UITableViewCell+Extension.swift */,
+				711FE55C542EC2AF3D11D90407C3C339 /* UIView+Extension.swift */,
+				675ED81C8D6F821BFD256E85F4189D9D /* UIViewController+Extension.swift */,
+				242403E5561A37D1EE50451442A13CD8 /* URL+Extension.swift */,
+				41F684B7AED93E3F017F6A068EE05B4E /* Support Files */,
+			);
+			path = GGXSwiftExtension;
+			sourceTree = "<group>";
+		};
+		8470A7025BC08E30F5B3271B51A48696 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5C4F31330DFA99D699E4BDC8C3573D73 /* FBSnapshotTestCase */,
+				607E1AE85374AD5AF6953AE2B0415B55 /* GGXSwiftExtension */,
+				DAA44FE1E6ED023E9DB9914AAD707DFA /* GXAudioPlay */,
+				2502A063192E26C7CF4F27796F0AB7CC /* Pods-GXAudioPlay_Example */,
+				2608C01A01B843923381968B75450871 /* Pods-GXAudioPlay_Tests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9D9A4C8314D673B93B3B89478375950F /* GXAudioPlay */ = {
+			isa = PBXGroup;
+			children = (
+				2FA698509C9E0A26CE7802D15B51535D /* GXAudioEnginePlayer.swift */,
+				08CB4BB79D513A687D495BD79681A458 /* ReplaceMe.swift */,
+				3804BB7306A69332B7A1F7AD5B1354FB /* Pod */,
+				5296C915F676F59E2C8BBC9FA4F50C9D /* Support Files */,
+			);
+			name = GXAudioPlay;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB2668559AE577E6E8078C0C291AD417 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				4586F1EF6853F7F835168C98A97A7746 /* Development Pods */,
+				BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */,
+				3E330FAE29C37271072335F947554481 /* Pods */,
+				8470A7025BC08E30F5B3271B51A48696 /* Products */,
+				2EFB196DB9761AAD0BA6C10436FCAD19 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D4FB8A0EBF4188A143F29E5CA222A5B0 /* Pods-GXAudioPlay_Example */ = {
+			isa = PBXGroup;
+			children = (
+				E016FBCF6191834A58D8A66DC1B1F444 /* Pods-GXAudioPlay_Example.modulemap */,
+				6E9D1AC20544796DA2518A7165091E6F /* Pods-GXAudioPlay_Example-acknowledgements.markdown */,
+				5479BD458A535D7B4CEBC5DCAD3A03FE /* Pods-GXAudioPlay_Example-acknowledgements.plist */,
+				158A4B18756E3BC16CB7002BAC389D86 /* Pods-GXAudioPlay_Example-dummy.m */,
+				CFC95ED60F3A4F23E6934647274E9BE3 /* Pods-GXAudioPlay_Example-frameworks.sh */,
+				8906348FF9C15721A5526D19F5E95105 /* Pods-GXAudioPlay_Example-Info.plist */,
+				078D86FE540AF73C66FF1A76682A7607 /* Pods-GXAudioPlay_Example-umbrella.h */,
+				9F03BEBBC537DE387B96F636BE49B6B1 /* Pods-GXAudioPlay_Example.debug.xcconfig */,
+				FCD6A66FBF76E7B12DC4705D58E5B80A /* Pods-GXAudioPlay_Example.release.xcconfig */,
+			);
+			name = "Pods-GXAudioPlay_Example";
+			path = "Target Support Files/Pods-GXAudioPlay_Example";
+			sourceTree = "<group>";
+		};
+		FB2668559AE577E6E8078C0C291AD417 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */,
+				3280BB5E7B57C31D41117A74F76E9DF3 /* QuartzCore.framework */,
+				1DA24A38BA9EE106B59E3D4C8DD1CE0E /* UIKit.framework */,
+				E658F388F01C72599CA75537950B6095 /* XCTest.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3E0D2B309683064BC6E87111F3F64437 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AF1241B95FF39C3A32EA3D7CA464739 /* GGXSwiftExtension-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66026C4EDCDC96E279DD9121D1673EBB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A322106CB88C39C82C72A93B0ABE7B50 /* GXAudioPlay-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		683E4A2E5B8B4FA42F33C22FD3607B53 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1F75A731FD3CF4318D4F63A2731835C /* Pods-GXAudioPlay_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A02F81AA4A4212F281524B676572ADB7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04593808FE4BE905CFAD1B810BCC867E /* Pods-GXAudioPlay_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4CF7A53AFE8275DDE075747E8245F97 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF8307B7346F4D3BA13C11AECFE6EDD0 /* FBSnapshotTestCase.h in Headers */,
+				1F84FE646CD1D7BAFFB58C243277AFF8 /* FBSnapshotTestCase-umbrella.h in Headers */,
+				640CCE9C3A28AA3CA15510899F9140EE /* FBSnapshotTestCasePlatform.h in Headers */,
+				2B88C28DD20CBFA7B3AEB21A365197FE /* FBSnapshotTestController.h in Headers */,
+				5558B876B579BC1E79BD3D2B19148329 /* UIApplication+StrictKeyWindow.h in Headers */,
+				8AE19756F0126FE92AF625E36F3D70FE /* UIImage+Compare.h in Headers */,
+				67F1963AA7C9EDB78127AD5F566A4949 /* UIImage+Diff.h in Headers */,
+				373413256658309F9053CE22BF62077E /* UIImage+Snapshot.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		113526D7FDD978D22B4D1FCC27B12376 /* Pods-GXAudioPlay_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9356F0195D7A5081DCEBA5E9AEDB7CDB /* Build configuration list for PBXNativeTarget "Pods-GXAudioPlay_Tests" */;
+			buildPhases = (
+				A02F81AA4A4212F281524B676572ADB7 /* Headers */,
+				89C5FB8259734AEDB9A3F2202DCF8110 /* Sources */,
+				5BC97F24C7C13D92ECFE758B6130E922 /* Frameworks */,
+				9414DCCA50965FD509613240E1DAF006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3EDC2FA2BCA8D5B8043A734AEA7C2BC3 /* PBXTargetDependency */,
+				E8576E81E6FF5BC676651FAE71FC1D50 /* PBXTargetDependency */,
+			);
+			name = "Pods-GXAudioPlay_Tests";
+			productName = Pods_GXAudioPlay_Tests;
+			productReference = 2608C01A01B843923381968B75450871 /* Pods-GXAudioPlay_Tests */;
+			productType = "com.apple.product-type.framework";
+		};
+		12F4ACCB6C92403E22F1B903BDD90CA4 /* Pods-GXAudioPlay_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 436E11D1417B16CC96DD38BF051E7351 /* Build configuration list for PBXNativeTarget "Pods-GXAudioPlay_Example" */;
+			buildPhases = (
+				683E4A2E5B8B4FA42F33C22FD3607B53 /* Headers */,
+				5A610FDD10A031BA91D39C5469860093 /* Sources */,
+				E8A8B6C1903AC4F2E1A0BF6F31463F4E /* Frameworks */,
+				C4E92CE2EDC75EF0EEDEEA311C11EEF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F2D7C64FD82627CE625F41070747241E /* PBXTargetDependency */,
+				2FDCF7DFF04A7E6AB963DE5F1196D407 /* PBXTargetDependency */,
+			);
+			name = "Pods-GXAudioPlay_Example";
+			productName = Pods_GXAudioPlay_Example;
+			productReference = 2502A063192E26C7CF4F27796F0AB7CC /* Pods-GXAudioPlay_Example */;
+			productType = "com.apple.product-type.framework";
+		};
+		34208A50A6E2389A7BB30C187CD9E2A4 /* GGXSwiftExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3172BEB221EEC9978D0993073A4F1E1F /* Build configuration list for PBXNativeTarget "GGXSwiftExtension" */;
+			buildPhases = (
+				3E0D2B309683064BC6E87111F3F64437 /* Headers */,
+				A7EBBC80DA215B76E2D8BC0AA8C7E739 /* Sources */,
+				3F75BD0350E594FFF820B4C3B9C52D10 /* Frameworks */,
+				AA6951B070EA8E19BCFD26ACF03AB36E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GGXSwiftExtension;
+			productName = GGXSwiftExtension;
+			productReference = 607E1AE85374AD5AF6953AE2B0415B55 /* GGXSwiftExtension */;
+			productType = "com.apple.product-type.framework";
+		};
+		98A98149697C80CEF8D5772791E92E66 /* FBSnapshotTestCase */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 28DAA9880679133EC375B7072B9AEABB /* Build configuration list for PBXNativeTarget "FBSnapshotTestCase" */;
+			buildPhases = (
+				D4CF7A53AFE8275DDE075747E8245F97 /* Headers */,
+				EE210BFC37CDBA0645C09C3819F41723 /* Sources */,
+				E3B880388FF17A336FBF90E30E537508 /* Frameworks */,
+				194C9DCC4899F62F4FB7DDF15C987499 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FBSnapshotTestCase;
+			productName = FBSnapshotTestCase;
+			productReference = 5C4F31330DFA99D699E4BDC8C3573D73 /* FBSnapshotTestCase */;
+			productType = "com.apple.product-type.framework";
+		};
+		AB61B665BCFCC0A82762E72F1C11C95C /* GXAudioPlay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF1AE10F0FC031BFE75AB7B9EDCB4C21 /* Build configuration list for PBXNativeTarget "GXAudioPlay" */;
+			buildPhases = (
+				66026C4EDCDC96E279DD9121D1673EBB /* Headers */,
+				A1E13DE38AB831A97938BD7899C4F927 /* Sources */,
+				56DDF5CD70B3C7429516FF8B49ADA206 /* Frameworks */,
+				8DDCE44C19FF1ED7915FE44C59670FE4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GXAudioPlay;
+			productName = GXAudioPlay;
+			productReference = DAA44FE1E6ED023E9DB9914AAD707DFA /* GXAudioPlay */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 8470A7025BC08E30F5B3271B51A48696 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				98A98149697C80CEF8D5772791E92E66 /* FBSnapshotTestCase */,
+				34208A50A6E2389A7BB30C187CD9E2A4 /* GGXSwiftExtension */,
+				AB61B665BCFCC0A82762E72F1C11C95C /* GXAudioPlay */,
+				12F4ACCB6C92403E22F1B903BDD90CA4 /* Pods-GXAudioPlay_Example */,
+				113526D7FDD978D22B4D1FCC27B12376 /* Pods-GXAudioPlay_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		194C9DCC4899F62F4FB7DDF15C987499 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8DDCE44C19FF1ED7915FE44C59670FE4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9414DCCA50965FD509613240E1DAF006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA6951B070EA8E19BCFD26ACF03AB36E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4E92CE2EDC75EF0EEDEEA311C11EEF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5A610FDD10A031BA91D39C5469860093 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				545E38447DE7B27D1F82F813E159A03E /* Pods-GXAudioPlay_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89C5FB8259734AEDB9A3F2202DCF8110 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				540E81618E2072E6DAC51EB72005F2A9 /* Pods-GXAudioPlay_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1E13DE38AB831A97938BD7899C4F927 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02F5DAB7D380B773D6EE92AE94AD84C8 /* GXAudioEnginePlayer.swift in Sources */,
+				4580CE553A9409870C8F5C277FF3495C /* GXAudioPlay-dummy.m in Sources */,
+				F1B240BD123BC841C6B024A0FEB86119 /* ReplaceMe.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A7EBBC80DA215B76E2D8BC0AA8C7E739 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41D89EEDF3574A65FD2A32B2E4DDF877 /* Array+extension.swift in Sources */,
+				CA015BD4F64A40B37A4A07D97E6AE173 /* AttributeString+Extension.swift in Sources */,
+				200FD5BA052E3769B3FEE3015047E748 /* Bundle+Extension.swift in Sources */,
+				99ED39446AE57D52883AB840B3C9638B /* CGSize+Extension.swift in Sources */,
+				18B12CC1A93CD547D91430E95A138115 /* Date+Extension.swift in Sources */,
+				1081C56F36CFCA7C6E25F0E1534E8AFD /* DateFormatter+Extension.swift in Sources */,
+				70E2E6C14507446AEB5943EB97C81969 /* Dictionary+Extension.swift in Sources */,
+				02A3E26019986742537A69B3FE9F222F /* Double+Extension.swift in Sources */,
+				B0425303CE1F2FFD0BB1051958375E42 /* FileManager+Extension.swift in Sources */,
+				9C12DB8D86858F28B65871CEA505BFE0 /* GGXSwiftExtension-dummy.m in Sources */,
+				1BDE18735C32CE2710BB2886B93C06E5 /* Int+Extension.swift in Sources */,
+				506A98D4FD046AA4BD3D32E43D37F397 /* ReplaceMe.swift in Sources */,
+				14E51B3B53A79A72E7622E0904717259 /* String+Extension.swift in Sources */,
+				26DB6D48F4EF360342530AE923E11C09 /* TimerInterval+Extension.swift in Sources */,
+				86B5F0E5414BD6DC8976EFF2A3974D3C /* UIAlertViewController+Extension.swift in Sources */,
+				9AB44D5164AC9EB28D1CB667CD03C3B3 /* UIApplication+Extension.swift in Sources */,
+				B90E245C5637A760F050C9A33FCA191B /* UIColor+Extension.swift in Sources */,
+				A3A22A6B61A42E5668E237D6526FD716 /* UIDevice+Extension.swift in Sources */,
+				626DA6A800CFA0DD760D409D67D53AB7 /* UIEdgeInsets+CommonExtension.swift in Sources */,
+				AE36297D9F31F064DAF9AB2055DE7200 /* UIImage+commonExtension.swift in Sources */,
+				1D1CA721806AAD3C3C36B2A85219E5A4 /* UIImageView+Extension.swift in Sources */,
+				C13589A39EC7545EE413365E091DEC1F /* UIKit+Extension.swift in Sources */,
+				37087D69BA92851218B6BA45D11D85C6 /* UINavigationBar+Extension.swift in Sources */,
+				D3E61C5B27A170DF700F6EF72241A0C8 /* UIResponder+ Extension.swift.swift in Sources */,
+				9B2618EC57135AF32CA1AFEA8F76E0AF /* UITableViewCell+Extension.swift in Sources */,
+				63E1BA5696AB18D307570332149E094D /* UIView+Extension.swift in Sources */,
+				E9247DF72D5314775CC608DF25C08E45 /* UIViewController+Extension.swift in Sources */,
+				7101EBF323F093A9674F0E79F9BA2D47 /* URL+Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE210BFC37CDBA0645C09C3819F41723 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C67CBD15D9B5D0B7769B2F469478332 /* FBSnapshotTestCase.m in Sources */,
+				5BE525FF6FA14B999ED2CCC0AA4FA0CF /* FBSnapshotTestCase-dummy.m in Sources */,
+				30D475DF57C0C682A723231E7BCA0D14 /* FBSnapshotTestCasePlatform.m in Sources */,
+				C390C6005353FB986CB52F474CEF8588 /* FBSnapshotTestController.m in Sources */,
+				2975A09730FD83DC0897129A11EA6585 /* SwiftSupport.swift in Sources */,
+				74339C58AC4E5631FB8C0E662668A796 /* UIApplication+StrictKeyWindow.m in Sources */,
+				B52281F9F4340D4FC8ABB2FEB1FEC08E /* UIImage+Compare.m in Sources */,
+				CA54C09A12400567AFFCB407EEB7E154 /* UIImage+Diff.m in Sources */,
+				2CB61F6FA511CAACB43A50DC3A82E0DD /* UIImage+Snapshot.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2FDCF7DFF04A7E6AB963DE5F1196D407 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GXAudioPlay;
+			target = AB61B665BCFCC0A82762E72F1C11C95C /* GXAudioPlay */;
+			targetProxy = 95AA24739C21A1EC51D5067A328E0D6B /* PBXContainerItemProxy */;
+		};
+		3EDC2FA2BCA8D5B8043A734AEA7C2BC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FBSnapshotTestCase;
+			target = 98A98149697C80CEF8D5772791E92E66 /* FBSnapshotTestCase */;
+			targetProxy = ECB69743D9142A2D5A66FF6A59728ABC /* PBXContainerItemProxy */;
+		};
+		E8576E81E6FF5BC676651FAE71FC1D50 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-GXAudioPlay_Example";
+			target = 12F4ACCB6C92403E22F1B903BDD90CA4 /* Pods-GXAudioPlay_Example */;
+			targetProxy = 2EE7A683F94D58BF2A1EBE91BD448FBD /* PBXContainerItemProxy */;
+		};
+		F2D7C64FD82627CE625F41070747241E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GGXSwiftExtension;
+			target = 34208A50A6E2389A7BB30C187CD9E2A4 /* GGXSwiftExtension */;
+			targetProxy = B4B6D29B059637942B8DD1E6AE6D64EF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0CF977E736A9F0297ED689DCD07C3E1C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9958CD69FA19E3A955E3D089742DB538 /* FBSnapshotTestCase.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase.modulemap";
+				PRODUCT_MODULE_NAME = FBSnapshotTestCase;
+				PRODUCT_NAME = FBSnapshotTestCase;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		18703C1ED172BD5F20EABDAB91200C0D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCD6A66FBF76E7B12DC4705D58E5B80A /* Pods-GXAudioPlay_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GXAudioPlay_Example/Pods-GXAudioPlay_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GXAudioPlay_Example/Pods-GXAudioPlay_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2B7F0090B6BE5F223F941F79AAD39A28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C054AC5177410B3C3CD3140C84060253 /* Pods-GXAudioPlay_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GXAudioPlay_Tests/Pods-GXAudioPlay_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GXAudioPlay_Tests/Pods-GXAudioPlay_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3B3D161A1F62489E9230A232DD51DF19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61477F1A0964171F52373CFF56B0F22A /* GGXSwiftExtension.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GGXSwiftExtension/GGXSwiftExtension-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GGXSwiftExtension/GGXSwiftExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GGXSwiftExtension/GGXSwiftExtension.modulemap";
+				PRODUCT_MODULE_NAME = GGXSwiftExtension;
+				PRODUCT_NAME = GGXSwiftExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7EE7A78859F657F6BEFC651185B43192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		842C60C4F1EBC85F9C8FF97D39D120FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFC8F0B1089D079A2FBD86B3F473F9B7 /* FBSnapshotTestCase.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FBSnapshotTestCase/FBSnapshotTestCase.modulemap";
+				PRODUCT_MODULE_NAME = FBSnapshotTestCase;
+				PRODUCT_NAME = FBSnapshotTestCase;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		89780EF9FFB9A498BE0CA34E910B86B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CC500E11AF3B5F2209BF1E46790FA41 /* GXAudioPlay.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GXAudioPlay/GXAudioPlay-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GXAudioPlay/GXAudioPlay-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GXAudioPlay/GXAudioPlay.modulemap";
+				PRODUCT_MODULE_NAME = GXAudioPlay;
+				PRODUCT_NAME = GXAudioPlay;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		95574B95804EFC6885E21A3066813BC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F03BEBBC537DE387B96F636BE49B6B1 /* Pods-GXAudioPlay_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GXAudioPlay_Example/Pods-GXAudioPlay_Example-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GXAudioPlay_Example/Pods-GXAudioPlay_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A9F53810B4E93CF7909382063075EFC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B64CDBA649C2E988845396565EC23526 /* Pods-GXAudioPlay_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GXAudioPlay_Tests/Pods-GXAudioPlay_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GXAudioPlay_Tests/Pods-GXAudioPlay_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D0153309B29F89BEB4E69CF7775257B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5D31FE26AAA825EB681CDA154BD9C55 /* GGXSwiftExtension.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GGXSwiftExtension/GGXSwiftExtension-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GGXSwiftExtension/GGXSwiftExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GGXSwiftExtension/GGXSwiftExtension.modulemap";
+				PRODUCT_MODULE_NAME = GGXSwiftExtension;
+				PRODUCT_NAME = GGXSwiftExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D299434AB35E7FD6F7921C8EF24742FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		D92408559214D59B7F88FD8787317515 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F8F177CC95CA3AEC992A2D336FA7056 /* GXAudioPlay.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GXAudioPlay/GXAudioPlay-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GXAudioPlay/GXAudioPlay-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GXAudioPlay/GXAudioPlay.modulemap";
+				PRODUCT_MODULE_NAME = GXAudioPlay;
+				PRODUCT_NAME = GXAudioPlay;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		28DAA9880679133EC375B7072B9AEABB /* Build configuration list for PBXNativeTarget "FBSnapshotTestCase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				842C60C4F1EBC85F9C8FF97D39D120FF /* Debug */,
+				0CF977E736A9F0297ED689DCD07C3E1C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3172BEB221EEC9978D0993073A4F1E1F /* Build configuration list for PBXNativeTarget "GGXSwiftExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B3D161A1F62489E9230A232DD51DF19 /* Debug */,
+				D0153309B29F89BEB4E69CF7775257B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		436E11D1417B16CC96DD38BF051E7351 /* Build configuration list for PBXNativeTarget "Pods-GXAudioPlay_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95574B95804EFC6885E21A3066813BC3 /* Debug */,
+				18703C1ED172BD5F20EABDAB91200C0D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D299434AB35E7FD6F7921C8EF24742FF /* Debug */,
+				7EE7A78859F657F6BEFC651185B43192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9356F0195D7A5081DCEBA5E9AEDB7CDB /* Build configuration list for PBXNativeTarget "Pods-GXAudioPlay_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9F53810B4E93CF7909382063075EFC9 /* Debug */,
+				2B7F0090B6BE5F223F941F79AAD39A28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF1AE10F0FC031BFE75AB7B9EDCB4C21 /* Build configuration list for PBXNativeTarget "GXAudioPlay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D92408559214D59B7F88FD8787317515 /* Debug */,
+				89780EF9FFB9A498BE0CA34E910B86B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

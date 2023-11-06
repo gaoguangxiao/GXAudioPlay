@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,11 +18,94 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGl-EU-o5M">
+                                <rect key="frame" x="137.5" y="176" width="100" height="70.5"/>
+                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Engie初始化"/>
+                                <connections>
+                                    <action selector="实例化Engine:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sTY-aM-oLK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLr-tq-sa3">
+                                <rect key="frame" x="66.5" y="316.5" width="82" height="34"/>
+                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Engie播放"/>
+                                <connections>
+                                    <action selector="播放Engine:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gU7-6y-bGO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A17-4K-xWx">
+                                <rect key="frame" x="250.5" y="316.5" width="82" height="34"/>
+                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Engie停止"/>
+                                <connections>
+                                    <action selector="停止Engine:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ffx-3r-d3D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHI-h6-v4w">
+                                <rect key="frame" x="10" y="394.5" width="195" height="34"/>
+                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Engie播放，从第5S播放"/>
+                                <connections>
+                                    <action selector="从某时刻播放:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PFv-8Q-21P"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHG-Ak-ad4">
+                                <rect key="frame" x="158.5" y="296.5" width="82" height="34"/>
+                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Engie暂停"/>
+                                <connections>
+                                    <action selector="暂停Engine:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="B1P-hQ-PxP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYY-sn-5aM">
+                                <rect key="frame" x="158.5" y="340.5" width="82" height="34"/>
+                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Engie继续"/>
+                                <connections>
+                                    <action selector="继续Engine:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7dH-L9-tRv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpz-JZ-1K3">
+                                <rect key="frame" x="26" y="438.5" width="147" height="34"/>
+                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="获取当前播放时长"/>
+                                <connections>
+                                    <action selector="获取播放时长:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7nz-BR-Rrr"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="A17-4K-xWx" firstAttribute="leading" secondItem="iHG-Ak-ad4" secondAttribute="trailing" constant="10" id="0Vb-tE-3QF"/>
+                            <constraint firstItem="iHG-Ak-ad4" firstAttribute="leading" secondItem="LLr-tq-sa3" secondAttribute="trailing" constant="10" id="GWV-XY-Xz6"/>
+                            <constraint firstItem="QGl-EU-o5M" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="156" id="KTS-R0-F6D"/>
+                            <constraint firstItem="LLr-tq-sa3" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" constant="-80" id="MVa-OV-7Rd"/>
+                            <constraint firstItem="PHI-h6-v4w" firstAttribute="top" secondItem="jYY-sn-5aM" secondAttribute="bottom" constant="20" id="MjH-0v-j5H"/>
+                            <constraint firstItem="bpz-JZ-1K3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="N9D-xO-TbT"/>
+                            <constraint firstItem="bpz-JZ-1K3" firstAttribute="top" secondItem="PHI-h6-v4w" secondAttribute="bottom" constant="10" id="RUi-wq-ACD"/>
+                            <constraint firstItem="LLr-tq-sa3" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="WVd-zi-eAP"/>
+                            <constraint firstItem="iHG-Ak-ad4" firstAttribute="centerY" secondItem="LLr-tq-sa3" secondAttribute="centerY" constant="-20" id="h9b-Fl-nbU"/>
+                            <constraint firstItem="jYY-sn-5aM" firstAttribute="top" secondItem="iHG-Ak-ad4" secondAttribute="bottom" constant="10" id="soS-6p-hZi"/>
+                            <constraint firstItem="iHG-Ak-ad4" firstAttribute="top" secondItem="QGl-EU-o5M" secondAttribute="bottom" constant="50" id="xzC-Yj-AdX"/>
+                            <constraint firstItem="QGl-EU-o5M" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="y7e-cv-515"/>
+                            <constraint firstItem="PHI-h6-v4w" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="yVu-Y6-sJC"/>
+                            <constraint firstItem="A17-4K-xWx" firstAttribute="centerY" secondItem="LLr-tq-sa3" secondAttribute="centerY" id="ykr-9D-Rd9"/>
+                            <constraint firstItem="jYY-sn-5aM" firstAttribute="centerX" secondItem="iHG-Ak-ad4" secondAttribute="centerX" id="zf6-B0-OaO"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-31" y="-69"/>
         </scene>
     </scenes>
 </document>
