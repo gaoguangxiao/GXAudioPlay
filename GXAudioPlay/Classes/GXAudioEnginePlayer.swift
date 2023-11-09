@@ -3,7 +3,7 @@
 //  GXAudioPlay
 //
 //  Created by 高广校 on 2023/11/6.
-//
+// 
 
 import Foundation
 import AVFoundation
@@ -34,33 +34,48 @@ public class GXAudioEnginePlayer: NSObject {
         
         //默认为0
         skipFrame = 0
+        
+        //设置音量
+        player.volume = 1.0
+        //播放速率
+        player.rate = 1.0
+        //1、获取 主混合节点
+        //        let audioFomat = engine.mainMixerNode.outputFormat(forBus: 0)
+        //
+        //        //
+        //        engine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: audioFomat) { buffer, when in
+        //            guard let channelData = buffer.floatChannelData, let updater = self.updater else {
+        //                return
+        //            }
+        //        }
+        
     }
     
     public var currentNodeTime: AVAudioTime? {
         guard let lastRenderTime = player.lastRenderTime,let playerTime = player.nodeTime(forPlayerTime: lastRenderTime) else {
-              return nil
-          }
+            return nil
+        }
         return playerTime
     }
     
     public var currentPlayTime: AVAudioTime? {
         guard let lastRenderTime = player.lastRenderTime,let playerTime = player.playerTime(forNodeTime: lastRenderTime) else {
-              return nil
-          }
-          return playerTime
+            return nil
+        }
+        return playerTime
     }
-        
+    
     public var currentTime: Double {
         guard let playerTime = currentPlayTime else {
-              return 0
-          }
+            return 0
+        }
         return Double(playerTime.sampleTime + skipFrame)/playerTime.sampleRate
     }
     
     //本地URL
     public func play(fileURL fileUrl: URL) {
         guard let audioFile = try? AVAudioFile(forReading: fileUrl) else { return }
-        player.stop()
+//        player.stop()
         player.scheduleFile(audioFile, at: nil) {
             self.delegateEngine?.engineDidFinishPlaying(self)
         }
@@ -81,8 +96,44 @@ public class GXAudioEnginePlayer: NSObject {
         play()
     }
     
+    /// URL 用PCM缓存播放
+    /// - Parameter fileUrl: fileUrl description
+    public func playpcm(fileURL fileUrl: URL) {
+        guard let audioFile = try? AVAudioFile(forReading: fileUrl) else { return }
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: audioFile.processingFormat, frameCapacity: AVAudioFrameCount(audioFile.length)) else { return }
+        try? audioFile.read(into: buffer)
+        skipFrame = 0
+        player.scheduleBuffer(buffer) {
+            self.delegateEngine?.engineDidFinishPlaying(self)
+        }
+        play()
+    }
+    
+    public func playpcm(fileURL fileUrl: URL,options:AVAudioPlayerNodeBufferOptions) {
+        guard let audioFile = try? AVAudioFile(forReading: fileUrl) else { return }
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: audioFile.processingFormat, frameCapacity: AVAudioFrameCount(audioFile.length)) else { return }
+        try? audioFile.read(into: buffer)
+        skipFrame = 0
+        player.scheduleBuffer(buffer, at: nil,options: options) {
+            self.delegateEngine?.engineDidFinishPlaying(self)
+        }
+    }
+    
+    /// URL 用PCM缓存播放
+    /// - Parameter fileUrl: <#fileUrl description#>
+    public func plays(fileURL fileUrls: Array<URL>) {
+        for s in fileUrls {
+            guard let audioFile = try? AVAudioFile(forReading: s) else { return }
+            player.scheduleFile(audioFile, at: nil) {
+                self.delegateEngine?.engineDidFinishPlaying(self)
+            }
+            play()
+        }
+    }
+    
+//    -- MARK：功能键
     public func pause(){
-//        self.engine.stop()
+        //        self.engine.stop()
         self.player.pause()
     }
     
@@ -92,7 +143,7 @@ public class GXAudioEnginePlayer: NSObject {
     }
     
     //延迟多久播放
-    public func play(time:AVAudioTime) {
+    func play(time:AVAudioTime) {
         startEndine()
         self.player.play(at: time)
     }

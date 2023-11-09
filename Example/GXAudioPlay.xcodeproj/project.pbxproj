@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E6E51262AF8FC9D005F9F60 /* 10.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51132AF8FC9D005F9F60 /* 10.wav */; };
+		1E6E51272AF8FC9D005F9F60 /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51142AF8FC9D005F9F60 /* 11.wav */; };
+		1E6E51282AF8FC9D005F9F60 /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51152AF8FC9D005F9F60 /* 12.wav */; };
+		1E6E51292AF8FC9D005F9F60 /* #1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51162AF8FC9D005F9F60 /* #1.wav */; };
+		1E6E512A2AF8FC9D005F9F60 /* #3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51172AF8FC9D005F9F60 /* #3.wav */; };
+		1E6E512B2AF8FC9D005F9F60 /* #2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51182AF8FC9D005F9F60 /* #2.wav */; };
+		1E6E512C2AF8FC9D005F9F60 /* 9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51192AF8FC9D005F9F60 /* 9.wav */; };
+		1E6E512D2AF8FC9D005F9F60 /* #6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E511A2AF8FC9D005F9F60 /* #6.wav */; };
+		1E6E512E2AF8FC9D005F9F60 /* #7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E511B2AF8FC9D005F9F60 /* #7.wav */; };
+		1E6E512F2AF8FC9D005F9F60 /* 8.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E511C2AF8FC9D005F9F60 /* 8.wav */; };
+		1E6E51302AF8FC9D005F9F60 /* #5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E511D2AF8FC9D005F9F60 /* #5.wav */; };
+		1E6E51312AF8FC9D005F9F60 /* #4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E511E2AF8FC9D005F9F60 /* #4.wav */; };
+		1E6E51322AF8FC9D005F9F60 /* 6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E511F2AF8FC9D005F9F60 /* 6.wav */; };
+		1E6E51332AF8FC9D005F9F60 /* 7.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51202AF8FC9D005F9F60 /* 7.wav */; };
+		1E6E51342AF8FC9D005F9F60 /* 5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51212AF8FC9D005F9F60 /* 5.wav */; };
+		1E6E51352AF8FC9D005F9F60 /* 4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51222AF8FC9D005F9F60 /* 4.wav */; };
+		1E6E51362AF8FC9D005F9F60 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51232AF8FC9D005F9F60 /* 1.wav */; };
+		1E6E51372AF8FC9D005F9F60 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51242AF8FC9D005F9F60 /* 3.wav */; };
+		1E6E51382AF8FC9D005F9F60 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51252AF8FC9D005F9F60 /* 2.wav */; };
 		1E84B7622AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E84B75F2AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 */; };
 		1E84B7632AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E84B7602AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 */; };
 		1E84B7642AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E84B7612AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 */; };
@@ -33,6 +52,25 @@
 /* Begin PBXFileReference section */
 		079AF7604CCEAAF303B495BF /* Pods-GXAudioPlay_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GXAudioPlay_Example.debug.xcconfig"; path = "Target Support Files/Pods-GXAudioPlay_Example/Pods-GXAudioPlay_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		1ACE81197573D6287FE72553 /* Pods-GXAudioPlay_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GXAudioPlay_Tests.debug.xcconfig"; path = "Target Support Files/Pods-GXAudioPlay_Tests/Pods-GXAudioPlay_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		1E6E51132AF8FC9D005F9F60 /* 10.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 10.wav; sourceTree = "<group>"; };
+		1E6E51142AF8FC9D005F9F60 /* 11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 11.wav; sourceTree = "<group>"; };
+		1E6E51152AF8FC9D005F9F60 /* 12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 12.wav; sourceTree = "<group>"; };
+		1E6E51162AF8FC9D005F9F60 /* #1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "#1.wav"; sourceTree = "<group>"; };
+		1E6E51172AF8FC9D005F9F60 /* #3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "#3.wav"; sourceTree = "<group>"; };
+		1E6E51182AF8FC9D005F9F60 /* #2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "#2.wav"; sourceTree = "<group>"; };
+		1E6E51192AF8FC9D005F9F60 /* 9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 9.wav; sourceTree = "<group>"; };
+		1E6E511A2AF8FC9D005F9F60 /* #6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "#6.wav"; sourceTree = "<group>"; };
+		1E6E511B2AF8FC9D005F9F60 /* #7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "#7.wav"; sourceTree = "<group>"; };
+		1E6E511C2AF8FC9D005F9F60 /* 8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 8.wav; sourceTree = "<group>"; };
+		1E6E511D2AF8FC9D005F9F60 /* #5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "#5.wav"; sourceTree = "<group>"; };
+		1E6E511E2AF8FC9D005F9F60 /* #4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "#4.wav"; sourceTree = "<group>"; };
+		1E6E511F2AF8FC9D005F9F60 /* 6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 6.wav; sourceTree = "<group>"; };
+		1E6E51202AF8FC9D005F9F60 /* 7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 7.wav; sourceTree = "<group>"; };
+		1E6E51212AF8FC9D005F9F60 /* 5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 5.wav; sourceTree = "<group>"; };
+		1E6E51222AF8FC9D005F9F60 /* 4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 4.wav; sourceTree = "<group>"; };
+		1E6E51232AF8FC9D005F9F60 /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
+		1E6E51242AF8FC9D005F9F60 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
+		1E6E51252AF8FC9D005F9F60 /* 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2.wav; sourceTree = "<group>"; };
 		1E84B75F2AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "02.Ellis - Clear My Head (Radio Edit) [NCS].mp3"; sourceTree = "<group>"; };
 		1E84B7602AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "03.Spektrum & Sara Skinner - Keep You.mp3"; sourceTree = "<group>"; };
 		1E84B7612AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3"; sourceTree = "<group>"; };
@@ -75,6 +113,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E6E51122AF8FC9D005F9F60 /* music */ = {
+			isa = PBXGroup;
+			children = (
+				1E6E51132AF8FC9D005F9F60 /* 10.wav */,
+				1E6E51142AF8FC9D005F9F60 /* 11.wav */,
+				1E6E51152AF8FC9D005F9F60 /* 12.wav */,
+				1E6E51162AF8FC9D005F9F60 /* #1.wav */,
+				1E6E51172AF8FC9D005F9F60 /* #3.wav */,
+				1E6E51182AF8FC9D005F9F60 /* #2.wav */,
+				1E6E51192AF8FC9D005F9F60 /* 9.wav */,
+				1E6E511A2AF8FC9D005F9F60 /* #6.wav */,
+				1E6E511B2AF8FC9D005F9F60 /* #7.wav */,
+				1E6E511C2AF8FC9D005F9F60 /* 8.wav */,
+				1E6E511D2AF8FC9D005F9F60 /* #5.wav */,
+				1E6E511E2AF8FC9D005F9F60 /* #4.wav */,
+				1E6E511F2AF8FC9D005F9F60 /* 6.wav */,
+				1E6E51202AF8FC9D005F9F60 /* 7.wav */,
+				1E6E51212AF8FC9D005F9F60 /* 5.wav */,
+				1E6E51222AF8FC9D005F9F60 /* 4.wav */,
+				1E6E51232AF8FC9D005F9F60 /* 1.wav */,
+				1E6E51242AF8FC9D005F9F60 /* 3.wav */,
+				1E6E51252AF8FC9D005F9F60 /* 2.wav */,
+			);
+			path = music;
+			sourceTree = "<group>";
+		};
 		2E2EAB5382EAEBF813E5C1D9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +174,7 @@
 		607FACD21AFB9204008FA782 /* Example for GXAudioPlay */ = {
 			isa = PBXGroup;
 			children = (
+				1E6E51122AF8FC9D005F9F60 /* music */,
 				1E84B7612AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 */,
 				1E84B75F2AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 */,
 				1E84B7602AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 */,
@@ -256,12 +321,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E6E512E2AF8FC9D005F9F60 /* #7.wav in Resources */,
+				1E6E51292AF8FC9D005F9F60 /* #1.wav in Resources */,
 				1E84B7632AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 in Resources */,
+				1E6E51302AF8FC9D005F9F60 /* #5.wav in Resources */,
+				1E6E51282AF8FC9D005F9F60 /* 12.wav in Resources */,
 				1E84B7622AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 in Resources */,
+				1E6E51342AF8FC9D005F9F60 /* 5.wav in Resources */,
+				1E6E512C2AF8FC9D005F9F60 /* 9.wav in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				1E6E51332AF8FC9D005F9F60 /* 7.wav in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				1E6E51362AF8FC9D005F9F60 /* 1.wav in Resources */,
+				1E6E51372AF8FC9D005F9F60 /* 3.wav in Resources */,
+				1E6E51352AF8FC9D005F9F60 /* 4.wav in Resources */,
+				1E6E51272AF8FC9D005F9F60 /* 11.wav in Resources */,
+				1E6E512F2AF8FC9D005F9F60 /* 8.wav in Resources */,
+				1E6E51322AF8FC9D005F9F60 /* 6.wav in Resources */,
 				1E84B7642AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 in Resources */,
+				1E6E512D2AF8FC9D005F9F60 /* #6.wav in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				1E6E51262AF8FC9D005F9F60 /* 10.wav in Resources */,
+				1E6E51312AF8FC9D005F9F60 /* #4.wav in Resources */,
+				1E6E512A2AF8FC9D005F9F60 /* #3.wav in Resources */,
+				1E6E51382AF8FC9D005F9F60 /* 2.wav in Resources */,
+				1E6E512B2AF8FC9D005F9F60 /* #2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

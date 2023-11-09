@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		02A3E26019986742537A69B3FE9F222F /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2E82AA32D2745CFB0DBD85F8ED830D /* Double+Extension.swift */; };
-		02F5DAB7D380B773D6EE92AE94AD84C8 /* GXAudioEnginePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FA698509C9E0A26CE7802D15B51535D /* GXAudioEnginePlayer.swift */; };
 		04593808FE4BE905CFAD1B810BCC867E /* Pods-GXAudioPlay_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FD3C8D6294496E5198B21A41EA90F10B /* Pods-GXAudioPlay_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1081C56F36CFCA7C6E25F0E1534E8AFD /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D264B489BF425BB619601DC5CCB6DB8 /* DateFormatter+Extension.swift */; };
 		14E51B3B53A79A72E7622E0904717259 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8F67F8C3D0FEB8C779EFD5FB046721 /* String+Extension.swift */; };
@@ -20,18 +19,20 @@
 		26DB6D48F4EF360342530AE923E11C09 /* TimerInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7176498941A0FB9DEEDCC99B656E43C9 /* TimerInterval+Extension.swift */; };
 		2975A09730FD83DC0897129A11EA6585 /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A2980B7F47AEA521A0268BCA14572 /* SwiftSupport.swift */; };
 		2B88C28DD20CBFA7B3AEB21A365197FE /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = 47FE3322B9FC4F715FED6BB021F3CDB6 /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2BB3B86617929DC8A6F203C976D612B2 /* GXAudioQueuePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CC0CBF4E9B317E96B8D24375EAAEA0 /* GXAudioQueuePlayer.swift */; };
 		2CB61F6FA511CAACB43A50DC3A82E0DD /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAA79D12DB7990473EE576455A051B5 /* UIImage+Snapshot.m */; };
 		2ECCAC52EF4C74E1032E0BC646BBE5B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
 		30D475DF57C0C682A723231E7BCA0D14 /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F052EF115A6ACE7EFD3DAB40252A6F34 /* FBSnapshotTestCasePlatform.m */; };
 		37087D69BA92851218B6BA45D11D85C6 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C9B002FCE9BDE5FB533575DD5F3B41 /* UINavigationBar+Extension.swift */; };
 		373413256658309F9053CE22BF62077E /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = D93DB13B96CF2779617B1F03A6F4736E /* UIImage+Snapshot.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		41D89EEDF3574A65FD2A32B2E4DDF877 /* Array+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C39928B7DA24DC4EDA7CA96FBEEC09D /* Array+extension.swift */; };
-		4580CE553A9409870C8F5C277FF3495C /* GXAudioPlay-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A01FE4AEC2570B76F2E3D7F68C02F11 /* GXAudioPlay-dummy.m */; };
+		499651CF7900470A67934094CBE4FE4B /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA4886DB31DE76CFD26746B30CBF6C /* ReplaceMe.swift */; };
 		506A98D4FD046AA4BD3D32E43D37F397 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082938BD859D84A2C1105DE109BDB24B /* ReplaceMe.swift */; };
 		52E25F685DEE8B730D179A01351278F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
 		540E81618E2072E6DAC51EB72005F2A9 /* Pods-GXAudioPlay_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2ECB17BEE749BA834A82DE4456118 /* Pods-GXAudioPlay_Tests-dummy.m */; };
 		545E38447DE7B27D1F82F813E159A03E /* Pods-GXAudioPlay_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 158A4B18756E3BC16CB7002BAC389D86 /* Pods-GXAudioPlay_Example-dummy.m */; };
 		5558B876B579BC1E79BD3D2B19148329 /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 727F6437D828049F5697AEBB7D22F38F /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5B0F9C093D43591B77BC8BBE706D79CB /* GXAudioEnginePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C85E3E77596E7A3107A433EF473D67 /* GXAudioEnginePlayer.swift */; };
 		5BE525FF6FA14B999ED2CCC0AA4FA0CF /* FBSnapshotTestCase-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC91B264BDA5D40E57303EC39DD657 /* FBSnapshotTestCase-dummy.m */; };
 		626DA6A800CFA0DD760D409D67D53AB7 /* UIEdgeInsets+CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E18FC03B4CCDABCD8A45C9BC905907 /* UIEdgeInsets+CommonExtension.swift */; };
 		63E1BA5696AB18D307570332149E094D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711FE55C542EC2AF3D11D90407C3C339 /* UIView+Extension.swift */; };
@@ -40,23 +41,24 @@
 		6AF1241B95FF39C3A32EA3D7CA464739 /* GGXSwiftExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7029DA271BF41D9C4CDBA308162DD6AA /* GGXSwiftExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70E2E6C14507446AEB5943EB97C81969 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EACB0541A96584330D7528FC282CD9 /* Dictionary+Extension.swift */; };
 		7101EBF323F093A9674F0E79F9BA2D47 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242403E5561A37D1EE50451442A13CD8 /* URL+Extension.swift */; };
+		7148BB0FD90C32EC628E69B7BD8B8D3F /* Jump.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E21CFA7160E94E553DCF1FD07E2AD3C /* Jump.swift */; };
 		74339C58AC4E5631FB8C0E662668A796 /* UIApplication+StrictKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B9A0504EF29312C8AB308D630F5A90 /* UIApplication+StrictKeyWindow.m */; };
 		7C67CBD15D9B5D0B7769B2F469478332 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = B4DB151FFEDC9132D1AD0BD73EB6A517 /* FBSnapshotTestCase.m */; };
 		86B5F0E5414BD6DC8976EFF2A3974D3C /* UIAlertViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CB63F75F9AA376A9FF642C90048AF0 /* UIAlertViewController+Extension.swift */; };
 		875A310EAF4D0C136C3FFFF5E0335BE4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA24A38BA9EE106B59E3D4C8DD1CE0E /* UIKit.framework */; };
 		8AE19756F0126FE92AF625E36F3D70FE /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 11081C6F6E2C980B857F83EED078D897 /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		8AEFADC6F6C055DEF7E849AE4E4F6ACB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
 		99ED39446AE57D52883AB840B3C9638B /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DD27E2666AE56EA574239887F70BEBC /* CGSize+Extension.swift */; };
 		9AB44D5164AC9EB28D1CB667CD03C3B3 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5183A67DE82E10F3AF08B515C6C3146 /* UIApplication+Extension.swift */; };
 		9B2618EC57135AF32CA1AFEA8F76E0AF /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C2894D75190E19EA06E4C2C9E9A8F0 /* UITableViewCell+Extension.swift */; };
 		9C12DB8D86858F28B65871CEA505BFE0 /* GGXSwiftExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FE57D32777A2326F5C0FD860B67F6AD0 /* GGXSwiftExtension-dummy.m */; };
 		9D3C5E2F56838937146191468A893244 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E658F388F01C72599CA75537950B6095 /* XCTest.framework */; };
-		A322106CB88C39C82C72A93B0ABE7B50 /* GXAudioPlay-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 85817922E169419F2985C3A71313E0ED /* GXAudioPlay-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A3A22A6B61A42E5668E237D6526FD716 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA43CB2DB024491B9850B945ACDB9A4 /* UIDevice+Extension.swift */; };
 		AE36297D9F31F064DAF9AB2055DE7200 /* UIImage+commonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6393548734A835A31C5928772002EF /* UIImage+commonExtension.swift */; };
 		B0425303CE1F2FFD0BB1051958375E42 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B58C8F7E92AA48E1F1FE08E3AF910D8 /* FileManager+Extension.swift */; };
+		B1BB68429A138DDC2994EAED85F20D3B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
 		B52281F9F4340D4FC8ABB2FEB1FEC08E /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 3024BBB7800F4A29607DE31D5BDFD75C /* UIImage+Compare.m */; };
 		B90E245C5637A760F050C9A33FCA191B /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C3CA3E07B0CC0D808F26EB92546F60A /* UIColor+Extension.swift */; };
+		BBDB2DE22DCE2AC3B63E62FB77D7CC4E /* GXAudioPlay-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F3D048C14AD9B461D744FEA9400549C0 /* GXAudioPlay-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C13589A39EC7545EE413365E091DEC1F /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9904228A25762EC5AFD99E0D07ACE4E /* UIKit+Extension.swift */; };
 		C14CB7D56C8E658C8C152BB0B94F4201 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
 		C1F75A731FD3CF4318D4F63A2731835C /* Pods-GXAudioPlay_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 078D86FE540AF73C66FF1A76682A7607 /* Pods-GXAudioPlay_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -65,53 +67,51 @@
 		CA015BD4F64A40B37A4A07D97E6AE173 /* AttributeString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9426593B131AE0ED30A1B47F7DDD587 /* AttributeString+Extension.swift */; };
 		CA54C09A12400567AFFCB407EEB7E154 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C07A5DF1F52D599FF580A53099E507 /* UIImage+Diff.m */; };
 		D3E61C5B27A170DF700F6EF72241A0C8 /* UIResponder+ Extension.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E83FA8704ACF0C196061B579BEC88E /* UIResponder+ Extension.swift.swift */; };
+		DCDF63F724443679E408FF5A17486BD4 /* GXAudioPlay-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A18F7F474D18A9AEE321B88DAAE3DB2 /* GXAudioPlay-dummy.m */; };
 		E9247DF72D5314775CC608DF25C08E45 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675ED81C8D6F821BFD256E85F4189D9D /* UIViewController+Extension.swift */; };
 		F190B58F55D87D3F664342514913A6A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */; };
-		F1B240BD123BC841C6B024A0FEB86119 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CB4BB79D513A687D495BD79681A458 /* ReplaceMe.swift */; };
 		FF8307B7346F4D3BA13C11AECFE6EDD0 /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D15BDEF4AF6A27BA261ACF5ECCCF161 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2EE7A683F94D58BF2A1EBE91BD448FBD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 12F4ACCB6C92403E22F1B903BDD90CA4;
-			remoteInfo = "Pods-GXAudioPlay_Example";
-		};
-		95AA24739C21A1EC51D5067A328E0D6B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AB61B665BCFCC0A82762E72F1C11C95C;
-			remoteInfo = GXAudioPlay;
-		};
-		B4B6D29B059637942B8DD1E6AE6D64EF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 34208A50A6E2389A7BB30C187CD9E2A4;
-			remoteInfo = GGXSwiftExtension;
-		};
-		ECB69743D9142A2D5A66FF6A59728ABC /* PBXContainerItemProxy */ = {
+		176B45124C9FA623517CD2DFD7019192 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 98A98149697C80CEF8D5772791E92E66;
 			remoteInfo = FBSnapshotTestCase;
 		};
+		2D18568789516A5BDF601C20E765D3B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 12F4ACCB6C92403E22F1B903BDD90CA4;
+			remoteInfo = "Pods-GXAudioPlay_Example";
+		};
+		492A7034F2C21275334E7838FDB3B9C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AB61B665BCFCC0A82762E72F1C11C95C;
+			remoteInfo = GXAudioPlay;
+		};
+		9AD4A20E09E1ED6106A643E568734C34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34208A50A6E2389A7BB30C187CD9E2A4;
+			remoteInfo = GGXSwiftExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0676A2A92030C8AF342B10458072FC7F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		078D86FE540AF73C66FF1A76682A7607 /* Pods-GXAudioPlay_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GXAudioPlay_Example-umbrella.h"; sourceTree = "<group>"; };
 		07CA4161293ECC5FA5BCDA15ECE63733 /* Date+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Extension.swift"; path = "GGXSwiftExtension/Classes/Date+Extension.swift"; sourceTree = "<group>"; };
 		082938BD859D84A2C1105DE109BDB24B /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GGXSwiftExtension/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
-		08CB4BB79D513A687D495BD79681A458 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GXAudioPlay/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		0C39928B7DA24DC4EDA7CA96FBEEC09D /* Array+extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+extension.swift"; path = "GGXSwiftExtension/Classes/Array+extension.swift"; sourceTree = "<group>"; };
 		11081C6F6E2C980B857F83EED078D897 /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
 		158A4B18756E3BC16CB7002BAC389D86 /* Pods-GXAudioPlay_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GXAudioPlay_Example-dummy.m"; sourceTree = "<group>"; };
-		160BBC6534D644F3EA716AB76E037328 /* GXAudioPlay.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GXAudioPlay.modulemap; sourceTree = "<group>"; };
-		19B488476A5DAE04CE28F8A9A9EB483A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		1DA24A38BA9EE106B59E3D4C8DD1CE0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		20C2894D75190E19EA06E4C2C9E9A8F0 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableViewCell+Extension.swift"; path = "GGXSwiftExtension/Classes/UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		242403E5561A37D1EE50451442A13CD8 /* URL+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "URL+Extension.swift"; path = "GGXSwiftExtension/Classes/URL+Extension.swift"; sourceTree = "<group>"; };
@@ -119,27 +119,26 @@
 		2608C01A01B843923381968B75450871 /* Pods-GXAudioPlay_Tests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-GXAudioPlay_Tests"; path = Pods_GXAudioPlay_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC91B264BDA5D40E57303EC39DD657 /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
 		2AA43CB2DB024491B9850B945ACDB9A4 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIDevice+Extension.swift"; path = "GGXSwiftExtension/Classes/UIDevice+Extension.swift"; sourceTree = "<group>"; };
-		2FA698509C9E0A26CE7802D15B51535D /* GXAudioEnginePlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXAudioEnginePlayer.swift; path = GXAudioPlay/Classes/GXAudioEnginePlayer.swift; sourceTree = "<group>"; };
 		3024BBB7800F4A29607DE31D5BDFD75C /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
 		322FFB21A3EBB95047B585E384445CC3 /* Pods-GXAudioPlay_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GXAudioPlay_Tests-Info.plist"; sourceTree = "<group>"; };
 		3280BB5E7B57C31D41117A74F76E9DF3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		35AEA00653B6A7020994E0FED80F5F65 /* GGXSwiftExtension-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GGXSwiftExtension-Info.plist"; sourceTree = "<group>"; };
-		3A01FE4AEC2570B76F2E3D7F68C02F11 /* GXAudioPlay-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GXAudioPlay-dummy.m"; sourceTree = "<group>"; };
 		3BBF767B8EDDA3B6FA9633D37F274A82 /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
+		3CCA4886DB31DE76CFD26746B30CBF6C /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GXAudioPlay/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		40B9A0504EF29312C8AB308D630F5A90 /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
 		43B7104F06B42E2DEC310620B8E036F5 /* Pods-GXAudioPlay_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GXAudioPlay_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		47FE3322B9FC4F715FED6BB021F3CDB6 /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
 		4AC2ECB17BEE749BA834A82DE4456118 /* Pods-GXAudioPlay_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GXAudioPlay_Tests-dummy.m"; sourceTree = "<group>"; };
 		4C3BE8125625099D00CE5EF48CF74D1B /* GGXSwiftExtension-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GGXSwiftExtension-prefix.pch"; sourceTree = "<group>"; };
 		4DD27E2666AE56EA574239887F70BEBC /* CGSize+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CGSize+Extension.swift"; path = "GGXSwiftExtension/Classes/CGSize+Extension.swift"; sourceTree = "<group>"; };
+		50CC0CBF4E9B317E96B8D24375EAAEA0 /* GXAudioQueuePlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXAudioQueuePlayer.swift; path = GXAudioPlay/Classes/GXAudioQueuePlayer.swift; sourceTree = "<group>"; };
 		5479BD458A535D7B4CEBC5DCAD3A03FE /* Pods-GXAudioPlay_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GXAudioPlay_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		57221B54D014471C3D3E1925EFC917C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		57E83FA8704ACF0C196061B579BEC88E /* UIResponder+ Extension.swift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIResponder+ Extension.swift.swift"; path = "GGXSwiftExtension/Classes/UIResponder+ Extension.swift.swift"; sourceTree = "<group>"; };
-		5B20F91904E684F1F923325320A79EED /* GXAudioPlay.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = GXAudioPlay.podspec; sourceTree = "<group>"; tabWidth = 2; };
+		5A18F7F474D18A9AEE321B88DAAE3DB2 /* GXAudioPlay-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GXAudioPlay-dummy.m"; sourceTree = "<group>"; };
 		5C4F31330DFA99D699E4BDC8C3573D73 /* FBSnapshotTestCase */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSnapshotTestCase; path = FBSnapshotTestCase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5CC500E11AF3B5F2209BF1E46790FA41 /* GXAudioPlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXAudioPlay.release.xcconfig; sourceTree = "<group>"; };
 		5D264B489BF425BB619601DC5CCB6DB8 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DateFormatter+Extension.swift"; path = "GGXSwiftExtension/Classes/DateFormatter+Extension.swift"; sourceTree = "<group>"; };
-		5F8F177CC95CA3AEC992A2D336FA7056 /* GXAudioPlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXAudioPlay.debug.xcconfig; sourceTree = "<group>"; };
+		5E6799D0BF9079019EC2D98CFA668289 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		607E1AE85374AD5AF6953AE2B0415B55 /* GGXSwiftExtension */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = GGXSwiftExtension; path = GGXSwiftExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61477F1A0964171F52373CFF56B0F22A /* GGXSwiftExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GGXSwiftExtension.debug.xcconfig; sourceTree = "<group>"; };
 		675ED81C8D6F821BFD256E85F4189D9D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extension.swift"; path = "GGXSwiftExtension/Classes/UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -149,9 +148,10 @@
 		711FE55C542EC2AF3D11D90407C3C339 /* UIView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Extension.swift"; path = "GGXSwiftExtension/Classes/UIView+Extension.swift"; sourceTree = "<group>"; };
 		7176498941A0FB9DEEDCC99B656E43C9 /* TimerInterval+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TimerInterval+Extension.swift"; path = "GGXSwiftExtension/Classes/TimerInterval+Extension.swift"; sourceTree = "<group>"; };
 		727F6437D828049F5697AEBB7D22F38F /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
+		7B69DEFFA435699A5AD67E01797D2FBF /* GXAudioPlay.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = GXAudioPlay.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7BB4847D4AD0215DC8DBC5C77359E3B5 /* Pods-GXAudioPlay_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GXAudioPlay_Tests.modulemap"; sourceTree = "<group>"; };
 		7D15BDEF4AF6A27BA261ACF5ECCCF161 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
-		85817922E169419F2985C3A71313E0ED /* GXAudioPlay-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXAudioPlay-umbrella.h"; sourceTree = "<group>"; };
+		7E1ACB84240BC1A0BA6699FA02F3ED44 /* GXAudioPlay-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GXAudioPlay-Info.plist"; sourceTree = "<group>"; };
 		8599F571F0DA1998AFC55028975707B4 /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
 		88EACB0541A96584330D7528FC282CD9 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+Extension.swift"; path = "GGXSwiftExtension/Classes/Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		8906348FF9C15721A5526D19F5E95105 /* Pods-GXAudioPlay_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GXAudioPlay_Example-Info.plist"; sourceTree = "<group>"; };
@@ -160,22 +160,22 @@
 		8B58C8F7E92AA48E1F1FE08E3AF910D8 /* FileManager+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FileManager+Extension.swift"; path = "GGXSwiftExtension/Classes/FileManager+Extension.swift"; sourceTree = "<group>"; };
 		9958CD69FA19E3A955E3D089742DB538 /* FBSnapshotTestCase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.release.xcconfig; sourceTree = "<group>"; };
 		9A2B7F27373FE4AC9DF5404D4CF84ABF /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
+		9BF3A88BA148E523611584AC8D21FF4E /* GXAudioPlay-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXAudioPlay-prefix.pch"; sourceTree = "<group>"; };
 		9C3CA3E07B0CC0D808F26EB92546F60A /* UIColor+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "GGXSwiftExtension/Classes/UIColor+Extension.swift"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E21CFA7160E94E553DCF1FD07E2AD3C /* Jump.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Jump.swift; path = GXAudioPlay/Classes/Jump.swift; sourceTree = "<group>"; };
 		9F03BEBBC537DE387B96F636BE49B6B1 /* Pods-GXAudioPlay_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GXAudioPlay_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		A00A2980B7F47AEA521A0268BCA14572 /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
+		A0F043C207ACFCF5F9CEE5E2C5741037 /* GXAudioPlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXAudioPlay.release.xcconfig; sourceTree = "<group>"; };
 		A2B923792427AC2C25435B31627E9E24 /* FBSnapshotTestCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-umbrella.h"; sourceTree = "<group>"; };
 		A9426593B131AE0ED30A1B47F7DDD587 /* AttributeString+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AttributeString+Extension.swift"; path = "GGXSwiftExtension/Classes/AttributeString+Extension.swift"; sourceTree = "<group>"; };
 		A949719314C44BBF2A9F4BBA74B31918 /* Bundle+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Bundle+Extension.swift"; path = "GGXSwiftExtension/Classes/Bundle+Extension.swift"; sourceTree = "<group>"; };
-		AA454BCDD07960BE8E2C21474FF625B6 /* GXAudioPlay-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "GXAudioPlay-Info.plist"; sourceTree = "<group>"; };
 		AD9B41F10F3DDF262BC3AAB2DB4B7FDE /* UIImageView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+Extension.swift"; path = "GGXSwiftExtension/Classes/UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		AE8F67F8C3D0FEB8C779EFD5FB046721 /* String+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Extension.swift"; path = "GGXSwiftExtension/Classes/String+Extension.swift"; sourceTree = "<group>"; };
-		AFFC72BBE0D676D94879B9AE28F19BA5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B4DB151FFEDC9132D1AD0BD73EB6A517 /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
 		B64CDBA649C2E988845396565EC23526 /* Pods-GXAudioPlay_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GXAudioPlay_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		B857940A714B16DC6631CB5A27C89263 /* Pods-GXAudioPlay_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GXAudioPlay_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		BE68B74FCA506FBE05D7ABB42DC1E4E3 /* Int+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Int+Extension.swift"; path = "GGXSwiftExtension/Classes/Int+Extension.swift"; sourceTree = "<group>"; };
-		BEBD28008F5EE26CE676F52BCCBECB00 /* GXAudioPlay-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXAudioPlay-prefix.pch"; sourceTree = "<group>"; };
 		C054AC5177410B3C3CD3140C84060253 /* Pods-GXAudioPlay_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GXAudioPlay_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C3CFD58821851531CC3E0E019B0708D5 /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
 		C715D19FD6E441BBBF376FE66E42EF5D /* GGXSwiftExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GGXSwiftExtension.modulemap; sourceTree = "<group>"; };
@@ -191,10 +191,14 @@
 		E5D31FE26AAA825EB681CDA154BD9C55 /* GGXSwiftExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GGXSwiftExtension.release.xcconfig; sourceTree = "<group>"; };
 		E658F388F01C72599CA75537950B6095 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		E6E18FC03B4CCDABCD8A45C9BC905907 /* UIEdgeInsets+CommonExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIEdgeInsets+CommonExtension.swift"; path = "GGXSwiftExtension/Classes/UIEdgeInsets+CommonExtension.swift"; sourceTree = "<group>"; };
+		E7C85E3E77596E7A3107A433EF473D67 /* GXAudioEnginePlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXAudioEnginePlayer.swift; path = GXAudioPlay/Classes/GXAudioEnginePlayer.swift; sourceTree = "<group>"; };
+		E89DC11739A1F5D80D0890C832998EF7 /* GXAudioPlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = GXAudioPlay.debug.xcconfig; sourceTree = "<group>"; };
+		EB6746C24544794D70ED60A6C2A441B6 /* GXAudioPlay.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = GXAudioPlay.modulemap; sourceTree = "<group>"; };
 		EC6393548734A835A31C5928772002EF /* UIImage+commonExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+commonExtension.swift"; path = "GGXSwiftExtension/Classes/UIImage+commonExtension.swift"; sourceTree = "<group>"; };
 		ECCAC01CF16CDE00C259AE7E38A53517 /* Pods-GXAudioPlay_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GXAudioPlay_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		EFC8F0B1089D079A2FBD86B3F473F9B7 /* FBSnapshotTestCase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.debug.xcconfig; sourceTree = "<group>"; };
 		F052EF115A6ACE7EFD3DAB40252A6F34 /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCasePlatform.m; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
+		F3D048C14AD9B461D744FEA9400549C0 /* GXAudioPlay-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "GXAudioPlay-umbrella.h"; sourceTree = "<group>"; };
 		F9904228A25762EC5AFD99E0D07ACE4E /* UIKit+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIKit+Extension.swift"; path = "GGXSwiftExtension/Classes/UIKit+Extension.swift"; sourceTree = "<group>"; };
 		FCD6A66FBF76E7B12DC4705D58E5B80A /* Pods-GXAudioPlay_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GXAudioPlay_Example.release.xcconfig"; sourceTree = "<group>"; };
 		FD3C8D6294496E5198B21A41EA90F10B /* Pods-GXAudioPlay_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GXAudioPlay_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -210,11 +214,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		56DDF5CD70B3C7429516FF8B49ADA206 /* Frameworks */ = {
+		4E333451FF1D00AE12FF16CC840200B1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AEFADC6F6C055DEF7E849AE4E4F6ACB /* Foundation.framework in Frameworks */,
+				B1BB68429A138DDC2994EAED85F20D3B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +267,21 @@
 			path = "../Target Support Files/FBSnapshotTestCase";
 			sourceTree = "<group>";
 		};
+		142A7D0703457B49B9D3208CB3D85D08 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				EB6746C24544794D70ED60A6C2A441B6 /* GXAudioPlay.modulemap */,
+				5A18F7F474D18A9AEE321B88DAAE3DB2 /* GXAudioPlay-dummy.m */,
+				7E1ACB84240BC1A0BA6699FA02F3ED44 /* GXAudioPlay-Info.plist */,
+				9BF3A88BA148E523611584AC8D21FF4E /* GXAudioPlay-prefix.pch */,
+				F3D048C14AD9B461D744FEA9400549C0 /* GXAudioPlay-umbrella.h */,
+				E89DC11739A1F5D80D0890C832998EF7 /* GXAudioPlay.debug.xcconfig */,
+				A0F043C207ACFCF5F9CEE5E2C5741037 /* GXAudioPlay.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/GXAudioPlay";
+			sourceTree = "<group>";
+		};
 		18F3F53B050A24CACDA31D225E1C0814 /* SwiftSupport */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,16 +320,6 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		3804BB7306A69332B7A1F7AD5B1354FB /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				5B20F91904E684F1F923325320A79EED /* GXAudioPlay.podspec */,
-				19B488476A5DAE04CE28F8A9A9EB483A /* LICENSE */,
-				AFFC72BBE0D676D94879B9AE28F19BA5 /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
 		3E330FAE29C37271072335F947554481 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,29 +342,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/GGXSwiftExtension";
-			sourceTree = "<group>";
-		};
-		4586F1EF6853F7F835168C98A97A7746 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9D9A4C8314D673B93B3B89478375950F /* GXAudioPlay */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		5296C915F676F59E2C8BBC9FA4F50C9D /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				160BBC6534D644F3EA716AB76E037328 /* GXAudioPlay.modulemap */,
-				3A01FE4AEC2570B76F2E3D7F68C02F11 /* GXAudioPlay-dummy.m */,
-				AA454BCDD07960BE8E2C21474FF625B6 /* GXAudioPlay-Info.plist */,
-				BEBD28008F5EE26CE676F52BCCBECB00 /* GXAudioPlay-prefix.pch */,
-				85817922E169419F2985C3A71313E0ED /* GXAudioPlay-umbrella.h */,
-				5F8F177CC95CA3AEC992A2D336FA7056 /* GXAudioPlay.debug.xcconfig */,
-				5CC500E11AF3B5F2209BF1E46790FA41 /* GXAudioPlay.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/GXAudioPlay";
 			sourceTree = "<group>";
 		};
 		57DF0269F25F5B48A5B7A18C4EAC4206 /* Pods-GXAudioPlay_Tests */ = {
@@ -382,7 +368,16 @@
 				128A0C86989E079D05C8D14A279A7F34 /* Support Files */,
 				18F3F53B050A24CACDA31D225E1C0814 /* SwiftSupport */,
 			);
+			name = FBSnapshotTestCase;
 			path = FBSnapshotTestCase;
+			sourceTree = "<group>";
+		};
+		637CD6C91E6FA45C357FFCDD2174E23E /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				94102845B513C9376F78DCF3691AE927 /* GXAudioPlay */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		81C24094C9BA3E5D30AD51C87CC90ADF /* GGXSwiftExtension */ = {
@@ -417,6 +412,7 @@
 				242403E5561A37D1EE50451442A13CD8 /* URL+Extension.swift */,
 				41F684B7AED93E3F017F6A068EE05B4E /* Support Files */,
 			);
+			name = GGXSwiftExtension;
 			path = GGXSwiftExtension;
 			sourceTree = "<group>";
 		};
@@ -432,16 +428,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9D9A4C8314D673B93B3B89478375950F /* GXAudioPlay */ = {
+		94102845B513C9376F78DCF3691AE927 /* GXAudioPlay */ = {
 			isa = PBXGroup;
 			children = (
-				2FA698509C9E0A26CE7802D15B51535D /* GXAudioEnginePlayer.swift */,
-				08CB4BB79D513A687D495BD79681A458 /* ReplaceMe.swift */,
-				3804BB7306A69332B7A1F7AD5B1354FB /* Pod */,
-				5296C915F676F59E2C8BBC9FA4F50C9D /* Support Files */,
+				E7C85E3E77596E7A3107A433EF473D67 /* GXAudioEnginePlayer.swift */,
+				50CC0CBF4E9B317E96B8D24375EAAEA0 /* GXAudioQueuePlayer.swift */,
+				9E21CFA7160E94E553DCF1FD07E2AD3C /* Jump.swift */,
+				3CCA4886DB31DE76CFD26746B30CBF6C /* ReplaceMe.swift */,
+				98A4421C3936B2CCEFEA71EEB6B54994 /* Pod */,
+				142A7D0703457B49B9D3208CB3D85D08 /* Support Files */,
 			);
 			name = GXAudioPlay;
 			path = ../..;
+			sourceTree = "<group>";
+		};
+		98A4421C3936B2CCEFEA71EEB6B54994 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				7B69DEFFA435699A5AD67E01797D2FBF /* GXAudioPlay.podspec */,
+				0676A2A92030C8AF342B10458072FC7F /* LICENSE */,
+				5E6799D0BF9079019EC2D98CFA668289 /* README.md */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */ = {
@@ -456,7 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				4586F1EF6853F7F835168C98A97A7746 /* Development Pods */,
+				637CD6C91E6FA45C357FFCDD2174E23E /* Development Pods */,
 				BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */,
 				3E330FAE29C37271072335F947554481 /* Pods */,
 				8470A7025BC08E30F5B3271B51A48696 /* Products */,
@@ -503,11 +511,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66026C4EDCDC96E279DD9121D1673EBB /* Headers */ = {
+		44694D3C43A56759D15EFEA2A0CE0E98 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A322106CB88C39C82C72A93B0ABE7B50 /* GXAudioPlay-umbrella.h in Headers */,
+				BBDB2DE22DCE2AC3B63E62FB77D7CC4E /* GXAudioPlay-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,8 +565,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				3EDC2FA2BCA8D5B8043A734AEA7C2BC3 /* PBXTargetDependency */,
-				E8576E81E6FF5BC676651FAE71FC1D50 /* PBXTargetDependency */,
+				174170FFEA3B0A411E1875D5261C8C21 /* PBXTargetDependency */,
+				60B7DC2E46D7F1881BFE8139FAB5144B /* PBXTargetDependency */,
 			);
 			name = "Pods-GXAudioPlay_Tests";
 			productName = Pods_GXAudioPlay_Tests;
@@ -577,8 +585,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				F2D7C64FD82627CE625F41070747241E /* PBXTargetDependency */,
-				2FDCF7DFF04A7E6AB963DE5F1196D407 /* PBXTargetDependency */,
+				F5B6E5D2F43C7387CF894D4B53A8C8BE /* PBXTargetDependency */,
+				F816D2FD1C71DD9F2CA8D3A25F41E6A6 /* PBXTargetDependency */,
 			);
 			name = "Pods-GXAudioPlay_Example";
 			productName = Pods_GXAudioPlay_Example;
@@ -623,12 +631,12 @@
 		};
 		AB61B665BCFCC0A82762E72F1C11C95C /* GXAudioPlay */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BF1AE10F0FC031BFE75AB7B9EDCB4C21 /* Build configuration list for PBXNativeTarget "GXAudioPlay" */;
+			buildConfigurationList = 9B70FB0F7179A24532DC9CB20234BED5 /* Build configuration list for PBXNativeTarget "GXAudioPlay" */;
 			buildPhases = (
-				66026C4EDCDC96E279DD9121D1673EBB /* Headers */,
-				A1E13DE38AB831A97938BD7899C4F927 /* Sources */,
-				56DDF5CD70B3C7429516FF8B49ADA206 /* Frameworks */,
-				8DDCE44C19FF1ED7915FE44C59670FE4 /* Resources */,
+				44694D3C43A56759D15EFEA2A0CE0E98 /* Headers */,
+				CFD95402D5E5D92EB491609E9A19E742 /* Sources */,
+				4E333451FF1D00AE12FF16CC840200B1 /* Frameworks */,
+				5E9D088E381BD3428EC73DA6C98E142B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -678,7 +686,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8DDCE44C19FF1ED7915FE44C59670FE4 /* Resources */ = {
+		5E9D088E381BD3428EC73DA6C98E142B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -725,16 +733,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A1E13DE38AB831A97938BD7899C4F927 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02F5DAB7D380B773D6EE92AE94AD84C8 /* GXAudioEnginePlayer.swift in Sources */,
-				4580CE553A9409870C8F5C277FF3495C /* GXAudioPlay-dummy.m in Sources */,
-				F1B240BD123BC841C6B024A0FEB86119 /* ReplaceMe.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A7EBBC80DA215B76E2D8BC0AA8C7E739 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -770,6 +768,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CFD95402D5E5D92EB491609E9A19E742 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B0F9C093D43591B77BC8BBE706D79CB /* GXAudioEnginePlayer.swift in Sources */,
+				DCDF63F724443679E408FF5A17486BD4 /* GXAudioPlay-dummy.m in Sources */,
+				2BB3B86617929DC8A6F203C976D612B2 /* GXAudioQueuePlayer.swift in Sources */,
+				7148BB0FD90C32EC628E69B7BD8B8D3F /* Jump.swift in Sources */,
+				499651CF7900470A67934094CBE4FE4B /* ReplaceMe.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE210BFC37CDBA0645C09C3819F41723 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -789,29 +799,29 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2FDCF7DFF04A7E6AB963DE5F1196D407 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = GXAudioPlay;
-			target = AB61B665BCFCC0A82762E72F1C11C95C /* GXAudioPlay */;
-			targetProxy = 95AA24739C21A1EC51D5067A328E0D6B /* PBXContainerItemProxy */;
-		};
-		3EDC2FA2BCA8D5B8043A734AEA7C2BC3 /* PBXTargetDependency */ = {
+		174170FFEA3B0A411E1875D5261C8C21 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FBSnapshotTestCase;
 			target = 98A98149697C80CEF8D5772791E92E66 /* FBSnapshotTestCase */;
-			targetProxy = ECB69743D9142A2D5A66FF6A59728ABC /* PBXContainerItemProxy */;
+			targetProxy = 176B45124C9FA623517CD2DFD7019192 /* PBXContainerItemProxy */;
 		};
-		E8576E81E6FF5BC676651FAE71FC1D50 /* PBXTargetDependency */ = {
+		60B7DC2E46D7F1881BFE8139FAB5144B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-GXAudioPlay_Example";
 			target = 12F4ACCB6C92403E22F1B903BDD90CA4 /* Pods-GXAudioPlay_Example */;
-			targetProxy = 2EE7A683F94D58BF2A1EBE91BD448FBD /* PBXContainerItemProxy */;
+			targetProxy = 2D18568789516A5BDF601C20E765D3B1 /* PBXContainerItemProxy */;
 		};
-		F2D7C64FD82627CE625F41070747241E /* PBXTargetDependency */ = {
+		F5B6E5D2F43C7387CF894D4B53A8C8BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GGXSwiftExtension;
 			target = 34208A50A6E2389A7BB30C187CD9E2A4 /* GGXSwiftExtension */;
-			targetProxy = B4B6D29B059637942B8DD1E6AE6D64EF /* PBXContainerItemProxy */;
+			targetProxy = 9AD4A20E09E1ED6106A643E568734C34 /* PBXContainerItemProxy */;
+		};
+		F816D2FD1C71DD9F2CA8D3A25F41E6A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GXAudioPlay;
+			target = AB61B665BCFCC0A82762E72F1C11C95C /* GXAudioPlay */;
+			targetProxy = 492A7034F2C21275334E7838FDB3B9C0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -874,6 +884,38 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1DDF3E1387F5EA303594A1BF809BF7BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0F043C207ACFCF5F9CEE5E2C5741037 /* GXAudioPlay.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/GXAudioPlay/GXAudioPlay-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/GXAudioPlay/GXAudioPlay-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/GXAudioPlay/GXAudioPlay.modulemap";
+				PRODUCT_MODULE_NAME = GXAudioPlay;
+				PRODUCT_NAME = GXAudioPlay;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1001,7 +1043,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -1036,38 +1079,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		89780EF9FFB9A498BE0CA34E910B86B0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5CC500E11AF3B5F2209BF1E46790FA41 /* GXAudioPlay.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/GXAudioPlay/GXAudioPlay-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/GXAudioPlay/GXAudioPlay-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/GXAudioPlay/GXAudioPlay.modulemap";
-				PRODUCT_MODULE_NAME = GXAudioPlay;
-				PRODUCT_NAME = GXAudioPlay;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		95574B95804EFC6885E21A3066813BC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1233,9 +1244,9 @@
 			};
 			name = Debug;
 		};
-		D92408559214D59B7F88FD8787317515 /* Debug */ = {
+		EB734E17E61D3FC50C16275F58C5FC36 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F8F177CC95CA3AEC992A2D336FA7056 /* GXAudioPlay.debug.xcconfig */;
+			baseConfigurationReference = E89DC11739A1F5D80D0890C832998EF7 /* GXAudioPlay.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1312,11 +1323,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BF1AE10F0FC031BFE75AB7B9EDCB4C21 /* Build configuration list for PBXNativeTarget "GXAudioPlay" */ = {
+		9B70FB0F7179A24532DC9CB20234BED5 /* Build configuration list for PBXNativeTarget "GXAudioPlay" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D92408559214D59B7F88FD8787317515 /* Debug */,
-				89780EF9FFB9A498BE0CA34E910B86B0 /* Release */,
+				EB734E17E61D3FC50C16275F58C5FC36 /* Debug */,
+				1DDF3E1387F5EA303594A1BF809BF7BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

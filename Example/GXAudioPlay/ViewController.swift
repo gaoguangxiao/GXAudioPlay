@@ -21,6 +21,30 @@ class ViewController: UIViewController {
         return URL(fileURLWithPath: "")
     }()
     
+    lazy var url1: URL = {
+        let path = Bundle.main.path(forResource: "1", ofType: "wav")
+        if let uurl = path?.toFileUrl {
+            return uurl
+        }
+        return URL(fileURLWithPath: "")
+    }()
+    
+    lazy var url2: URL = {
+        let path = Bundle.main.path(forResource: "7", ofType: "wav")
+        if let uurl = path?.toFileUrl {
+            return uurl
+        }
+        return URL(fileURLWithPath: "")
+    }()
+    
+    lazy var url3: URL = {
+        let path = Bundle.main.path(forResource: "2", ofType: "wav")
+        if let uurl = path?.toFileUrl {
+            return uurl
+        }
+        return URL(fileURLWithPath: "")
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -55,17 +79,32 @@ class ViewController: UIViewController {
     }
     
     @IBAction func 获取播放时长(_ sender: Any) {
-    //总时长 和 当前播放时长
-        let audioTime =  play?.currentNodeTime
-        
-//        print("音频节点时间\(play?.currentNodeTime)，音频采样播放时间\(play?.currentPlayTime)")
-    
-//        if let nodeTime = play?.currentTime {
-//            print(nodeTime.sampleTime/nodeTime.sampleRate)
-//        }
-        
         print("音频采样帧数\(play?.currentNodeTime)，音频采样时间\(play?.currentTime)")
-//        play?.currentFrame
+    }
+    
+    @IBAction func 播放PCM音频(_ sender: Any) {
+        play?.playpcm(fileURL: url1)
+    }
+    
+    @IBAction func 播放PCM中断(_ sender: Any) {
+        //中断其他播放,本次播放完毕，继续播放之前的
+        play?.playpcm(fileURL: url2, options: .interrupts)
+        
+        //等当前播放完毕，再播放本次，本次播放完毕，继续播放本次
+//        play?.playpcm(fileURL: url2, options: .loops)
+        
+        //等当前播放完毕，再播放本次，本次播放完毕，重新播放上次
+//        play?.playpcm(fileURL: url2, options: .interruptsAtLoop)
+    }
+    
+    @IBAction func 串行播放(_ sender: Any) {
+//        play?.play(fileURL: url1)
+//        play?.play(fileURL: url2)
+        play?.plays(fileURL: [url1,url2,url3,url2,url1])
+    }
+    
+    
+    @IBAction func 混音播放(_ sender: Any) {
     }
     
     override func didReceiveMemoryWarning() {
