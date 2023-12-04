@@ -6,19 +6,36 @@
 //  Copyright (c) 2023 小修. All rights reserved.
 //
 
+
+
 import UIKit
 import GXAudioPlay
 import GGXSwiftExtension
 class ViewController: UIViewController {
-
+    
     var play: GXAudioEnginePlayer?
     
+    @IBOutlet weak var playSlider: UISlider!
     lazy var url: URL = {
-        let path = Bundle.main.path(forResource: "02.Ellis - Clear My Head (Radio Edit) [NCS]", ofType: "mp3")
+        let path = Bundle.main.path(forResource: "Loop", ofType: "mp3")
         if let uurl = path?.toFileUrl {
             return uurl
         }
+        
+        //        let path = "http://192.168.50.165:8081/static/music-Loop.mp3"
+        //        if let uurl = path.toUrl {
+        //            return uurl
+        //        }
         return URL(fileURLWithPath: "")
+    }()
+    
+    //本地URL
+    lazy var filePath: String = {
+        let path = Bundle.main.path(forResource: "music-Loop", ofType: "mp3")
+//        if let uurl = path?.toFileUrl {
+//            return uurl
+//        }
+        return path ?? ""
     }()
     
     lazy var url1: URL = {
@@ -49,20 +66,46 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         play = GXAudioEnginePlayer()
-        play?.delegateEngine = self
+        
+        //        play?.playEventsBlock = { [self] event in
+        //                switch event {
+        //                case .Ended:
+        //                    print("播放结束：：：：：")
+        //                    //第二次播放
+        //                    play?.play(fileURL: filePath)
+        ////                    self.startPlayOneAudioFile()
+        //                    break
+        //                case .Playing(let duration):
+        //        //            print("音频时长\(curentTiem)")
+        //                    DispatchQueue.main.async {
+        //                        self.playSlider.minimumValue = 0
+        //                        self.playSlider.maximumValue = Float(duration)
+        //                    }
+        //                case .TimeUpdate(let currentTime):
+        //                    let str = "音轨名字：" + "播放时间" + "\(currentTime)"
+        ////                    self.audioTrackText.text = str
+        //                    self.playSlider.value = Float(currentTime)
+        //                    break
+        //
+        //                default: break
+        //
+        //                }
+        //            }
+        
+        //        play?.delegateEngine = self
     }
-
+    
     @IBAction func 实例化Engine(_ sender: Any) {
         play = GXAudioEnginePlayer()
-        play?.delegateEngine = self
+        //        play?.delegateEngine = self
     }
     
     @IBAction func 播放Engine(_ sender: Any) {
-        play?.play(fileURL: url)
+        play?.play(url: filePath)
     }
     
     @IBAction func 从某时刻播放(_ sender: Any) {
-        play?.play(fileURL: url, time: 5.0)
+        play?.play(fileURL: url, time: 110.0)
     }
     
     @IBAction func 暂停Engine(_ sender: Any) {
@@ -75,7 +118,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func 继续Engine(_ sender: Any) {
-        play?.play()
+        play?.resume()
+    }
+    
+    @IBAction func 调节播放时间(_ sender: UISlider) {
+        play?.setSeekToTime(seconds: Double(sender.value))
     }
     
     @IBAction func 获取播放时长(_ sender: Any) {
@@ -91,15 +138,15 @@ class ViewController: UIViewController {
         play?.playpcm(fileURL: url2, options: .interrupts)
         
         //等当前播放完毕，再播放本次，本次播放完毕，继续播放本次
-//        play?.playpcm(fileURL: url2, options: .loops)
+        //        play?.playpcm(fileURL: url2, options: .loops)
         
         //等当前播放完毕，再播放本次，本次播放完毕，重新播放上次
-//        play?.playpcm(fileURL: url2, options: .interruptsAtLoop)
+        //        play?.playpcm(fileURL: url2, options: .interruptsAtLoop)
     }
     
     @IBAction func 串行播放(_ sender: Any) {
-//        play?.play(fileURL: url1)
-//        play?.play(fileURL: url2)
+        //        play?.play(fileURL: url1)
+        //        play?.play(fileURL: url2)
         play?.plays(fileURL: [url1,url2,url3,url2,url1])
     }
     
@@ -107,15 +154,51 @@ class ViewController: UIViewController {
     @IBAction func 混音播放(_ sender: Any) {
     }
     
+    @IBAction func 循环播放(_ sender: Any) {
+        play?.playEventsBlock = { [self] event in
+            switch event {
+            case .Ended:
+                print("循环播放结束：：：：：")
+                //第二次播放
+                play?.playpcm(fileURL: url)
+//                play?.play(url: filePath)
+                break
+            case .Playing(let duration):
+                print("音频时长\(duration)")
+                DispatchQueue.main.async {
+                    self.playSlider.minimumValue = 0
+                    self.playSlider.maximumValue = Float(duration)
+                }
+            case .TimeUpdate(let currentTime):
+                let str = "音轨名字：" + "播放时间" + "\(currentTime)"
+                //                    self.audioTrackText.text = str
+                self.playSlider.value = Float(currentTime)
+                break
+                
+            default: break
+                
+            }
+        }
+//        play?.playpcm(fileURL: url1, options: .loops) // 
+        play?.loop = true
+//        play?.playpcm(fileURL: url)
+        play?.play(url: filePath)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-}
-
-extension ViewController : GXAudioEnginePlayerDelegate {
-    func engineDidFinishPlaying(_ player: GXAudioEnginePlayer) {
-        print("播放结束")
+    
+    func loopPlay() {
+        play?.play(fileURL: url, time: 0)
     }
+    
 }
+
+//extension ViewController : GXAudioEnginePlayerDelegate {
+//    func engineDidFinishPlaying(_ player: GXAudioEnginePlayer) {
+//        print("播放结束")
+////        self.loopPlay()
+//    }
+//}

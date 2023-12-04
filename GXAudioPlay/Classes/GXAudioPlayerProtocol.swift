@@ -1,0 +1,71 @@
+//
+//  GXAudioPlayerProtocol.swift
+//  GXAudioPlay
+//
+//  Created by 高广校 on 2023/11/28.
+//
+
+import Foundation
+
+public enum GXAudioAVPlayerEvent {
+    case None
+    case Playing(Double)         // 在媒体开始播放时触发（不论是初次播放、在暂停后恢复、或是在结束后重新开始）
+    case TimeUpdate(Double)
+    case Waiting         //在一个待执行的操作（如回放）因等待另一个操作（如跳跃或下载）被延迟时触发
+    case Pause
+    case Ended
+    case Error(String)
+}
+
+public protocol GXAudioPlayerProtocol {
+    
+    var playSpeed: Float {get set}
+    
+    var volume: Float {get set}
+    
+    //是否支持循环播放
+    var loop: Bool {get set}
+  
+    var playEventsBlock: ((PTAudioPlayerEvent)->())? { get set }
+    
+    //播放本地URL
+//    func play(fileURL fileUrl: String)
+
+    //播放网络
+    func play(url: String)
+
+    //暂停
+    func pause()
+    
+    //继续播放
+    func resume()
+    
+    func stop()
+    
+    func stop(_ issue : Bool)
+//
+//    //拖动到某秒进行播放
+//    public func setSeekToTime(seconds: Double)
+    func setSeekToTime(seconds: Double)
+    
+    //时间
+    func addPeriodicTimer ()
+    
+    func removePeriodicTimer()
+}
+
+//protocol GXAudioPlayerEventProtocol {
+//    //内部事件变化
+//    func playEventUpdate(event: OTA)
+//}
+
+extension GXAudioPlayerProtocol {
+    
+}
+
+//public func setSeekToTime(seconds: Double)  {
+//    // 拖动改变播放进度
+//    let targetTime: CMTime = CMTimeMake(value: Int64(seconds), timescale: 1)
+//    //播放器定位到对应的位置
+//    self.currentAudioPlayer?.seek(to: targetTime)
+//}

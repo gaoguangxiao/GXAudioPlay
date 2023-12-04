@@ -1,31 +1,36 @@
 PODS:
-  - FBSnapshotTestCase (2.1.4):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
-  - FBSnapshotTestCase/Core (2.1.4)
-  - FBSnapshotTestCase/SwiftSupport (2.1.4):
-    - FBSnapshotTestCase/Core
   - GGXSwiftExtension (0.2.3)
-  - GXAudioPlay (0.1.0)
+  - GXAudioPlay (0.1.0):
+    - RxCocoa
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
 
 DEPENDENCIES:
-  - FBSnapshotTestCase (~> 2.1.4)
   - GGXSwiftExtension
   - GXAudioPlay (from `../`)
 
 SPEC REPOS:
   trunk:
-    - FBSnapshotTestCase
     - GGXSwiftExtension
+    - RxCocoa
+    - RxRelay
+    - RxSwift
 
 EXTERNAL SOURCES:
   GXAudioPlay:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   GGXSwiftExtension: 6b2c728c53d6c4a561d676b951e54cedcf3074fa
-  GXAudioPlay: 6954f9b8213b667d3c015db6ca7445d5727ab5fc
+  GXAudioPlay: 75209a39542db92b626e717c626e02ccaf1df591
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
 
-PODFILE CHECKSUM: b2e9ecd4c42f5fe5ec9cdb31e2476650fff68e93
+PODFILE CHECKSUM: dd42fb0779cdddb3c6b7e2aacbf976d4dd0981a2
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.14.3

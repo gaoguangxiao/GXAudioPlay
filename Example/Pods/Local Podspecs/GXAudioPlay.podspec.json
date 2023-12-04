@@ -18,5 +18,10 @@
   "platforms": {
     "ios": "10.0"
   },
-  "source_files": "GXAudioPlay/Classes/**/*"
+  "source_files": "GXAudioPlay/Classes/**/*",
+  "dependencies": {
+    "RxCocoa": [
+
+    ]
+  }
 }
