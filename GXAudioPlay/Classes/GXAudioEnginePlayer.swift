@@ -25,6 +25,7 @@ public class GXAudioEnginePlayer: NSObject {
     
     private let timePitch = AVAudioUnitTimePitch() //播放变速变调节点
     
+    private var isPeriodicTimer = false
     //    private let rateEffect = AVAudioUnitVarispeed() //音频播放速度单元 不可用，速率的改变会改变音高
     //    private let delay = AVAudioUnitDelay() //延迟
     //    public weak var delegateEngine : GXAudioEnginePlayerDelegate?
@@ -180,11 +181,11 @@ public class GXAudioEnginePlayer: NSObject {
     
     /// URL 用PCM缓存播放
     /// - Parameter fileUrl: fileUrl description
-    public func playpcm(fileURL fileUrl: URL) {
-        self.playpcm(fileURL: fileUrl, options: .interrupts)
-    }
+    //    public func playpcm(fileURL fileUrl: URL) {
+    //        self.playpcm(fileURL: fileUrl, options: .interrupts)
+    //    }
     
-    public func playpcm(fileURL fileUrl: URL,options:AVAudioPlayerNodeBufferOptions) {
+    public func playpcm(fileURL fileUrl: URL,options:AVAudioPlayerNodeBufferOptions = .interrupts) {
         if let buffer = setAudioPCMBuffer(fileUrl: fileUrl) {
             skipFrame = 0
             player.scheduleBuffer(buffer, at: nil,options: options) {
@@ -194,6 +195,14 @@ public class GXAudioEnginePlayer: NSObject {
         } else {
             
         }
+    }
+    
+    public func playPCMBuffer(_ buffer: AVAudioPCMBuffer,options:AVAudioPlayerNodeBufferOptions = .interrupts) {
+        skipFrame = 0
+        player.scheduleBuffer(buffer, at: nil,options: options) {
+            //self.playEventsBlock?(.Ended)
+        }
+        play()
     }
     
     /// URL 用PCM缓存播放
@@ -262,7 +271,7 @@ public class GXAudioEnginePlayer: NSObject {
             return
         }
         
-        if player.isPlaying {
+        if player.isPlaying , self.isPeriodicTimer {
             self.playEventsBlock?(.TimeUpdate(currentTime))
         }
     }
@@ -349,12 +358,12 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
     
     
     public func removePeriodicTimer() {
-        
+        isPeriodicTimer = false
     }
     
     
     public func addPeriodicTimer() {
-        
+        isPeriodicTimer = true
     }
     
     //本地URL

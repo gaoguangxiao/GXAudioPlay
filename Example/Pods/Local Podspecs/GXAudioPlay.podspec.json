@@ -1,7 +1,7 @@
 {
   "name": "GXAudioPlay",
   "version": "0.1.0",
-  "summary": "基于AVAudioEngine类实现的一个播放器",
+  "summary": "音频播放器",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/小修/GXAudioPlay",
   "license": {

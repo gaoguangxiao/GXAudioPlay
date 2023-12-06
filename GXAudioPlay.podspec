@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
   s.version          = '0.1.0'
-  s.summary          = '基于AVAudioEngine类实现的一个播放器'
+  s.summary          = '音频播放器'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

@@ -552,6 +552,9 @@
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="播放本地音频"/>
+                                <connections>
+                                    <action selector="播放本地音频:" destination="QJT-J2-ULP" eventType="touchUpInside" id="slz-3d-Vbo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-BI-VLC">
                                 <rect key="frame" x="150.5" y="152" width="74" height="34"/>
@@ -690,6 +693,9 @@
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="播放网络音频"/>
+                                <connections>
+                                    <action selector="播放网络音频:" destination="QJT-J2-ULP" eventType="touchUpInside" id="hal-fY-T6W"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

@@ -30,6 +30,7 @@
 		1E6E51362AF8FC9D005F9F60 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51232AF8FC9D005F9F60 /* 1.wav */; };
 		1E6E51372AF8FC9D005F9F60 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51242AF8FC9D005F9F60 /* 3.wav */; };
 		1E6E51382AF8FC9D005F9F60 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1E6E51252AF8FC9D005F9F60 /* 2.wav */; };
+		1E7CD5662B1F210D00387248 /* AVAudioPlayerVc+Streamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7CD5652B1F210C00387248 /* AVAudioPlayerVc+Streamer.swift */; };
 		1E84B7622AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E84B75F2AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 */; };
 		1E84B7632AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E84B7602AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 */; };
 		1E84B7642AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E84B7612AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 */; };
@@ -67,6 +68,7 @@
 		1E6E51232AF8FC9D005F9F60 /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
 		1E6E51242AF8FC9D005F9F60 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
 		1E6E51252AF8FC9D005F9F60 /* 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2.wav; sourceTree = "<group>"; };
+		1E7CD5652B1F210C00387248 /* AVAudioPlayerVc+Streamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVAudioPlayerVc+Streamer.swift"; sourceTree = "<group>"; };
 		1E84B75F2AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "02.Ellis - Clear My Head (Radio Edit) [NCS].mp3"; sourceTree = "<group>"; };
 		1E84B7602AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "03.Spektrum & Sara Skinner - Keep You.mp3"; sourceTree = "<group>"; };
 		1E84B7612AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3"; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				1E637EED2B0F72D300F80128 /* Loop.mp3 */,
 				1E637EE72B0EF03F00F80128 /* AVPlayerViewController.swift */,
 				1E557D602B16CD820038E801 /* AVAudioPlayerVc.swift */,
+				1E7CD5652B1F210C00387248 /* AVAudioPlayerVc+Streamer.swift */,
 				1E637EEB2B0F6FCE00F80128 /* music-Loop.mp3 */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -375,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				1E7CD5662B1F210D00387248 /* AVAudioPlayerVc+Streamer.swift in Sources */,
 				1E637EE82B0EF03F00F80128 /* AVPlayerViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				1E557D612B16CD820038E801 /* AVAudioPlayerVc.swift in Sources */,

@@ -7,33 +7,82 @@
 //  流播放-URL
 
 import UIKit
-
+import GXAudioPlay
+import AVFAudio
+import os.log
 
 class AVAudioPlayerVc: UIViewController {
     
+    static let logger = OSLog(subsystem: "com.fastlearner.streamer", category: "Streamer")
+    
+    var parser: Parser?
+    public internal(set) var reader_ha: Reading?
+    
+    public var readFormat: AVAudioFormat {
+        AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 44100, channels: 1, interleaved: true)!
+    }
+    
+    //  buffer size , 选用 4 k
+    //  采用 32 KB 也可以
+    public var readBufferSize: AVAudioFrameCount {
+        4096
+    }
+    
+    var intervalD: Double{
+        Double(readBufferSize) * 0.5 / readFormat.sampleRate
+    }
+    
+    let play = GXAudioEnginePlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        //预加载网络音频
+        if let url = URL(string: "http://localhost:8081/static/music-Loop.mp3") {
+            streamer.url = url
+        }
         
-        //加载
-        //创建上下文对象
-//        `unsafeBitCast`：通过变量获取变量内容作为指针,可以很方便得到对象的堆空间地址
-//        let context = unsafeBitCast(self, to: UnsafeMutableRawPointer.self)
-//// 这里传入self，unsafeBitCast函数可以拿到这个变量的内容，并赋值给`context`，设置的类型是`UnsafeMutableRawPointer`
-//        
-//        // 创建一个活跃的音频文件流解析器，创建解析器 ID
-//        let osstatus = AudioFileStreamOpen(context,
-//                                           ParserPropertyChangeCallback,
-//                                           packetsProc,
-//                                           0,
-//                                           &_audioFileStreamID)
-//        
+    }
+    
+    @IBAction func 播放本地音频(_ sender: Any) {
+        
+        guard let url = Bundle.main.url(forResource: "666", withExtension: "wav") else { return }
+    }
+    
+    @IBAction func 播放网络音频(_ sender: Any) {
+                
+        if streamer.state == .playing {
+            streamer.pause()
+        } else {
+            streamer.play()
+        }
 //        let urlsession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
-//        
+//
 //        if let url = URL(string: "http://localhost:8081/static/music-Loop.mp3") {
 //            let task = urlsession.dataTask(with:url)
 //            task.resume()
 //        }
 
-        
     }
+    
+  
+    lazy var streamer: Streamer = {
+        let streamer = Streamer()
+        streamer.delegate = self
+        return streamer
+    }()
+    
+    
+}
+
+extension AVAudioPlayerVc: URLSessionTaskDelegate {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        
+        if let error = error {
+            
+        } else {
+            print("下载完成")
+        }
+    }
+    
 }

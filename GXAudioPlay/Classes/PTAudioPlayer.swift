@@ -398,10 +398,23 @@ extension PTAudioPlayer: AVAudioPlayerDelegate {
 
 extension PTAudioPlayer {
     func setAVAudioSession() {
-//        if AVAudioSession.sharedInstance().category != AVAudioSession.Category.playAndRecord  {
-//            PTPermissions.setAudioAndRecordingCategory()
-//        }
-//        PTPermissions.setAVAudioSessionActive()
+        if AVAudioSession.sharedInstance().category != AVAudioSession.Category.playAndRecord  {
+            do {
+                if #available(iOS 10.0, *) {//iOS 新增.allowAirPlay .allowBluetoothA2DP
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP])
+                } else {
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth])
+                }
+                
+            } catch {
+                
+            }
+        }
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            
+        }
     }
 }
 
@@ -421,15 +434,6 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     
 //    public func play(fileURL fileUrl: String) {
 //        
-//    }
-    
-//    public var volume: Double {
-//        get {
-//            <#code#>
-//        }
-//        set {
-//            <#code#>
-//        }
 //    }
     
     
