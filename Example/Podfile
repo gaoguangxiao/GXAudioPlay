@@ -1,6 +1,7 @@
 platform :ios, '10.0'
 
 target 'GXAudioPlay_Example' do
+  
   use_frameworks!
   
   pod 'GXAudioPlay', :path => '../'
