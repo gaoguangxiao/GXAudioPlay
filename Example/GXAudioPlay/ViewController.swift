@@ -38,6 +38,15 @@ class ViewController: UIViewController {
         return path ?? ""
     }()
     
+    
+    lazy var urlend: URL = {
+        let path = Bundle.main.path(forResource: "music-end", ofType: "mp3")
+        if let uurl = path?.toFileUrl {
+            return uurl
+        }
+        return URL(fileURLWithPath: "")
+    }()
+    
     lazy var url1: URL = {
         let path = Bundle.main.path(forResource: "1", ofType: "wav")
         if let uurl = path?.toFileUrl {
@@ -130,18 +139,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func 播放PCM音频(_ sender: Any) {
-        play?.playpcm(fileURL: url1)
+//        play?.playpcm(fileURL: url1)
+        
+        play?.playpcmLoop(fileURL: url1)
     }
     
     @IBAction func 播放PCM中断(_ sender: Any) {
         //中断其他播放,本次播放完毕，继续播放之前的
-        play?.playpcm(fileURL: url2, options: .interrupts)
+//        play?.playpcm(fileURL: url2, options: .interrupts)
         
         //等当前播放完毕，再播放本次，本次播放完毕，继续播放本次
-        //        play?.playpcm(fileURL: url2, options: .loops)
+//        play?.playpcm(fileURL: url2, options: .loops)
         
         //等当前播放完毕，再播放本次，本次播放完毕，重新播放上次
-        //        play?.playpcm(fileURL: url2, options: .interruptsAtLoop)
+//        play?.playpcm(fileURL: url2, options: .interruptsAtLoop)
+        
+        play?.playEndAudio(fileURL: urlend)
     }
     
     @IBAction func 串行播放(_ sender: Any) {
@@ -169,6 +182,10 @@ class ViewController: UIViewController {
                     self.playSlider.minimumValue = 0
                     self.playSlider.maximumValue = Float(duration)
                 }
+                
+            case .LoopEndSingle:
+                //播放尾音
+//                play?.playEndAudio(fileURL: urlend)
             case .TimeUpdate(let currentTime):
                 let str = "音轨名字：" + "播放时间" + "\(currentTime)"
                 //                    self.audioTrackText.text = str
@@ -183,6 +200,9 @@ class ViewController: UIViewController {
         play?.loop = true
 //        play?.playpcm(fileURL: url)
         play?.play(url: filePath)
+        //传入插入尾音
+        
+        //
     }
     
     override func didReceiveMemoryWarning() {

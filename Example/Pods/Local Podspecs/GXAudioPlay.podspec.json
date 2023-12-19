@@ -1,7 +1,7 @@
 {
   "name": "GXAudioPlay",
-  "version": "0.1.1",
-  "summary": "音频播放器",
+  "version": "0.1.2",
+  "summary": "增加引擎第二个播放节点",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/gaoguangxiao",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GXAudioPlay.git",
-    "tag": "0.1.1"
+    "tag": "0.1.2"
   },
   "swift_versions": "5.0",
   "platforms": {

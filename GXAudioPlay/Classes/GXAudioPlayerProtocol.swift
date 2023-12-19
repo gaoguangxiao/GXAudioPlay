@@ -17,7 +17,7 @@ public enum GXAudioAVPlayerEvent {
     case Error(String)
 }
 
-public protocol GXAudioPlayerProtocol {
+public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     
     var playSpeed: Float {get set}
     
@@ -29,8 +29,7 @@ public protocol GXAudioPlayerProtocol {
     var playEventsBlock: ((PTAudioPlayerEvent)->())? { get set }
     
     //播放本地URL
-//    func play(fileURL fileUrl: String)
-
+    
     //播放网络
     func play(url: String)
 

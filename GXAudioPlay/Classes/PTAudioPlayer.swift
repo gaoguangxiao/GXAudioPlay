@@ -15,7 +15,7 @@ import RxSwift
 //import FileKit
 
 
-public enum PTAudioPlayerEvent {
+public enum PTAudioPlayerEvent: Equatable {
     case None
     case Playing(Double)         // 在媒体开始播放时触发（不论是初次播放、在暂停后恢复、或是在结束后重新开始）
     case TimeUpdate(Double)

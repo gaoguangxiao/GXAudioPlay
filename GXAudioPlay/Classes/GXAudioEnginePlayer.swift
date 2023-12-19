@@ -20,6 +20,8 @@ public class GXAudioEnginePlayer: NSObject {
     private let engine = AVAudioEngine()//音频引擎
     private let player = AVAudioPlayerNode() //播放节点
     
+    private let player2 = AVAudioPlayerNode() //播放节点
+    
     //音量单元
     private let volumeEffect = AVAudioUnitEQ()
     
@@ -41,6 +43,8 @@ public class GXAudioEnginePlayer: NSObject {
     public var playEventsBlock: ((PTAudioPlayerEvent)->())?
     //    var playerEventDelegate: GXAudioPlayerEventProtocol?
     
+    var status : PTAudioPlayerEvent = .None
+    
     var displayLink: CADisplayLink?
     //遵循播放协议，但是存储属性不能写入扩展，因此写入实体
     public var loop: Bool = false
@@ -48,6 +52,8 @@ public class GXAudioEnginePlayer: NSObject {
     public override init() {
         //添加播放节点
         engine.attach(player)
+        //添加第二个播放节点
+        engine.attach(player2)
         //添加音量
         engine.attach(volumeEffect)
         //添加变速变调节点
@@ -56,8 +62,10 @@ public class GXAudioEnginePlayer: NSObject {
         engine.connect(timePitch, to: engine.mainMixerNode, format: nil)
         //链接EQ节点到
         engine.connect(volumeEffect, to: timePitch, format:nil)
-        //链接播放节点到引擎的`maxinMixerNode`
-        engine.connect(player, to: timePitch, format: nil)
+        //链接播放节点到引擎的`volumeEffect`
+        engine.connect(player, to: volumeEffect, format: nil)
+        //链接播放节点
+        engine.connect(player2, to: engine.mainMixerNode, format: nil)
         //        engine.connect(volumeEffect, to: engine.mainMixerNode, format: nil)
         
         //预先准备资源
@@ -157,6 +165,42 @@ public class GXAudioEnginePlayer: NSObject {
         }
     }
     
+    //辅助音轨播放
+    public func playSubAudio(fileURL fileUrl: URL) {
+        guard let audioFile = try? AVAudioFile(forReading: fileUrl) else { return }
+        player2.scheduleFile(audioFile, at: nil, completionHandler: nil)
+        self.player2.play()
+    }
+
+    //播放两种音频，一种主音，一种尾音，尾音在主音结束播放，主音会循环播放
+    public func playLoopMainAudio(fileMainURL fileUrl: URL , endFileUrl: URL) {
+        if let _ = setAudioPCMBuffer(fileUrl: fileUrl) {
+            self.playAudioBuffer(isLoop: true, endFileUrl: endFileUrl)
+        }
+    }
+    
+    private func playAudioBuffer(isLoop: Bool,endFileUrl: URL) {
+        if let buffer = self.currentAudioPCMBuffer {
+            skipFrame = 0
+            player.scheduleBuffer(buffer, at: nil,options: .loops) {
+                if self.status != .Ended {
+                    if isLoop {
+//                        self.playSubNoteAudio(fileURL:endFileUrl)
+                        //
+//                        self.playAudioBuffer(isLoop: isLoop,endFileUrl: endFileUrl)
+                    }
+                }
+            }
+            play()
+        }
+    }
+    //播放尾音
+    public func playSubNoteAudio(fileURL fileUrl: URL) {
+        guard let audioFile = try? AVAudioFile(forReading: fileUrl) else { return }
+        player2.scheduleFile(audioFile, at: nil, completionHandler: nil)
+        self.player2.play()
+    }
+    
     //从某时刻 播放本地URL
     public func play(fileURL fileUrl: URL,time:Double) {
         if let audioFile = setPlayAudioFile(fileUrl: fileUrl){
@@ -189,7 +233,7 @@ public class GXAudioEnginePlayer: NSObject {
         if let buffer = setAudioPCMBuffer(fileUrl: fileUrl) {
             skipFrame = 0
             player.scheduleBuffer(buffer, at: nil,options: options) {
-                //self.playEventsBlock?(.Ended)
+                self.playEventsBlock?(.Ended)
             }
             play()
         } else {
@@ -197,12 +241,11 @@ public class GXAudioEnginePlayer: NSObject {
         }
     }
     
-    public func playPCMBuffer(_ buffer: AVAudioPCMBuffer,options:AVAudioPlayerNodeBufferOptions = .interrupts) {
-        skipFrame = 0
-        player.scheduleBuffer(buffer, at: nil,options: options) {
-            //self.playEventsBlock?(.Ended)
+    //播放pcm支持循环播放
+    public func playpcmLoop(fileURL fileUrl: URL,options:AVAudioPlayerNodeBufferOptions = .interrupts) {
+        if let _ = setAudioPCMBuffer(fileUrl: fileUrl) {
+            self.playAudioBuffer()
         }
-        play()
     }
     
     /// URL 用PCM缓存播放
@@ -231,7 +274,10 @@ public class GXAudioEnginePlayer: NSObject {
         if let buffer = self.currentAudioPCMBuffer {
             skipFrame = 0
             player.scheduleBuffer(buffer, at: nil,options: .interrupts) {
-                //self.playEventsBlock?(.Ended)
+                if self.loop {
+                    self.playEventsBlock?(.LoopEndSingle)
+                    self.playAudioBuffer()
+                }
             }
             play()
         }
@@ -253,19 +299,19 @@ public class GXAudioEnginePlayer: NSObject {
         return buffer
     }
     
+    //主动获取帧数变化 仅仅处理
     @objc func monitorTimeChange() {
         //        print("播放时间---\(self.currentFrame)---\(self.frameLength)")
         if self.currentFrame >= self.frameLength {
             print("播放结束---")
-            displayLink?.isPaused = true
             if loop {
-                self.playEventsBlock?(.LoopEndSingle)
-                player.stop()
-                playAudioBuffer()
+                //                改为内部播放回调
+                //                player.stop()
+                //                playAudioBuffer()
             } else {
                 if player.isPlaying {
                     self.playEventsBlock?(.Ended)
-                    stop()
+//                   stop()
                 }
             }
             return
@@ -341,6 +387,10 @@ public class GXAudioEnginePlayer: NSObject {
 }
 
 extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
+//    public func playSubAudio(fileURL fileUrl: URL) {
+//        self.playSubAudio(fileURL: fileUrl)
+//    }
+    
     public var volume: Float {
         get { player.volume }
         set { player.volume = newValue }
@@ -371,11 +421,10 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
         
         //        if let uurl = URL(fileURLWithPath: url) {
         //播放缓存
-        self.playpcm(fileURL: URL(fileURLWithPath: url), options: .loops)
+        //        self.playpcm(fileURL: URL(fileURLWithPath: url), options: .interrupts)
         //        }
-        
+        self.playpcm(fileURL: URL(fileURLWithPath: url))
         //        self.play(fileURL:URL(fileURLWithPath: url))
-        
         
     }
     
@@ -384,24 +433,25 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
     //    }
     
     public func setSeekToTime(seconds: Double) {
-        guard let audioFile = self.currentAudioFile else { return }
-        self.seekStatus = true
-        self.player.stop()
-        let sampleRate = audioFile.fileFormat.sampleRate
-        //播放文件
-        let startingFrame :AVAudioFramePosition = AVAudioFramePosition(seconds * sampleRate)
-        skipFrame = startingFrame
-        // 要根据总时长和当前进度，找出起始的frame位置和剩余的frame数量
-        let frameCount : AVAudioFrameCount = AVAudioFrameCount(audioFile.length - startingFrame)
-        // 指定开始播放的音频帧和播放的帧数
-        player.scheduleSegment(audioFile, startingFrame: startingFrame, frameCount: frameCount, at: nil) {
-            //            用定时器回调结束
-            //            if !self.seekStatus {
-            //                self]]]]]]]]]]]]]]]]]]]p.playEventsBlock?(.Ended)
-            //            }
-        }
-        self.seekStatus = false
-        self.player.play()
+        //不可调节播放进度，会产生回调stop事件
+        //        guard let audioFile = self.currentAudioFile else { return }
+        //        self.seekStatus = true
+        //        self.player.stop()
+        //        let sampleRate = audioFile.fileFormat.sampleRate
+        //        //播放文件
+        //        let startingFrame :AVAudioFramePosition = AVAudioFramePosition(seconds * sampleRate)
+        //        skipFrame = startingFrame
+        //        // 要根据总时长和当前进度，找出起始的frame位置和剩余的frame数量
+        //        let frameCount : AVAudioFrameCount = AVAudioFrameCount(audioFile.length - startingFrame)
+        //        // 指定开始播放的音频帧和播放的帧数
+        //        player.scheduleSegment(audioFile, startingFrame: startingFrame, frameCount: frameCount, at: nil) {
+        //            //            用定时器回调结束
+        //            //            if !self.seekStatus {
+        //            //                self.playEventsBlock?(.Ended)
+        //            //            }
+        //        }
+        //        self.seekStatus = false
+        //        self.player.play()
         
     }
     
@@ -409,17 +459,25 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
         //恢复播放，那么引擎必须处于运行状态，如果被`stop`，那么调用失败
         if self.engine.isRunning {
             self.player.play()
+        } else {
+            startEndine()
+            self.player.play()
+            print("enging not running")
         }
-        print("enging not running")
+        status = .Playing(0)
     }
     
     public func pause() {
+        status = .Pause
         self.player.pause()
     }
     
     public func stop() {
-        //        self.engine.stop()
+        status = .Ended
+        self.engine.stop()
         self.player.stop()
+        //
+        displayLink?.isPaused = true
     }
     
     public func stop(_ issue: Bool) {
