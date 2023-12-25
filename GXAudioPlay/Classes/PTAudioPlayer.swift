@@ -14,9 +14,11 @@ import RxCocoa
 import RxSwift
 //import FileKit
 
+import GGXSwiftExtension
 
 public enum PTAudioPlayerEvent: Equatable {
     case None
+    case isReadyToPlay //URL到准备播放的状态
     case Playing(Double)         // 在媒体开始播放时触发（不论是初次播放、在暂停后恢复、或是在结束后重新开始）
     case TimeUpdate(Double)
     case Waiting         //在一个待执行的操作（如回放）因等待另一个操作（如跳跃或下载）被延迟时触发
@@ -157,6 +159,7 @@ public class PTAudioPlayer: NSObject {
         asset.loadValuesAsynchronously(forKeys: ["playable"]) { [weak self] in
             guard let `self` = self else {return}
             guard case .None = self.status else {
+                print("URL尚未播放完毕\(self.status)")
                 return
             }
             var error: NSError? = nil
@@ -177,6 +180,8 @@ public class PTAudioPlayer: NSObject {
                             self.status = PTAudioPlayerEvent.Playing(0)
                             self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
                             self.remoteAudioPlayer?.rate = self.playSpeed
+                            print("播放器readyToPlay：播放时间：\(Date.getCurrentDateStr("yyyy-MM-dd HH:mm:ss.SSS"))")
+                            self.remoteAudioPlayer?.play()
                         } else if status == AVPlayer.Status.failed {
                             self.status = PTAudioPlayerEvent.Error("")
                             self.playEventsBlock?(PTAudioPlayerEvent.Error("AVPlayer.failed--\(String(describing: playerItem.error))"))
@@ -198,6 +203,7 @@ public class PTAudioPlayer: NSObject {
                 if  case .Waiting = self.status  {
                     self.status = PTAudioPlayerEvent.Playing(0)
                     self.remoteAudioPlayer?.play()
+                    print("播放器playbackLikelyToKeepUp：播放时间：\(Date.getCurrentDateStr("yyyy-MM-dd HH:mm:ss.SSS"))")
                     self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
                 }
             }).disposed(by: self.disposeBag)
@@ -220,7 +226,9 @@ public class PTAudioPlayer: NSObject {
                             }
                         } else {
                             if case .Playing = self.status {
-                                self.stop(true)
+                                print("播放器AVPlayerItemDidPlayToEndTime：播放时间：\(Date.getCurrentDateStr("yyyy-MM-dd HH:mm:ss.SSS"))")
+                                self.setSeekToTime(seconds: 0)
+//                                self.stop(true)
                             }
                         }
                     }
@@ -439,6 +447,21 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     
     public func play(url: String) {
         self.setAVAudioSession()
+        
+        //
+        if url == self._remoteAudioUrl {
+            //相同URL-播放状态
+            print("播放状态:\(self.status)-\(self)播放时间：\(Date.getCurrentDateStr("yyyy-MM-dd HH:mm:ss.SSS"))")
+//            if self.status == .None { //空闲状态
+//                    //如果不是结束
+//                print("此URL尚未结束")、
+//                self.setSeekToTime(seconds: 0)
+//            播放结束改为0
+                self.remoteAudioPlayer?.play()
+                return
+//            }
+        }
+        
         status = PTAudioPlayerEvent.None
         self._remoteAudioUrl = url
 //        let canUseCache = self.playLocalCache(url: url)
@@ -448,13 +471,16 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
 //            trackDetail["hit"] = 1
 //            PTTracker.track(event: "interrupt", attributes: trackDetail)
 //        } else {
-        if let url = URL(string: url) {
+        if let url = url.toFileUrl {
                 if self.remoteAudioPlayer == nil {
                     self.remoteAudioPlayer = AVPlayer.init()
                 } else {
 //                    self.disposeBag = DisposeBag()
                 }
-                remoteAudioPlayer?.pause()
+            
+            
+//            self.status = .isReadyToPlay
+//                remoteAudioPlayer?.pause()
                 self.playRemoteAudio(url: url)
             } else {
                 self.playEventsBlock?(PTAudioPlayerEvent.Error("url异常：\(url)"))
@@ -504,19 +530,22 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     
     /// 停止播放
     public func stop(_ issue : Bool = false) {
-        NotificationCenter.default.removeObserver(self)
-        self.removePeriodicTimer()
+//        NotificationCenter.default.removeObserver(self)
+//        self.removePeriodicTimer()
         if issue {
             self.playEventsBlock?(.Ended)
         }
         self.status = .None
-        remoteAudioPlayer?.pause()
-        remoteAudioPlayer?.replaceCurrentItem(with: nil)
+        
+        //replaceCurrentItem不置为空，如果有同样URL
+//        remoteAudioPlayer?.pause()
+//        remoteAudioPlayer?.replaceCurrentItem(with: nil)
 //        self.remoteAudioPlayer = nil
+        
         audioPlayer?.stop()
         self.audioPlayer?.delegate = nil
         self.audioPlayer = nil
         self.playEventsBlock = nil
-        self.disposeBag = DisposeBag()
+//        self.disposeBag = DisposeBag()
     }
 }
