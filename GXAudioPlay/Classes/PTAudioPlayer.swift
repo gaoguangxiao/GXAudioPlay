@@ -433,14 +433,20 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
 //    }
     
 //    public func play(fileURL fileUrl: String) {
-//        
+//
 //    }
     
     
     public func play(url: String) {
         self.setAVAudioSession()
         status = PTAudioPlayerEvent.None
-        self._remoteAudioUrl = url
+        
+        guard let escapedURLString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
+            return
+        }
+
+        self._remoteAudioUrl = escapedURLString
+
 //        let canUseCache = self.playLocalCache(url: url)
 //        if canUseCache {
 //            var trackDetail : [String : Any] = [:]
@@ -448,7 +454,8 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
 //            trackDetail["hit"] = 1
 //            PTTracker.track(event: "interrupt", attributes: trackDetail)
 //        } else {
-        if let url = URL(string: url) {
+        
+        if let url = URL(string: escapedURLString) {
                 if self.remoteAudioPlayer == nil {
                     self.remoteAudioPlayer = AVPlayer.init()
                 } else {
