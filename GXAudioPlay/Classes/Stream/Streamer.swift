@@ -77,8 +77,7 @@ open class Streamer: Streaming {
     var isFileSchedulingComplete = false
 
     
-    
-    var repeats = false
+    public var repeats = false
     
     // MARK: - Lifecycle
     

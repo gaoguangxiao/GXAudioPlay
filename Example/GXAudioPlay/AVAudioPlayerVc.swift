@@ -38,9 +38,10 @@ class AVAudioPlayerVc: UIViewController {
         super.viewDidLoad()
 
         //预加载网络音频
-        if let url = URL(string: "http://localhost:8081/static/music-Loop.mp3") {
-            streamer.url = url
-        }
+//        if let url = URL(string: "http://localhost:8081/static/music-Loop.mp3") {
+//            streamer.url = url
+//        }
+     
         
     }
     
@@ -51,11 +52,22 @@ class AVAudioPlayerVc: UIViewController {
     
     @IBAction func 播放网络音频(_ sender: Any) {
                 
-        if streamer.state == .playing {
-            streamer.pause()
-        } else {
-            streamer.play()
+        
+        //
+        for i in 0..<8 {
+            //极短音频
+            if let url = URL(string: "http://localhost:8081/static/letter-repeat-down.mp3") {
+                streamer.url = url
+//                streamer.repeats = true
+                streamer.play()
+            }
         }
+        
+//        if streamer.state == .playing {
+//            streamer.pause()
+//        } else {
+//            streamer.play()
+//        }
 //        let urlsession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
 //
 //        if let url = URL(string: "http://localhost:8081/static/music-Loop.mp3") {
@@ -65,7 +77,9 @@ class AVAudioPlayerVc: UIViewController {
 
     }
     
-  
+    @IBAction func 暂停音频(_ sender: Any) {
+    }
+    
     lazy var streamer: Streamer = {
         let streamer = Streamer()
         streamer.delegate = self

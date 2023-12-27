@@ -71,7 +71,7 @@ public class GXAudioEnginePlayer: NSObject {
         //预先准备资源
         engine.prepare()
         //打开引擎开关
-        try! engine.start()
+        try? engine.start()
         
         //默认为0
         skipFrame = 0

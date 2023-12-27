@@ -154,7 +154,7 @@ class ViewController: UIViewController {
         //等当前播放完毕，再播放本次，本次播放完毕，重新播放上次
 //        play?.playpcm(fileURL: url2, options: .interruptsAtLoop)
         
-        play?.playEndAudio(fileURL: urlend)
+//        play?.playEndAudio(fileURL: urlend)
     }
     
     @IBAction func 串行播放(_ sender: Any) {
@@ -185,6 +185,7 @@ class ViewController: UIViewController {
                 
             case .LoopEndSingle:
                 //播放尾音
+                break
 //                play?.playEndAudio(fileURL: urlend)
             case .TimeUpdate(let currentTime):
                 let str = "音轨名字：" + "播放时间" + "\(currentTime)"

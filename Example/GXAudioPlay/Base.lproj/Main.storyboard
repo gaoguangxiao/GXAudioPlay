@@ -268,7 +268,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="AudioManager"/>
+                                <state key="normal" title="网络音频"/>
                                 <connections>
                                     <segue destination="QJT-J2-ULP" kind="push" id="l5N-fB-Eh8"/>
                                 </connections>
@@ -316,6 +316,9 @@
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="暂停音频"/>
+                                <connections>
+                                    <action selector="暂停音频:" destination="QJT-J2-ULP" eventType="touchUpInside" id="suG-IE-FzE"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrD-We-OqO">
                                 <rect key="frame" x="150.5" y="196" width="74" height="34"/>
