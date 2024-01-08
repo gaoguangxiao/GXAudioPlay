@@ -311,7 +311,7 @@ public class GXAudioEnginePlayer: NSObject {
             } else {
                 if player.isPlaying {
                     self.playEventsBlock?(.Ended)
-//                   stop()
+                   stop()
                 }
             }
             return
@@ -423,8 +423,8 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
         //播放缓存
         //        self.playpcm(fileURL: URL(fileURLWithPath: url), options: .interrupts)
         //        }
-        self.playpcm(fileURL: URL(fileURLWithPath: url))
-        //        self.play(fileURL:URL(fileURLWithPath: url))
+//        self.playpcm(fileURL: URL(fileURLWithPath: url))
+                self.play(fileURL:URL(fileURLWithPath: url))
         
     }
     

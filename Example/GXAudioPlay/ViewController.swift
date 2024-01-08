@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     
     //本地URL
     lazy var filePath: String = {
-        let path = Bundle.main.path(forResource: "music-Loop", ofType: "mp3")
+        let path = Bundle.main.path(forResource: "music-end", ofType: "mp3")
 //        if let uurl = path?.toFileUrl {
 //            return uurl
 //        }

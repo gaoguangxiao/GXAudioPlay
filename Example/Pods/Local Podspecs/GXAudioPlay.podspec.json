@@ -1,6 +1,6 @@
 {
   "name": "GXAudioPlay",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "summary": "engine值可选",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/gaoguangxiao",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GXAudioPlay.git",
-    "tag": "0.1.4"
+    "tag": "0.1.5"
   },
   "swift_versions": "5.0",
   "platforms": {

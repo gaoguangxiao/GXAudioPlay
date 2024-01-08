@@ -32,7 +32,6 @@
 		1E84B7622AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E84B75F2AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 */; };
 		1E84B7632AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E84B7602AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 */; };
 		1E84B7642AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E84B7612AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 */; };
-		1EB456FE2B303BE2004A0366 /* music-Loop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1EB456FD2B303BE2004A0366 /* music-Loop.mp3 */; };
 		1EB457002B303C11004A0366 /* music-end.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1EB456FF2B303C11004A0366 /* music-end.mp3 */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -70,7 +69,6 @@
 		1E84B75F2AF899ED0057FF52 /* 02.Ellis - Clear My Head (Radio Edit) [NCS].mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "02.Ellis - Clear My Head (Radio Edit) [NCS].mp3"; sourceTree = "<group>"; };
 		1E84B7602AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "03.Spektrum & Sara Skinner - Keep You.mp3"; sourceTree = "<group>"; };
 		1E84B7612AF899ED0057FF52 /* 01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "01.Halcyon - Runaway (Feat. Valentina Franco) (Heuse Remix).mp3"; sourceTree = "<group>"; };
-		1EB456FD2B303BE2004A0366 /* music-Loop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "music-Loop.mp3"; path = "../../../../../Desktop/SourceTree/audio/Example/RSBridgeAudio/music-Loop.mp3"; sourceTree = "<group>"; };
 		1EB456FF2B303C11004A0366 /* music-end.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "music-end.mp3"; sourceTree = "<group>"; };
 		42722BB441A09A763CFB16CF /* Pods-GXAudioPlay_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GXAudioPlay_Tests.release.xcconfig"; path = "Target Support Files/Pods-GXAudioPlay_Tests/Pods-GXAudioPlay_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4B324B2D32A923981BB76278 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 				1E84B7602AF899ED0057FF52 /* 03.Spektrum & Sara Skinner - Keep You.mp3 */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				1EB456FD2B303BE2004A0366 /* music-Loop.mp3 */,
 				1EB456FF2B303C11004A0366 /* music-end.mp3 */,
 				1E637EED2B0F72D300F80128 /* Loop.mp3 */,
 				1E557D602B16CD820038E801 /* AVAudioPlayerVc.swift */,
@@ -304,7 +301,6 @@
 				1E6E51372AF8FC9D005F9F60 /* 3.wav in Resources */,
 				1E6E51352AF8FC9D005F9F60 /* 4.wav in Resources */,
 				1E6E51272AF8FC9D005F9F60 /* 11.wav in Resources */,
-				1EB456FE2B303BE2004A0366 /* music-Loop.mp3 in Resources */,
 				1E6E512F2AF8FC9D005F9F60 /* 8.wav in Resources */,
 				1E6E51322AF8FC9D005F9F60 /* 6.wav in Resources */,
 				1E637EEE2B0F72D300F80128 /* Loop.mp3 in Resources */,
