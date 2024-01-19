@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFAudio
 
 public enum GXAudioAVPlayerEvent {
     case None
@@ -58,8 +59,28 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
 //    func playEventUpdate(event: OTA)
 //}
 
+//MARK: 控制音频会话
 extension GXAudioPlayerProtocol {
     
+    func setAVAudioSession() {
+        if AVAudioSession.sharedInstance().category != AVAudioSession.Category.playAndRecord  {
+            do {
+                if #available(iOS 10.0, *) {//iOS 新增.allowAirPlay .allowBluetoothA2DP
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP])
+                } else {
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth])
+                }
+                
+            } catch {
+                
+            }
+        }
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            
+        }
+    }
 }
 
 //public func setSeekToTime(seconds: Double)  {

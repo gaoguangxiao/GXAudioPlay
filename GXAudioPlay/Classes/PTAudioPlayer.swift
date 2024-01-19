@@ -102,30 +102,7 @@ public class PTAudioPlayer: NSObject {
 //            playerItem.seek(to: CMTime.zero)
 //        }
 //    }
-    
-    /// 播放本地音频
-    ///
-    /// - Parameter filePath: 本地音频路径
-    func play(filePath : String) {
-        self.setAVAudioSession()
-        do {
-            audioPlayer?.delegate = nil
-            audioPlayer = try AVAudioPlayer.init(contentsOf: URL.init(fileURLWithPath: filePath))
-            audioPlayer?.delegate = self
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.play()
-            self.playEventsBlock?(.Playing(audioPlayer?.duration ?? 0))
-        } catch {
-            self.playEventsBlock?(.Error(error.localizedDescription))
-            print("open audio failed!-- \(error)")
-        }
-    }
-    
-    /// 播放远程的音频文件
-    ///
-    /// - Parameter url: 音频文件地址
-    
-    
+
     /// 播放本地录音文件
     ///
     /// - Parameter path: path
@@ -397,25 +374,25 @@ extension PTAudioPlayer: AVAudioPlayerDelegate {
 }
 
 extension PTAudioPlayer {
-    func setAVAudioSession() {
-        if AVAudioSession.sharedInstance().category != AVAudioSession.Category.playAndRecord  {
-            do {
-                if #available(iOS 10.0, *) {//iOS 新增.allowAirPlay .allowBluetoothA2DP
-                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP])
-                } else {
-                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth])
-                }
-                
-            } catch {
-                
-            }
-        }
-        do {
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            
-        }
-    }
+//    func setAVAudioSession() {
+//        if AVAudioSession.sharedInstance().category != AVAudioSession.Category.playAndRecord  {
+//            do {
+//                if #available(iOS 10.0, *) {//iOS 新增.allowAirPlay .allowBluetoothA2DP
+//                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP])
+//                } else {
+//                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth])
+//                }
+//                
+//            } catch {
+//                
+//            }
+//        }
+//        do {
+//            try AVAudioSession.sharedInstance().setActive(true)
+//        } catch {
+//            
+//        }
+//    }
 }
 
 extension PTAudioPlayer: GXAudioPlayerProtocol {
