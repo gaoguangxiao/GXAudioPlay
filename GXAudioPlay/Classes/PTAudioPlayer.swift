@@ -234,7 +234,7 @@ public class PTAudioPlayer: NSObject {
 //                    if (notic.userInfo?[AVAudioSessionRouteChangeReasonKey] as? Int ?? kAudioSessionRouteChangeReason_Unknown) == kAudioSessionRouteChangeReason_OldDeviceUnavailable {
 //                        if case .Playing = self.status , self.remoteAudioPlayer?.currentItem?.status == .readyToPlay , self.remoteAudioPlayer?.rate == 0.0 {
 //                            self.remoteAudioPlayer?.rate = self.playSpeed
-////                            self.remoteAudioPlayer?.play()
+//                            self.remoteAudioPlayer?.play()
 //                        }
 //                    }
 //                }).disposed(by: self.disposeBag)
@@ -245,32 +245,49 @@ public class PTAudioPlayer: NSObject {
     ///
     /// - Parameter url: url
     /// - Returns: 是否播放成功
-//    private func playLocalCache(url: String) -> Bool {
-//        var canUseCache = false
+    private func playLocalCache(url: String) -> Bool {
+        var canUseCache = false
+        //本地文件
+        let fileExist = FileManager.default.fileExists(atPath: url)
+        guard fileExist == true else {
+            return false
+        }
+        var fileUrl : URL?
+        if #available(iOS 16.0, *) {
+            fileUrl = URL(filePath: url)
+        } else {
+            // Fallback on earlier versions
+            fileUrl = URL(fileURLWithPath: url)
+        }
+        if let fileUrl, let cacheData = try? Data(contentsOf: fileUrl){
+            do {
+                audioPlayer?.delegate = nil
+                audioPlayer = try AVAudioPlayer.init(data: cacheData)
+                audioPlayer?.delegate = self
+                audioPlayer?.enableRate = true
+                audioPlayer?.rate = self.playSpeed
+                if  audioPlayer?.prepareToPlay() ?? false {
+                    canUseCache = true
+                    self.remoteAudioPlayer = nil
+                    audioPlayer?.play()
+                    self.status = .Playing(0)
+                    self.playEventsBlock?(.Playing(self.duration))
+                }
+            } catch {
+                //PTLog("open audio failed!-- \(error)")
+            }
+        } else {
+//            self.playEventsBlock?(.Error("URL异常"))
+            canUseCache = false
+        }
 //        let resourceID = PTHybridUtil.resourceID(url)
 //        if PTHybridCache.share.containResource(resourceID) , let cacheData = PTHybridCache.share.readResourceData(resourceID) {
-//            do {
-//                audioPlayer?.delegate = nil
-//                audioPlayer = try AVAudioPlayer.init(data: cacheData)
-//                audioPlayer?.delegate = self
-//                audioPlayer?.enableRate = true
-//                audioPlayer?.rate = self.playSpeed
-//                if  audioPlayer?.prepareToPlay() ?? false {
-//                    canUseCache = true
-//                    self.remoteAudioPlayer = nil
-//                    audioPlayer?.play()
-//                    self.status = .Playing(0)
-//                    self.playEventsBlock?(.Playing(self.duration))
-//                }
-//            } catch {
-//                PTLog("open audio failed!-- \(error)")
-//            }
+//            
 //        } else {
-//            PTHybridManager.share.checkAndDownloadAudioResource(url: url)
+//            //PTHybridManager.share.checkAndDownloadAudioResource(url: url)
 //        }
-//        return canUseCache
-//    }
-    
+        return canUseCache
+    }
     
     /// 播放进度的监听
     public func addPeriodicTimer () {
@@ -422,17 +439,18 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
             return
         }
 
-        self._remoteAudioUrl = escapedURLString
+        
 
-//        let canUseCache = self.playLocalCache(url: url)
-//        if canUseCache {
+        let canUseCache = self.playLocalCache(url: url)
+        if canUseCache {
 //            var trackDetail : [String : Any] = [:]
 //            trackDetail["url"] = url
 //            trackDetail["hit"] = 1
 //            PTTracker.track(event: "interrupt", attributes: trackDetail)
-//        } else {
+        } else {
         
         if let url = URL(string: escapedURLString) {
+            self._remoteAudioUrl = escapedURLString
                 if self.remoteAudioPlayer == nil {
                     self.remoteAudioPlayer = AVPlayer.init()
                 } else {
@@ -443,7 +461,7 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
             } else {
                 self.playEventsBlock?(PTAudioPlayerEvent.Error("url异常：\(url)"))
             }
-//        }
+        }
     }
     
     public func play(fileURL fileUrl: URL) {
