@@ -107,15 +107,12 @@ public class PTAudioPlayer: NSObject {
     ///
     /// - Parameter path: path
     /// - Returns: 是否播放成功
-    public func playPlayback(path: String) -> Bool {
+    public func playPlayback(path: URL) -> Bool {
         setAVAudioSession()
         let _path = path
-        if path.isEmpty {
-            return false
-        }
         do {
             audioPlayer?.delegate = nil
-            audioPlayer = try AVAudioPlayer.init(contentsOf: URL.init(fileURLWithPath: _path))
+            audioPlayer = try AVAudioPlayer.init(contentsOf:  _path)
             audioPlayer?.delegate = self
             audioPlayer?.prepareToPlay()
             audioPlayer?.play()
