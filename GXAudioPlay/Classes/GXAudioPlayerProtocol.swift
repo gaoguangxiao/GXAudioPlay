@@ -60,11 +60,11 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
 //}
 
 //MARK: 控制音频会话
-extension GXAudioPlayerProtocol {
+public extension GXAudioPlayerProtocol {
     
     func setAVAudioSession() {
             do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.defaultToSpeaker, .allowBluetooth])
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth])
             } catch {
                 
             }
