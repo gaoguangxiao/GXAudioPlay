@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.2.1'
-  s.summary          = '优化音频被中断的处理'
+  s.version          = '0.2.2'
+  s.summary          = '优化音频会话录音时默认麦克风播放-扬声器模式'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

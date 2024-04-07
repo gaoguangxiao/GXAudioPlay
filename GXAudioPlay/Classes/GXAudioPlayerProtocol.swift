@@ -65,15 +65,22 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
 public extension GXAudioPlayerProtocol {
     
     func setAVAudioSession() {
+        if AVAudioSession.sharedInstance().category != AVAudioSession.Category.playAndRecord  {
             do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth])
+                if #available(iOS 10.0, *) {//iOS 新增.allowAirPlay .allowBluetoothA2DP
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP])
+                } else {
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth])
+                }
+
             } catch {
-                
+
             }
+        }
         do {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
-            
+
         }
     }
 }
