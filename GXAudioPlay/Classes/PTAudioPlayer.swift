@@ -10,23 +10,7 @@ import Foundation
 import AVFoundation
 import CoreMedia
 import RxCocoa
-//import PKHUD
 import RxSwift
-//import FileKit
-
-
-//public enum PTAudioPlayerEvent: Equatable {
-//    case None
-//    case Playing(Double)         // 在媒体开始播放时触发（不论是初次播放、在暂停后恢复、或是在结束后重新开始）
-//    case TimeUpdate(Double)
-//    case Waiting         //在一个待执行的操作（如回放）因等待另一个操作（如跳跃或下载）被延迟时触发
-//    case Pause
-//    case Interruption    //音频被中断
-//    case Ended
-//    case LoopEndSingle   //单次循环结束
-//    case Error(String)
-//}
-
 
 public class PTAudioPlayer: NSObject {
     
@@ -63,7 +47,9 @@ public class PTAudioPlayer: NSObject {
             }
         }
     }
-    //self.player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+    
+    public var track: String?
+    
     // 播放进度监听
     private var _time_observer: Any? = nil
     //当前的网络播放地址

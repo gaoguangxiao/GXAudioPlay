@@ -22,6 +22,8 @@ public enum PTAudioPlayerEvent: Equatable {
 
 public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     
+    var track: String? {get set}
+    
     var playSpeed: Float {get set}
     
     var volume: Float {get set}

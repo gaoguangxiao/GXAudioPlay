@@ -49,6 +49,8 @@ public class GXAudioEnginePlayer: NSObject {
     //遵循播放协议，但是存储属性不能写入扩展，因此写入实体
     public var loop: Bool = false
     
+    public var track: String?
+    
     public override init() {
         //添加播放节点
         engine.attach(player)
