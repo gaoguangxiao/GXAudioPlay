@@ -95,7 +95,19 @@ public class PTAudioPlayer: NSObject {
     /// - Parameter path: path
     /// - Returns: 是否播放成功
     public func playPlayback(path: URL) -> Bool {
-        setAVAudioSession()
+        //setAVAudioSession()
+        if AVAudioSession.sharedInstance().category != AVAudioSession.Category.playback  {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP])
+            } catch {
+                return false
+            }
+        }
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            return false
+        }
         let _path = path
         do {
             audioPlayer?.delegate = nil
@@ -216,25 +228,25 @@ public class PTAudioPlayer: NSObject {
             
             NotificationCenter.default.rx.notification(AVAudioSession.interruptionNotification).subscribe(onNext: { [weak self] (notic) in
                 guard let self else { return }
-//                print("音频被中断")
+                //                print("音频被中断")
                 interruptionTypeChanged(notic)
-//                self.status = PTAudioPlayerEvent.Interruption("")
-//                self.playEventsBlock?(PTAudioPlayerEvent.Interruption)
-//                self.stop(false)
+                //                self.status = PTAudioPlayerEvent.Interruption("")
+                //                self.playEventsBlock?(PTAudioPlayerEvent.Interruption)
+                //                self.stop(false)
             }).disposed(by: self.disposeBag)
-//            
-//            NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
-//                .subscribe(onNext: { [weak self] _ in
-//                    guard let self else {return}
-////                    receviedEventEnterBackground()
-//                }).disposed(by: disposeBag)
-//            
-//            NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
-//                .subscribe(onNext: { [weak self] _ in
-//                    guard let self else {return}
-////                    receviedEventEnterForeground()
-//                }).disposed(by: disposeBag)
-//            
+            //
+            //            NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
+            //                .subscribe(onNext: { [weak self] _ in
+            //                    guard let self else {return}
+            ////                    receviedEventEnterBackground()
+            //                }).disposed(by: disposeBag)
+            //
+            //            NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
+            //                .subscribe(onNext: { [weak self] _ in
+            //                    guard let self else {return}
+            ////                    receviedEventEnterForeground()
+            //                }).disposed(by: disposeBag)
+            //
             //            NotificationCenter.default.rx.notification(AVAudioSession.RouteChangeReason)
             //                .subscribe(onNext: { [weak self] (notic) in
             //                    guard let `self` = self else {return}
@@ -252,55 +264,55 @@ public class PTAudioPlayer: NSObject {
     ///
     /// - Parameter url: url
     /// - Returns: 是否播放成功
-//    private func playLocalCache(url: String) -> Bool {
-//        var canUseCache = false
-//        //本地文件
-//        canUseCache = FileManager.default.fileExists(atPath: url)
-//        guard canUseCache == true else {
-//            return false
-//        }
-//        var fileUrl : URL?
-//        if #available(iOS 16.0, *) {
-//            fileUrl = URL(filePath: url)
-//        } else {
-//            // Fallback on earlier versions
-//            fileUrl = URL(fileURLWithPath: url)
-//        }
-//        if let fileUrl, let cacheData = try? Data(contentsOf: fileUrl){
-//            do {
-//                audioPlayer?.delegate = nil
-//                audioPlayer = try AVAudioPlayer.init(data: cacheData)
-//                audioPlayer?.delegate = self
-//                audioPlayer?.enableRate = true
-//                audioPlayer?.rate = self.playSpeed
-//                
-//                audioPlayer?.prepareToPlay()
-//                
-////                if audioPlayer?.prepareToPlay() ?? false {
-//                    canUseCache = true
-//                    self.remoteAudioPlayer = nil
-//                    audioPlayer?.play()
-//                    self.status = .Playing(0)
-//                    self.playEventsBlock?(.Playing(self.duration))
-////                } else {
-////                    canUseCache = false
-////                    print("prepareToPlay failed!--")
-////                }
-//            } catch {
-//                print("open audio failed!-- \(error)")
-//            }
-//        } else {
-//            //            self.playEventsBlock?(.Error("URL异常"))
-//            canUseCache = false
-//        }
-//        //        let resourceID = PTHybridUtil.resourceID(url)
-//        //        if PTHybridCache.share.containResource(resourceID) , let cacheData = PTHybridCache.share.readResourceData(resourceID) {
-//        //
-//        //        } else {
-//        //            //PTHybridManager.share.checkAndDownloadAudioResource(url: url)
-//        //        }
-//        return canUseCache
-//    }
+    //    private func playLocalCache(url: String) -> Bool {
+    //        var canUseCache = false
+    //        //本地文件
+    //        canUseCache = FileManager.default.fileExists(atPath: url)
+    //        guard canUseCache == true else {
+    //            return false
+    //        }
+    //        var fileUrl : URL?
+    //        if #available(iOS 16.0, *) {
+    //            fileUrl = URL(filePath: url)
+    //        } else {
+    //            // Fallback on earlier versions
+    //            fileUrl = URL(fileURLWithPath: url)
+    //        }
+    //        if let fileUrl, let cacheData = try? Data(contentsOf: fileUrl){
+    //            do {
+    //                audioPlayer?.delegate = nil
+    //                audioPlayer = try AVAudioPlayer.init(data: cacheData)
+    //                audioPlayer?.delegate = self
+    //                audioPlayer?.enableRate = true
+    //                audioPlayer?.rate = self.playSpeed
+    //
+    //                audioPlayer?.prepareToPlay()
+    //
+    ////                if audioPlayer?.prepareToPlay() ?? false {
+    //                    canUseCache = true
+    //                    self.remoteAudioPlayer = nil
+    //                    audioPlayer?.play()
+    //                    self.status = .Playing(0)
+    //                    self.playEventsBlock?(.Playing(self.duration))
+    ////                } else {
+    ////                    canUseCache = false
+    ////                    print("prepareToPlay failed!--")
+    ////                }
+    //            } catch {
+    //                print("open audio failed!-- \(error)")
+    //            }
+    //        } else {
+    //            //            self.playEventsBlock?(.Error("URL异常"))
+    //            canUseCache = false
+    //        }
+    //        //        let resourceID = PTHybridUtil.resourceID(url)
+    //        //        if PTHybridCache.share.containResource(resourceID) , let cacheData = PTHybridCache.share.readResourceData(resourceID) {
+    //        //
+    //        //        } else {
+    //        //            //PTHybridManager.share.checkAndDownloadAudioResource(url: url)
+    //        //        }
+    //        return canUseCache
+    //    }
     
     /// 播放进度的监听
     public func addPeriodicTimer () {
@@ -448,20 +460,20 @@ extension PTAudioPlayer {
             }
             
             if isAnotherAudioSuspend {
-//                if (self.delegate != nil){
-                    mediaChangeInterruptionType(begin: true)
+                //                if (self.delegate != nil){
+                mediaChangeInterruptionType(begin: true)
                 print("mediaChangeInterruptionType: 开始")
-//                }
+                //                }
             }
             break
         case AVAudioSession.InterruptionType.ended.rawValue://End
             let optionKey = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt
             if optionKey == AVAudioSession.InterruptionOptions.shouldResume.rawValue {
                 //指示另一个音频会话的中断已结束，本应用程序可以恢复音频。
-//                if (self.delegate != nil){
-                    mediaChangeInterruptionType(begin: false)
+                //                if (self.delegate != nil){
+                mediaChangeInterruptionType(begin: false)
                 print("mediaChangeInterruptionType: 结束")
-//                }
+                //                }
             }
             break
         default: break
@@ -512,30 +524,30 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
             }
             audioUrl = URL(string: escapedURLString)
         }
-//        let canUseCache = false
-//        print("\(url)canUseCache: \(canUseCache)")
-//        if canUseCache {
-            //            var trackDetail : [String : Any] = [:]
-            //            trackDetail["url"] = url
-            //            trackDetail["hit"] = 1
-            //            PTTracker.track(event: "interrupt", attributes: trackDetail)
-//        } else {
-//            guard let escapedURLString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
-//                return
-//            }
-            if let _url = audioUrl {
-                self._remoteAudioUrl = url
-                if self.remoteAudioPlayer == nil {
-                    self.remoteAudioPlayer = AVPlayer.init()
-                } else {
-                    //                    self.disposeBag = DisposeBag()
-                }
-                remoteAudioPlayer?.pause()
-                self.playRemoteAudio(url: _url)
+        //        let canUseCache = false
+        //        print("\(url)canUseCache: \(canUseCache)")
+        //        if canUseCache {
+        //            var trackDetail : [String : Any] = [:]
+        //            trackDetail["url"] = url
+        //            trackDetail["hit"] = 1
+        //            PTTracker.track(event: "interrupt", attributes: trackDetail)
+        //        } else {
+        //            guard let escapedURLString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
+        //                return
+        //            }
+        if let _url = audioUrl {
+            self._remoteAudioUrl = url
+            if self.remoteAudioPlayer == nil {
+                self.remoteAudioPlayer = AVPlayer.init()
             } else {
-                self.playEventsBlock?(PTAudioPlayerEvent.Error("url异常：\(url)"))
+                //                    self.disposeBag = DisposeBag()
             }
-//        }
+            remoteAudioPlayer?.pause()
+            self.playRemoteAudio(url: _url)
+        } else {
+            self.playEventsBlock?(PTAudioPlayerEvent.Error("url异常：\(url)"))
+        }
+        //        }
     }
     
     public func play(fileURL fileUrl: URL) {
