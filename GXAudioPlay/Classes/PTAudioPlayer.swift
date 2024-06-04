@@ -127,139 +127,189 @@ public class PTAudioPlayer: NSObject {
     
     public func playRemoteAudio(url : URL) {
         let asset = AVURLAsset.init(url: url)
-        asset.loadValuesAsynchronously(forKeys: ["playable"]) { [weak self] in
-            guard let `self` = self else {return}
-            guard case .None = self.status else {
-                return
-            }
-            var error: NSError? = nil
-            var playerItem = AVPlayerItem.init(url: url)
-            let status = asset.statusOfValue(forKey: "playable", error: &error)
-            switch status {
-            case .loaded:
-                playerItem = AVPlayerItem.init(asset: asset)
-            default:
-                break
-            }
-            
-            _ = playerItem.rx.observeWeakly(AVPlayer.Status.self, "status").asObservable()
-                .subscribe(onNext: {[weak self] (event) in
-                    guard let `self` = self else {return}
-                    if let status = event {
-                        if status == AVPlayer.Status.readyToPlay {
-                            self.status = PTAudioPlayerEvent.Playing(0)
-                            self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
-                            self.remoteAudioPlayer?.rate = self.playSpeed
-                        } else if status == AVPlayer.Status.failed {
-                            self.status = PTAudioPlayerEvent.Error("")
-                            self.playEventsBlock?(PTAudioPlayerEvent.Error("AVPlayer.failed--\(String(describing: playerItem.error))"))
-                            print("AVPlayer.failed--\(String(describing: playerItem.error))")
-                            print("AVPlayer.error--\(String(describing: url))")
+        
+        // Load an asset's list of tracks.
+        if #available(iOS 15, *) {
+            Task {
+                do {
+                    //// Load an asset's suitability for playback and export.
+                    // let (isPlayable, isExportable) = try await asset.load(.isPlayable, .isExportable)
+                    let isPlayable = try await asset.load(.isPlayable)
+                    //                    print("isPlayable: \(isPlayable)、isExportable: \(isExportable)")
+                    var playerItem = AVPlayerItem.init(url: url)
+                    if isPlayable {
+                        let status = asset.status(of: .isPlayable)
+                        switch status {
+                        case .loaded(_):
+                            playerItem = AVPlayerItem.init(asset: asset)
+                        case .loading:
+                            break
+                        default:
+                            break
                         }
+                        self.addNotificationRX(playerItem: playerItem, url: url)
+                    } else {
+                        self.status = PTAudioPlayerEvent.Error("")
+                        self.playEventsBlock?(PTAudioPlayerEvent.Error("AVURLAsset.isPlayable-is :\(isPlayable)"))
+                        //                        self.playEventsBlock?(PTAudioPlayerEvent.Error("AVURLAsset.isPlayable-is :\(isPlayable)、AVURLAsset.isExportable-is :\(isExportable)"))
                     }
-                }).disposed(by: self.disposeBag)
-            
-            playerItem.rx.observe(Bool.self, "playbackBufferEmpty").subscribe(onNext: { [weak self] (value) in
-                guard let `self` = self else {return}
-                if case .Playing = self.status  {
-                    self.status = PTAudioPlayerEvent.Waiting
-                    self.playEventsBlock?(PTAudioPlayerEvent.Waiting)
+                } catch let e as NSError {
+                    self.status = PTAudioPlayerEvent.Error("")
+                    self.playEventsBlock?(PTAudioPlayerEvent.Error("try-catch:\(e.description)"))
                 }
-            }).disposed(by: self.disposeBag)
-            
-            playerItem.rx.observe(Bool.self, "playbackLikelyToKeepUp").subscribe(onNext: { [weak self] (value) in
-                guard let `self` = self else {return}
-                if  case .Waiting = self.status  {
-                    self.status = PTAudioPlayerEvent.Playing(0)
-                    self.remoteAudioPlayer?.play()
-                    self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
-                }
-            }).disposed(by: self.disposeBag)
-            
-            self.remoteAudioPlayer?.replaceCurrentItem(with: playerItem)
-            if #available(iOS 10, *) {
-                self.remoteAudioPlayer?.automaticallyWaitsToMinimizeStalling = false
-                self.remoteAudioPlayer?.rate = self.playSpeed
-            } else {
-                self.remoteAudioPlayer?.play()
             }
-            
-            NotificationCenter.default.rx.notification(Notification.Name.AVPlayerItemDidPlayToEndTime)
-                .subscribe(onNext: { [weak self] (notic) in
-                    guard let `self` = self else {return}
-                    if (notic.object as? AVPlayerItem ?? nil) === playerItem {
-                        if self.loop {
-                            if let playerItem: AVPlayerItem = notic.object as? AVPlayerItem {
-                                playerItem.seek(to: CMTime.zero)
-                            }
-                        } else {
-                            if case .Playing = self.status {
-                                self.stop(true)
-                            }
-                        }
-                    }
-                }).disposed(by: self.disposeBag)
-            
-            NotificationCenter.default.rx.notification(Notification.Name.AVPlayerItemFailedToPlayToEndTime)
-                .subscribe(onNext: { [weak self] (notic) in
-                    guard let `self` = self else {return}
-                    if (notic.object as? AVPlayerItem ?? nil) === playerItem {
-                        if case .Playing = self.status {
-                            self.status = PTAudioPlayerEvent.Error("")
-                            self.playEventsBlock?(PTAudioPlayerEvent.Error("item has failed to play to its end time -" + (playerItem.error?.localizedDescription ?? "")))
-                            self.stop(false)
-                        }
-                    }
-                }).disposed(by: self.disposeBag)
-            
-            
-            NotificationCenter.default.rx.notification(Notification.Name.AVPlayerItemPlaybackStalled)
-                .subscribe(onNext: { [weak self] (notic) in
-                    guard let `self` = self else {return}
-                    if (notic.object as? AVPlayerItem ?? nil) === playerItem {
-                        if case .Playing = self.status {
-                            self.status = PTAudioPlayerEvent.Error("")
-                            self.playEventsBlock?(PTAudioPlayerEvent.Error("media did not arrive in time to continue playback -" +  (playerItem.error?.localizedDescription ?? "")))
-                            self.stop(false)
-                        }
-                    }
-                }).disposed(by: self.disposeBag)
-            
-            
-            NotificationCenter.default.rx.notification(AVAudioSession.interruptionNotification).subscribe(onNext: { [weak self] (notic) in
-                guard let self else { return }
-                //                print("音频被中断")
-                interruptionTypeChanged(notic)
-                //                self.status = PTAudioPlayerEvent.Interruption("")
-                //                self.playEventsBlock?(PTAudioPlayerEvent.Interruption)
-                //                self.stop(false)
-            }).disposed(by: self.disposeBag)
-            //
-            //            NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
-            //                .subscribe(onNext: { [weak self] _ in
-            //                    guard let self else {return}
-            ////                    receviedEventEnterBackground()
-            //                }).disposed(by: disposeBag)
-            //
-            //            NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
-            //                .subscribe(onNext: { [weak self] _ in
-            //                    guard let self else {return}
-            ////                    receviedEventEnterForeground()
-            //                }).disposed(by: disposeBag)
-            //
-            //            NotificationCenter.default.rx.notification(AVAudioSession.RouteChangeReason)
-            //                .subscribe(onNext: { [weak self] (notic) in
-            //                    guard let `self` = self else {return}
-            //                    if (notic.userInfo?[AVAudioSessionRouteChangeReasonKey] as? Int ?? kAudioSessionRouteChangeReason_Unknown) == kAudioSessionRouteChangeReason_OldDeviceUnavailable {
-            //                        if case .Playing = self.status , self.remoteAudioPlayer?.currentItem?.status == .readyToPlay , self.remoteAudioPlayer?.rate == 0.0 {
-            //                            self.remoteAudioPlayer?.rate = self.playSpeed
-            //                            self.remoteAudioPlayer?.play()
-            //                        }
-            //                    }
-            //                }).disposed(by: self.disposeBag)
+        } else {
+            // Fallback on earlier versions
+            asset.loadValuesAsynchronously(forKeys: ["playable"]) { [weak self] in
+                guard let `self` = self else {return}
+                guard case .None = self.status else {
+                    return
+                }
+                var error: NSError? = nil
+                var playerItem = AVPlayerItem.init(url: url)
+                let status = asset.statusOfValue(forKey: "playable", error: &error)
+                
+                switch status {
+                case .loaded:
+                    playerItem = AVPlayerItem.init(asset: asset)
+                default:
+                    break
+                }
+                self.addNotificationRX(playerItem: playerItem, url: url)
+            }
         }
     }
     
+    func addNotificationRX(playerItem: AVPlayerItem,url: URL) {
+        
+        playerItem.rx.observeWeakly(AVPlayer.Status.self, "status").asObservable()
+            .subscribe(onNext: {[weak self] (event) in
+                guard let `self` = self else { return }
+                if let status = event {
+                    if status == AVPlayer.Status.readyToPlay {
+                        self.status = PTAudioPlayerEvent.Playing(0)
+                        self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
+                        self.remoteAudioPlayer?.rate = self.playSpeed
+                    } else if status == AVPlayer.Status.failed {
+                        self.status = PTAudioPlayerEvent.Error("")
+                        self.playEventsBlock?(PTAudioPlayerEvent.Error("AVPlayer.failed--\(String(describing: playerItem.error))"))
+                        print("AVPlayer.failed--\(String(describing: playerItem.error))")
+                        print("AVPlayer.error--\(String(describing: url))")
+                    }
+                }
+            }).disposed(by: self.disposeBag)
+        
+        // 缓冲不足暂停
+        playerItem.rx.observe(Bool.self, "playbackBufferEmpty").subscribe(onNext: { [weak self] (value) in
+            guard let `self` = self else {return}
+            if case .Playing = self.status  {
+                self.status = PTAudioPlayerEvent.Waiting
+                self.playEventsBlock?(PTAudioPlayerEvent.Waiting)
+            }
+        }).disposed(by: self.disposeBag)
+        
+        //缓冲可以播放
+        playerItem.rx.observe(Bool.self, "playbackLikelyToKeepUp").subscribe(onNext: { [weak self] (value) in
+            guard let `self` = self else {return}
+            if  case .Waiting = self.status  {
+                self.status = PTAudioPlayerEvent.Playing(0)
+                self.remoteAudioPlayer?.play()
+                self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
+            }
+        }).disposed(by: self.disposeBag)
+        
+//        NotificationCenter.default.rx.notification(AVPlayerItem.newErrorLogEntryNotification)
+//            .subscribe(onNext: { (notic) in
+//                print("newErrorLogEntryNotification")
+//            }).disposed(by: self.disposeBag)
+//
+//        NotificationCenter.default.rx.notification(AVPlayerItem.failedToPlayToEndTimeNotification)
+//            .subscribe(onNext: { (notic) in
+//                print("failedToPlayToEndTimeNotification")
+//            }).disposed(by: self.disposeBag)
+        
+        self.remoteAudioPlayer?.replaceCurrentItem(with: playerItem)
+        if #available(iOS 10, *) {
+            self.remoteAudioPlayer?.automaticallyWaitsToMinimizeStalling = false
+            self.remoteAudioPlayer?.rate = self.playSpeed
+        } else {
+            self.remoteAudioPlayer?.play()
+        }
+        
+        NotificationCenter.default.rx.notification(AVPlayerItem.didPlayToEndTimeNotification)
+            .subscribe(onNext: { [weak self] (notic) in
+                guard let `self` = self else {return}
+                if (notic.object as? AVPlayerItem ?? nil) === playerItem {
+                    if self.loop {
+                        if let playerItem: AVPlayerItem = notic.object as? AVPlayerItem {
+                            playerItem.seek(to: CMTime.zero)
+                        }
+                    } else {
+                        if case .Playing = self.status {
+                            self.stop(true)
+                        }
+                    }
+                }
+            }).disposed(by: self.disposeBag)
+        
+        NotificationCenter.default.rx.notification(AVPlayerItem.failedToPlayToEndTimeNotification)
+            .subscribe(onNext: { [weak self] (notic) in
+                guard let `self` = self else {return}
+                if (notic.object as? AVPlayerItem ?? nil) === playerItem {
+                    if case .Playing = self.status {
+                        self.status = PTAudioPlayerEvent.Error("")
+                        self.playEventsBlock?(PTAudioPlayerEvent.Error("item has failed to play to its end time -" + (playerItem.error?.localizedDescription ?? "")))
+                        self.stop(false)
+                    }
+                }
+            }).disposed(by: self.disposeBag)
+        
+        
+        NotificationCenter.default.rx.notification(AVPlayerItem.playbackStalledNotification)
+            .subscribe(onNext: { [weak self] (notic) in
+                guard let `self` = self else {return}
+                if (notic.object as? AVPlayerItem ?? nil) === playerItem {
+                    if case .Playing = self.status {
+                        self.status = PTAudioPlayerEvent.Error("")
+                        self.playEventsBlock?(PTAudioPlayerEvent.Error("media did not arrive in time to continue playback -" +  (playerItem.error?.localizedDescription ?? "")))
+                        self.stop(false)
+                    }
+                }
+            }).disposed(by: self.disposeBag)
+        
+        NotificationCenter.default.rx.notification(AVAudioSession.interruptionNotification).subscribe(onNext: { [weak self] (notic) in
+            guard let self else { return }
+            //                print("音频被中断")
+            interruptionTypeChanged(notic)
+            //                self.status = PTAudioPlayerEvent.Interruption("")
+            //                self.playEventsBlock?(PTAudioPlayerEvent.Interruption)
+            //                self.stop(false)
+        }).disposed(by: self.disposeBag)
+        
+        //
+        //            NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
+        //                .subscribe(onNext: { [weak self] _ in
+        //                    guard let self else {return}
+        ////                    receviedEventEnterBackground()
+        //                }).disposed(by: disposeBag)
+        //
+        //            NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
+        //                .subscribe(onNext: { [weak self] _ in
+        //                    guard let self else {return}
+        ////                    receviedEventEnterForeground()
+        //                }).disposed(by: disposeBag)
+        //
+        //            NotificationCenter.default.rx.notification(AVAudioSession.RouteChangeReason)
+        //                .subscribe(onNext: { [weak self] (notic) in
+        //                    guard let `self` = self else {return}
+        //                    if (notic.userInfo?[AVAudioSessionRouteChangeReasonKey] as? Int ?? kAudioSessionRouteChangeReason_Unknown) == kAudioSessionRouteChangeReason_OldDeviceUnavailable {
+        //                        if case .Playing = self.status , self.remoteAudioPlayer?.currentItem?.status == .readyToPlay , self.remoteAudioPlayer?.rate == 0.0 {
+        //                            self.remoteAudioPlayer?.rate = self.playSpeed
+        //                            self.remoteAudioPlayer?.play()
+        //                        }
+        //                    }
+        //                }).disposed(by: self.disposeBag)
+    }
     /// 播放离线包中的缓存
     ///
     /// - Parameter url: url
@@ -524,17 +574,7 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
             }
             audioUrl = URL(string: escapedURLString)
         }
-        //        let canUseCache = false
-        //        print("\(url)canUseCache: \(canUseCache)")
-        //        if canUseCache {
-        //            var trackDetail : [String : Any] = [:]
-        //            trackDetail["url"] = url
-        //            trackDetail["hit"] = 1
-        //            PTTracker.track(event: "interrupt", attributes: trackDetail)
-        //        } else {
-        //            guard let escapedURLString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
-        //                return
-        //            }
+        
         if let _url = audioUrl {
             self._remoteAudioUrl = url
             if self.remoteAudioPlayer == nil {
