@@ -394,6 +394,13 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
 //        self.playSubAudio(fileURL: fileUrl)
 //    }
     
+    public var numberOfLoops: Int{
+        get {
+            1
+        }
+        set {}
+    }
+    
     public var volume: Float {
         get { player.volume }
         set { player.volume = newValue }

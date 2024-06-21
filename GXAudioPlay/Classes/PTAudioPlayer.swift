@@ -48,6 +48,17 @@ public class PTAudioPlayer: NSObject {
         }
     }
     
+    ///The default number of current cycles is 0
+    private var currentNumberOfLoops: Int = 0
+    
+    public var numberOfLoops: Int = 0 {
+        didSet {
+            //reset to 0
+            currentNumberOfLoops = 0
+            remoteAudioPlayer?.actionAtItemEnd = .none
+        }
+    }
+    
     public var track: String?
     
     // 播放进度监听
@@ -238,9 +249,17 @@ public class PTAudioPlayer: NSObject {
         
         NotificationCenter.default.rx.notification(AVPlayerItem.didPlayToEndTimeNotification)
             .subscribe(onNext: { [weak self] (notic) in
-                guard let `self` = self else {return}
+                guard let self else {return}
                 if (notic.object as? AVPlayerItem ?? nil) === playerItem {
                     if self.loop {
+                        //0 1 2 end 3
+                        currentNumberOfLoops += 1
+                        guard currentNumberOfLoops < self.numberOfLoops else {
+                            if case .Playing = self.status {
+                                self.stop(true)
+                            }
+                            return
+                        }
                         if let playerItem: AVPlayerItem = notic.object as? AVPlayerItem {
                             playerItem.seek(to: CMTime.zero)
                         }

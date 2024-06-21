@@ -31,6 +31,9 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     //是否支持循环播放
     var loop: Bool {get set}
   
+    ///循环次数
+    var numberOfLoops: Int{get set}
+    
     var playEventsBlock: ((PTAudioPlayerEvent)->())? { get set }
     
     //播放本地URL
