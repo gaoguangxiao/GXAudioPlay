@@ -51,7 +51,7 @@ public class PTAudioPlayer: NSObject {
     ///The default number of current cycles is 0
     private var currentNumberOfLoops: Int = 0
     
-    public var numberOfLoops: Int = 0 {
+    public var numberOfLoops: Int = 1 {
         didSet {
             //reset to 0
             currentNumberOfLoops = 0
@@ -252,9 +252,16 @@ public class PTAudioPlayer: NSObject {
                 guard let self else {return}
                 if (notic.object as? AVPlayerItem ?? nil) === playerItem {
                     if self.loop {
-                        //0 1 2 end 3
+                        //无限循环
+                        guard numberOfLoops != 0 else {
+                            if let playerItem: AVPlayerItem = notic.object as? AVPlayerItem {
+                                playerItem.seek(to: CMTime.zero)
+                            }
+                            return
+                        }
+                        //有次数的循环 0 1 2 end 3
                         currentNumberOfLoops += 1
-                        guard currentNumberOfLoops < self.numberOfLoops else {
+                        guard currentNumberOfLoops < numberOfLoops else {
                             if case .Playing = self.status {
                                 self.stop(true)
                             }

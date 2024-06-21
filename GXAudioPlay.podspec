@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.2.5'
+  s.version          = '0.2.6'
   s.summary          = '增加播放次数'
 
 # This description is used to generate tags and improve search results.
