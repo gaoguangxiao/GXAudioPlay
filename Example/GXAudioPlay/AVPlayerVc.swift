@@ -18,7 +18,6 @@ class AVPlayerVc: UIViewController {
 
         play = PTAudioPlayer()
         
-        
     }
     
     //
@@ -45,18 +44,27 @@ class AVPlayerVc: UIViewController {
         
 //        play?.stop()
         
-        let index = arc4random()%3
-        print("index",index)
+//        let index = arc4random()%3
+//        print("index",index)
+//        
+//        let urls: Array<String> = ["https://file.risekid.cn/web/adventure/static/sound_107_1_3.8e1d0145.mp3",
+//                    "https://file.risekid.cn/web/adventure/static/voice_107_1.624644f1.mp3",
+//                    "https://file.risekid.cn/web/adventure/static/click.c7752adb.mp3"
+//        ]
+//        
+//        //网络音频存在
+//        play?.play(url: urls[Int(index)])
+//        
+//        addAVPlayerEvent()
         
-        let urls: Array<String> = ["https://file.risekid.cn/web/adventure/static/sound_107_1_3.8e1d0145.mp3",
-                    "https://file.risekid.cn/web/adventure/static/voice_107_1.624644f1.mp3",
-                    "https://file.risekid.cn/web/adventure/static/click.c7752adb.mp3"
-        ]
+        play?.stop()
+        play = nil
         
-        //网络音频存在
-        play?.play(url: urls[Int(index)])
+        play = PTAudioPlayer()
         
-        addAVPlayerEvent()
+        //速率
+        play?.playSpeed = 1.5
+        play?.play(url: "https://file.risekid.cn/book/113/1/1/1.mp3")
     }
     
     @IBAction func 暂停音频(_ sender: Any) {

@@ -283,9 +283,7 @@ public class PTAudioPlayer: NSObject {
                 guard let `self` = self else {return}
                 if (notic.object as? AVPlayerItem ?? nil) === playerItem {
                     if case .Playing = self.status {
-                        self.status = PTAudioPlayerEvent.Error("")
-                        self.playEventsBlock?(PTAudioPlayerEvent.Error("item has failed to play to its end time -" + (playerItem.error?.localizedDescription ?? "")))
-                        self.stop(false)
+                        self.stop(true)
                     }
                 }
             }).disposed(by: self.disposeBag)
@@ -305,11 +303,7 @@ public class PTAudioPlayer: NSObject {
         
         NotificationCenter.default.rx.notification(AVAudioSession.interruptionNotification).subscribe(onNext: { [weak self] (notic) in
             guard let self else { return }
-            //                print("音频被中断")
             interruptionTypeChanged(notic)
-            //                self.status = PTAudioPlayerEvent.Interruption("")
-            //                self.playEventsBlock?(PTAudioPlayerEvent.Interruption)
-            //                self.stop(false)
         }).disposed(by: self.disposeBag)
         
         //

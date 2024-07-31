@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var playSlider: UISlider!
     lazy var url: URL = {
         let path = Bundle.main.path(forResource: "Loop", ofType: "mp3")
+        
         if let uurl = path?.toFileUrl {
             return uurl
         }
