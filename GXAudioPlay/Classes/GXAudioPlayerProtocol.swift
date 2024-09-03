@@ -61,15 +61,10 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     func removePeriodicTimer()
 }
 
-//protocol GXAudioPlayerEventProtocol {
-//    //内部事件变化
-//    func playEventUpdate(event: OTA)
-//}
-
 //MARK: 控制音频会话
-public extension GXAudioPlayerProtocol {
+extension GXAudioPlayerProtocol {
     
-    func setAVAudioSession() {
+    public func setAVAudioSession() {
         if AVAudioSession.sharedInstance().category != AVAudioSession.Category.playAndRecord  {
             do {
                 if #available(iOS 10.0, *) {//iOS 新增.allowAirPlay .allowBluetoothA2DP
@@ -89,10 +84,3 @@ public extension GXAudioPlayerProtocol {
         }
     }
 }
-
-//public func setSeekToTime(seconds: Double)  {
-//    // 拖动改变播放进度
-//    let targetTime: CMTime = CMTimeMake(value: Int64(seconds), timescale: 1)
-//    //播放器定位到对应的位置
-//    self.currentAudioPlayer?.seek(to: targetTime)
-//}

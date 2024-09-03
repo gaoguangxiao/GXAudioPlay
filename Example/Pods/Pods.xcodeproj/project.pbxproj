@@ -59,7 +59,6 @@
 		249A6639C1F48A0109E810BB1F42D18D /* SharedSequence+Operators+arity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD1CD1F24609296E5C70BAE8170639 /* SharedSequence+Operators+arity.swift */; };
 		249AFF2D4D24066CC7C7B259D21802A0 /* SharedSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46E94C66576B9F496BBD8E6A3076CAD /* SharedSequence.swift */; };
 		2518C5CB1AA6B35926ADB058C9F26B9D /* AnonymousObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E893069D2C420898D2D7F3F8077C87A /* AnonymousObserver.swift */; };
-		265F1D5F5995C3E45FB9D021C87106F9 /* GXAudioQueuePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C1163E4F8F76F7FA4E75CDCBD7047C /* GXAudioQueuePlayer.swift */; };
 		26DB6D48F4EF360342530AE923E11C09 /* TimerInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EABFE209CB489350C3467D75ED2275 /* TimerInterval+Extension.swift */; };
 		273D901489B22ACA3AC99CB0B2BE0597 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		285FFB83D897E5D1BA223BA11BC5448F /* DefaultIfEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 736DFA142D42CE5C39608FD8B93E0BD3 /* DefaultIfEmpty.swift */; };
@@ -75,7 +74,6 @@
 		2F20D8F793179318E2CF5BA6352D09CF /* AsyncSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB6CF5B1A983F9D6A5ECC7C159F5396F /* AsyncSubject.swift */; };
 		2F4BB6AA71355CDB9D7B5CDB96414665 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1FBF74FF6CD6A9212B3E64B47A0C16 /* Errors.swift */; };
 		2FA7BBEADD27DBE3CF7F7ED60ACF06D8 /* SwitchIfEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454426CEAE84B2EDBA50AD6486895584 /* SwitchIfEmpty.swift */; };
-		2FD169C9EFD9F29EAFB457F8FC6DC5FA /* Jump.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C38CABCE0E88308D76B8787314C472 /* Jump.swift */; };
 		2FF3DD32A6541C7D6BA3BEF8CB8257AA /* PrimitiveSequence+Concurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADC1BBB42190077E129109EAC373E45 /* PrimitiveSequence+Concurrency.swift */; };
 		311F0786717C13B0DB282B734CF5FAF3 /* TakeLast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A20F404E9AB62D920F7CF4E8A3745EA /* TakeLast.swift */; };
 		3164D4BD244223AC8E2C61F91CCD0867 /* WithUnretained.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DDD394A4A34F7B02D97F88F8067CB /* WithUnretained.swift */; };
@@ -227,7 +225,6 @@
 		A33D8945FF3132E6A264255B60068A17 /* Maybe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53D0CB032E35C3FCCBD2E390183A0F7 /* Maybe.swift */; };
 		A3A22A6B61A42E5668E237D6526FD716 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE2264635DE98CA7299FEF0C0CDBC23 /* UIDevice+Extension.swift */; };
 		A3DB855C6FE6D4C1D4C6C603C96E31F7 /* NotificationCenter+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF44383A10343FCBAF49717901C02F4 /* NotificationCenter+Rx.swift */; };
-		A521A41721D087DCD740904E567DE313 /* GXAudioFileStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABE8E148D5E015FDB8ECEDF429153B /* GXAudioFileStream.swift */; };
 		A5D9EEA7E305D7928328A94752B1BEE2 /* GXAudioPlay-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 293F206547EA072D7E7C1304489A2ED9 /* GXAudioPlay-dummy.m */; };
 		A71697DCF99BCAFE00846CBC24864458 /* SynchronizedUnsubscribeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1AD99BE10ABA9E98EF5600B880B7B /* SynchronizedUnsubscribeType.swift */; };
 		A7AF1EA0D1B68550608753447E6FB00C /* PublishRelay+Signal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB953F3A445614C62063645A4DB6ABF /* PublishRelay+Signal.swift */; };
@@ -577,10 +574,8 @@
 		76A8086F85FF238CA8393ABB75EEF903 /* String+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Extension.swift"; path = "GGXSwiftExtension/Classes/String+Extension.swift"; sourceTree = "<group>"; };
 		786B9F54B278DDE876F783FBAFB4484F /* RxSearchControllerDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxSearchControllerDelegateProxy.swift; path = RxCocoa/iOS/Proxies/RxSearchControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		78B1C15B995710CCE3180455FB21C129 /* RxTableViewDataSourcePrefetchingProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTableViewDataSourcePrefetchingProxy.swift; path = RxCocoa/iOS/Proxies/RxTableViewDataSourcePrefetchingProxy.swift; sourceTree = "<group>"; };
-		78C1163E4F8F76F7FA4E75CDCBD7047C /* GXAudioQueuePlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXAudioQueuePlayer.swift; path = GXAudioPlay/Classes/GXAudioQueuePlayer.swift; sourceTree = "<group>"; };
 		7A20F404E9AB62D920F7CF4E8A3745EA /* TakeLast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TakeLast.swift; path = RxSwift/Observables/TakeLast.swift; sourceTree = "<group>"; };
 		7A26091EF3FA70E7AB6891E02C70D71B /* ConnectableObservableType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConnectableObservableType.swift; path = RxSwift/ConnectableObservableType.swift; sourceTree = "<group>"; };
-		7AABE8E148D5E015FDB8ECEDF429153B /* GXAudioFileStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GXAudioFileStream.swift; path = GXAudioPlay/Classes/GXAudioFileStream.swift; sourceTree = "<group>"; };
 		7B8C28AA7BA723C5CED55042C2B5C0C2 /* RxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RxSwift.release.xcconfig; sourceTree = "<group>"; };
 		7B8F9989CBFB4373F27790C8F91F4EB6 /* RxTableViewDataSourceProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxTableViewDataSourceProxy.swift; path = RxCocoa/iOS/Proxies/RxTableViewDataSourceProxy.swift; sourceTree = "<group>"; };
 		7C88F088DED375090087AF149A2601AB /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = GGXSwiftExtension/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
@@ -704,7 +699,6 @@
 		D377D893FDAB8195D3F4CDB1BD88B0E4 /* RxCocoa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RxCocoa.release.xcconfig; sourceTree = "<group>"; };
 		D388FA835F890AEF7B462A9087DDBACB /* LockOwnerType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LockOwnerType.swift; path = RxSwift/Concurrency/LockOwnerType.swift; sourceTree = "<group>"; };
 		D41CA9F8F4CDBD1C7DA713223E73FFB9 /* RefCountDisposable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RefCountDisposable.swift; path = RxSwift/Disposables/RefCountDisposable.swift; sourceTree = "<group>"; };
-		D4C38CABCE0E88308D76B8787314C472 /* Jump.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Jump.swift; path = GXAudioPlay/Classes/Jump.swift; sourceTree = "<group>"; };
 		D5053A6B798CA81BB26644E0FAE07FD4 /* _RXKVOObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _RXKVOObserver.h; path = RxCocoa/Runtime/include/_RXKVOObserver.h; sourceTree = "<group>"; };
 		D5EABFE209CB489350C3467D75ED2275 /* TimerInterval+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TimerInterval+Extension.swift"; path = "GGXSwiftExtension/Classes/TimerInterval+Extension.swift"; sourceTree = "<group>"; };
 		D611A4AA9F9BD20F2D35B3154F6E796B /* NSSlider+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSSlider+Rx.swift"; path = "RxCocoa/macOS/NSSlider+Rx.swift"; sourceTree = "<group>"; };
@@ -887,10 +881,7 @@
 			isa = PBXGroup;
 			children = (
 				04C87C812FBD213AC66FDD527E135444 /* GXAudioEnginePlayer.swift */,
-				7AABE8E148D5E015FDB8ECEDF429153B /* GXAudioFileStream.swift */,
 				65B1F1D305B4B0AE00674FA9048616DB /* GXAudioPlayerProtocol.swift */,
-				78C1163E4F8F76F7FA4E75CDCBD7047C /* GXAudioQueuePlayer.swift */,
-				D4C38CABCE0E88308D76B8787314C472 /* Jump.swift */,
 				556529EB94FB4BD562C9C0F4603E0E33 /* PTAudioPlayer.swift */,
 				F5A735EB4DDED8DABDEDA585D7629463 /* ReplaceMe.swift */,
 				FB1579FA620F0B80B02175623A69FA25 /* Pod */,
@@ -1954,11 +1945,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8145973259CDE916356CBD071605E8C6 /* GXAudioEnginePlayer.swift in Sources */,
-				A521A41721D087DCD740904E567DE313 /* GXAudioFileStream.swift in Sources */,
 				A5D9EEA7E305D7928328A94752B1BEE2 /* GXAudioPlay-dummy.m in Sources */,
 				23E4B1ADAE818A04A1E3D28FE848D291 /* GXAudioPlayerProtocol.swift in Sources */,
-				265F1D5F5995C3E45FB9D021C87106F9 /* GXAudioQueuePlayer.swift in Sources */,
-				2FD169C9EFD9F29EAFB457F8FC6DC5FA /* Jump.swift in Sources */,
 				D616005A0EABCA934BFEB924D13D5877 /* PTAudioPlayer.swift in Sources */,
 				79815AFA606F1B63BD5173AA2E301D89 /* ReplaceMe.swift in Sources */,
 			);

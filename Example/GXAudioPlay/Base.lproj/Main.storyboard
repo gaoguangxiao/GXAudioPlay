@@ -311,20 +311,14 @@
                                     <action selector="播放本地音频:" destination="QJT-J2-ULP" eventType="touchUpInside" id="slz-3d-Vbo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-BI-VLC">
-                                <rect key="frame" x="150.5" y="152" width="74" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-BI-VLC">
+                                <rect key="frame" x="150.5" y="162" width="74" height="34"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="暂停音频"/>
                                 <connections>
                                     <action selector="暂停音频:" destination="QJT-J2-ULP" eventType="touchUpInside" id="suG-IE-FzE"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xrD-We-OqO">
-                                <rect key="frame" x="150.5" y="196" width="74" height="34"/>
-                                <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="恢复音频"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mmb-kr-HV0">
                                 <rect key="frame" x="265" y="152" width="74" height="34"/>
@@ -469,18 +463,15 @@
                             <constraint firstItem="rww-RN-C2d" firstAttribute="top" secondItem="Mmb-kr-HV0" secondAttribute="bottom" constant="10" id="CUW-pu-DHn"/>
                             <constraint firstItem="zDO-BI-VLC" firstAttribute="centerX" secondItem="jRU-5i-M1y" secondAttribute="centerX" id="Dsp-I9-SCt"/>
                             <constraint firstItem="bEl-sM-W3s" firstAttribute="top" secondItem="CHS-Ns-gDa" secondAttribute="bottom" constant="10" id="EJB-LP-vWc"/>
-                            <constraint firstItem="xrD-We-OqO" firstAttribute="top" secondItem="zDO-BI-VLC" secondAttribute="bottom" constant="10" id="FlG-eN-xB7"/>
                             <constraint firstItem="KLC-7Y-uIJ" firstAttribute="leading" secondItem="jRU-5i-M1y" secondAttribute="leadingMargin" id="Opi-TQ-T5y"/>
                             <constraint firstItem="6Mk-Cq-7O4" firstAttribute="leading" secondItem="CvC-EE-ACI" secondAttribute="leading" id="TCk-et-93l"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mvO-ZL-uUZ" secondAttribute="trailing" constant="20" id="Wx3-iW-egp"/>
-                            <constraint firstItem="xrD-We-OqO" firstAttribute="centerX" secondItem="zDO-BI-VLC" secondAttribute="centerX" id="bVa-Hx-9VC"/>
                             <constraint firstItem="6Mk-Cq-7O4" firstAttribute="top" secondItem="CvC-EE-ACI" secondAttribute="bottom" constant="10" id="cvA-fV-pEH"/>
                             <constraint firstItem="rww-RN-C2d" firstAttribute="centerX" secondItem="Mmb-kr-HV0" secondAttribute="centerX" id="dJ7-lF-VC8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bEl-sM-W3s" secondAttribute="trailing" constant="10" id="dym-bM-E4T"/>
                             <constraint firstItem="pLs-TG-HWJ" firstAttribute="leading" secondItem="jRU-5i-M1y" secondAttribute="leadingMargin" constant="8" id="eKP-kO-P7u"/>
                             <constraint firstItem="CvC-EE-ACI" firstAttribute="top" secondItem="pLs-TG-HWJ" secondAttribute="bottom" constant="50" id="eUg-Tn-hKT"/>
                             <constraint firstItem="KLC-7Y-uIJ" firstAttribute="top" secondItem="mvO-ZL-uUZ" secondAttribute="bottom" constant="10" id="eal-Wg-Q99"/>
-                            <constraint firstItem="rww-RN-C2d" firstAttribute="centerY" secondItem="xrD-We-OqO" secondAttribute="centerY" id="gI9-I4-4wV"/>
                             <constraint firstItem="bEl-sM-W3s" firstAttribute="leading" secondItem="pLs-TG-HWJ" secondAttribute="leading" id="gXe-LD-ed5"/>
                             <constraint firstItem="zDO-BI-VLC" firstAttribute="centerY" secondItem="pLs-TG-HWJ" secondAttribute="centerY" id="m2h-eD-J6c"/>
                             <constraint firstItem="CHS-Ns-gDa" firstAttribute="top" secondItem="6Mk-Cq-7O4" secondAttribute="bottom" constant="10" id="mQm-2T-ZJe"/>
@@ -494,6 +485,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bfa-S3-A1D"/>
+                    <connections>
+                        <outlet property="audioControlBtn" destination="zDO-BI-VLC" id="11j-EH-TN0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MOU-kG-nje" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

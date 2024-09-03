@@ -11,7 +11,10 @@ import GXAudioPlay
 
 class AVPlayerVc: UIViewController {
     
-    var play: GXAudioPlayerProtocol?
+    var play: PTAudioPlayer?
+    
+    /// Play pause control button
+    @IBOutlet weak var audioControlBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,19 +59,24 @@ class AVPlayerVc: UIViewController {
 //        play?.play(url: urls[Int(index)])
 //        
 //        addAVPlayerEvent()
-        
-        play?.stop()
-        play = nil
-        
-        play = PTAudioPlayer()
-        
-        //速率
-        play?.playSpeed = 1.5
+        play?.volume = 0.3
+        play?.playSpeed = 1.0
         play?.play(url: "https://file.risekid.cn/book/113/1/1/1.mp3")
+        audioControlBtn.setTitle("暂停播放", for: .normal)
     }
     
     @IBAction func 暂停音频(_ sender: Any) {
-        play?.pause()
+        
+        if play?.isPlaying == true {
+            play?.pause()
+            audioControlBtn.setTitle("恢复播放", for: .normal)
+        } else {
+            play?.volume = 1.0
+            play?.playSpeed = 1.5
+            play?.resume()
+            audioControlBtn.setTitle("暂停播放", for: .normal)
+        }
+        
     }
     
     @IBAction func 停止音频(_ sender: Any) {

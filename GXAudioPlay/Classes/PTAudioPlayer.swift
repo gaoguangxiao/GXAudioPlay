@@ -16,12 +16,9 @@ public class PTAudioPlayer: NSObject {
     
     public static let shared = PTAudioPlayer()
     
-    private var audioPlayer: AVAudioPlayer?
-    //远程服务器的mp3播放需要使用AVPlayer
+    /// An instance object of AVPlayer
     private var remoteAudioPlayer: AVPlayer?
     
-    //    private var currentItem: AVPlayerItem?
-    //
     public var playEventsBlock: ((PTAudioPlayerEvent)->())?
     
     var status : PTAudioPlayerEvent = .None
@@ -32,17 +29,14 @@ public class PTAudioPlayer: NSObject {
     //播放器音量
     public var volume: Float = 1.0 {
         didSet {
-            audioPlayer?.volume = volume
             remoteAudioPlayer?.volume = volume
         }
     }
     public var loop: Bool = false {// false 不循环播放  true 循环播放
         didSet {
             if loop {
-                audioPlayer?.numberOfLoops = -1//零值表示只播放一次声音。值为1将导致声音播放两次，依此类推。任何负数将无限循环，直到停止。
                 remoteAudioPlayer?.actionAtItemEnd = .none
             } else {
-                audioPlayer?.numberOfLoops = 0//零值表示只播放一次声音。值为1将导致声音播放两次，依此类推。任何负数将无限循环，直到停止。
                 remoteAudioPlayer?.actionAtItemEnd = .pause
             }
         }
@@ -77,12 +71,12 @@ public class PTAudioPlayer: NSObject {
                 let duration = CMTimeGetSeconds(audioPlayer.currentItem?.duration ?? CMTime.zero)
                 return duration
             }
-            return audioPlayer?.duration ?? 0
+            return 0
         }
     }
     
     /// 是否正在播放
-    var isPlaying: Bool {
+    public var isPlaying: Bool {
         get {
             if case .Playing = self.status {
                 return true
@@ -95,103 +89,8 @@ public class PTAudioPlayer: NSObject {
         super.init()
         self.remoteAudioPlayer = AVPlayer()
     }
-    //    @objc func playerItemDidReachEnd(notification: NSNotification) {
-    //        if let playerItem: AVPlayerItem = notification.object as? AVPlayerItem {
-    //            playerItem.seek(to: CMTime.zero)
-    //        }
-    //    }
     
-    /// 播放本地录音文件
-    ///
-    /// - Parameter path: path
-    /// - Returns: 是否播放成功
-    public func playPlayback(path: URL) -> Bool {
-        //setAVAudioSession()
-        if AVAudioSession.sharedInstance().category != AVAudioSession.Category.playback  {
-            do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP])
-            } catch {
-                return false
-            }
-        }
-        do {
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            return false
-        }
-        let _path = path
-        do {
-            audioPlayer?.delegate = nil
-            audioPlayer = try AVAudioPlayer.init(contentsOf:  _path)
-            audioPlayer?.delegate = self
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.play()
-            self.status = .Playing(0)
-            self.playEventsBlock?(.Playing(audioPlayer?.duration ?? 0))
-            return true
-        } catch {
-            print("open audio failed!-- \(error)")
-            return false
-        }
-    }
-    
-    
-    public func playRemoteAudio(url : URL) {
-        let asset = AVURLAsset.init(url: url)
-        
-        // Load an asset's list of tracks.
-        if #available(iOS 15, *) {
-            Task {
-                do {
-                    //// Load an asset's suitability for playback and export.
-                    // let (isPlayable, isExportable) = try await asset.load(.isPlayable, .isExportable)
-                    let isPlayable = try await asset.load(.isPlayable)
-                    //                    print("isPlayable: \(isPlayable)、isExportable: \(isExportable)")
-                    var playerItem = AVPlayerItem.init(url: url)
-                    if isPlayable {
-                        let status = asset.status(of: .isPlayable)
-                        switch status {
-                        case .loaded(_):
-                            playerItem = AVPlayerItem.init(asset: asset)
-                        case .loading:
-                            break
-                        default:
-                            break
-                        }
-                        self.addNotificationRX(playerItem: playerItem, url: url)
-                    } else {
-                        self.status = PTAudioPlayerEvent.Error("")
-                        self.playEventsBlock?(PTAudioPlayerEvent.Error("AVURLAsset.isPlayable-is :\(isPlayable)"))
-                        //                        self.playEventsBlock?(PTAudioPlayerEvent.Error("AVURLAsset.isPlayable-is :\(isPlayable)、AVURLAsset.isExportable-is :\(isExportable)"))
-                    }
-                } catch let e as NSError {
-                    self.status = PTAudioPlayerEvent.Error("")
-                    self.playEventsBlock?(PTAudioPlayerEvent.Error("try-catch:\(e.description)"))
-                }
-            }
-        } else {
-            // Fallback on earlier versions
-            asset.loadValuesAsynchronously(forKeys: ["playable"]) { [weak self] in
-                guard let `self` = self else {return}
-                guard case .None = self.status else {
-                    return
-                }
-                var error: NSError? = nil
-                var playerItem = AVPlayerItem.init(url: url)
-                let status = asset.statusOfValue(forKey: "playable", error: &error)
-                
-                switch status {
-                case .loaded:
-                    playerItem = AVPlayerItem.init(asset: asset)
-                default:
-                    break
-                }
-                self.addNotificationRX(playerItem: playerItem, url: url)
-            }
-        }
-    }
-    
-    func addNotificationRX(playerItem: AVPlayerItem,url: URL) {
+    func addNotificationRX(playerItem: AVPlayerItem) {
         
         playerItem.rx.observeWeakly(AVPlayer.Status.self, "status").asObservable()
             .subscribe(onNext: {[weak self] (event) in
@@ -204,8 +103,7 @@ public class PTAudioPlayer: NSObject {
                     } else if status == AVPlayer.Status.failed {
                         self.status = PTAudioPlayerEvent.Error("")
                         self.playEventsBlock?(PTAudioPlayerEvent.Error("AVPlayer.failed--\(String(describing: playerItem.error))"))
-                        print("AVPlayer.failed--\(String(describing: playerItem.error))")
-                        print("AVPlayer.error--\(String(describing: url))")
+                        print("AVPlayer.error--\(String(describing: playerItem.error))")
                     }
                 }
             }).disposed(by: self.disposeBag)
@@ -229,15 +127,15 @@ public class PTAudioPlayer: NSObject {
             }
         }).disposed(by: self.disposeBag)
         
-//        NotificationCenter.default.rx.notification(AVPlayerItem.newErrorLogEntryNotification)
-//            .subscribe(onNext: { (notic) in
-//                print("newErrorLogEntryNotification")
-//            }).disposed(by: self.disposeBag)
-//
-//        NotificationCenter.default.rx.notification(AVPlayerItem.failedToPlayToEndTimeNotification)
-//            .subscribe(onNext: { (notic) in
-//                print("failedToPlayToEndTimeNotification")
-//            }).disposed(by: self.disposeBag)
+        //        NotificationCenter.default.rx.notification(AVPlayerItem.newErrorLogEntryNotification)
+        //            .subscribe(onNext: { (notic) in
+        //                print("newErrorLogEntryNotification")
+        //            }).disposed(by: self.disposeBag)
+        //
+        //        NotificationCenter.default.rx.notification(AVPlayerItem.failedToPlayToEndTimeNotification)
+        //            .subscribe(onNext: { (notic) in
+        //                print("failedToPlayToEndTimeNotification")
+        //            }).disposed(by: self.disposeBag)
         
         self.remoteAudioPlayer?.replaceCurrentItem(with: playerItem)
         if #available(iOS 10, *) {
@@ -306,83 +204,7 @@ public class PTAudioPlayer: NSObject {
             interruptionTypeChanged(notic)
         }).disposed(by: self.disposeBag)
         
-        //
-        //            NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
-        //                .subscribe(onNext: { [weak self] _ in
-        //                    guard let self else {return}
-        ////                    receviedEventEnterBackground()
-        //                }).disposed(by: disposeBag)
-        //
-        //            NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
-        //                .subscribe(onNext: { [weak self] _ in
-        //                    guard let self else {return}
-        ////                    receviedEventEnterForeground()
-        //                }).disposed(by: disposeBag)
-        //
-        //            NotificationCenter.default.rx.notification(AVAudioSession.RouteChangeReason)
-        //                .subscribe(onNext: { [weak self] (notic) in
-        //                    guard let `self` = self else {return}
-        //                    if (notic.userInfo?[AVAudioSessionRouteChangeReasonKey] as? Int ?? kAudioSessionRouteChangeReason_Unknown) == kAudioSessionRouteChangeReason_OldDeviceUnavailable {
-        //                        if case .Playing = self.status , self.remoteAudioPlayer?.currentItem?.status == .readyToPlay , self.remoteAudioPlayer?.rate == 0.0 {
-        //                            self.remoteAudioPlayer?.rate = self.playSpeed
-        //                            self.remoteAudioPlayer?.play()
-        //                        }
-        //                    }
-        //                }).disposed(by: self.disposeBag)
     }
-    /// 播放离线包中的缓存
-    ///
-    /// - Parameter url: url
-    /// - Returns: 是否播放成功
-    //    private func playLocalCache(url: String) -> Bool {
-    //        var canUseCache = false
-    //        //本地文件
-    //        canUseCache = FileManager.default.fileExists(atPath: url)
-    //        guard canUseCache == true else {
-    //            return false
-    //        }
-    //        var fileUrl : URL?
-    //        if #available(iOS 16.0, *) {
-    //            fileUrl = URL(filePath: url)
-    //        } else {
-    //            // Fallback on earlier versions
-    //            fileUrl = URL(fileURLWithPath: url)
-    //        }
-    //        if let fileUrl, let cacheData = try? Data(contentsOf: fileUrl){
-    //            do {
-    //                audioPlayer?.delegate = nil
-    //                audioPlayer = try AVAudioPlayer.init(data: cacheData)
-    //                audioPlayer?.delegate = self
-    //                audioPlayer?.enableRate = true
-    //                audioPlayer?.rate = self.playSpeed
-    //
-    //                audioPlayer?.prepareToPlay()
-    //
-    ////                if audioPlayer?.prepareToPlay() ?? false {
-    //                    canUseCache = true
-    //                    self.remoteAudioPlayer = nil
-    //                    audioPlayer?.play()
-    //                    self.status = .Playing(0)
-    //                    self.playEventsBlock?(.Playing(self.duration))
-    ////                } else {
-    ////                    canUseCache = false
-    ////                    print("prepareToPlay failed!--")
-    ////                }
-    //            } catch {
-    //                print("open audio failed!-- \(error)")
-    //            }
-    //        } else {
-    //            //            self.playEventsBlock?(.Error("URL异常"))
-    //            canUseCache = false
-    //        }
-    //        //        let resourceID = PTHybridUtil.resourceID(url)
-    //        //        if PTHybridCache.share.containResource(resourceID) , let cacheData = PTHybridCache.share.readResourceData(resourceID) {
-    //        //
-    //        //        } else {
-    //        //            //PTHybridManager.share.checkAndDownloadAudioResource(url: url)
-    //        //        }
-    //        return canUseCache
-    //    }
     
     /// 播放进度的监听
     public func addPeriodicTimer () {
@@ -396,29 +218,8 @@ public class PTAudioPlayer: NSObject {
                     self.playEventsBlock?(PTAudioPlayerEvent.TimeUpdate(time.seconds))
                 }
             })
-        } else {
-            _time_observer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [weak self] (_timer) in
-                guard let `self` = self else {
-                    _timer.invalidate()
-                    return
-                }
-                if case .Ended = self.status {
-                    _timer.invalidate()
-                    return
-                }
-                if self.audioPlayer?.isPlaying ?? false{
-                    self.playEventsBlock?(PTAudioPlayerEvent.TimeUpdate(self.audioPlayer?.currentTime ?? 0))
-                }
-            })
         }
     }
-    
-    //    public func setSeekToTime(seconds: Double)  {
-    //        // 拖动改变播放进度
-    //        let targetTime: CMTime = CMTimeMake(value: Int64(seconds), timescale: 1)
-    //        //播放器定位到对应的位置
-    //        self.remoteAudioPlayer?.seek(to: targetTime)
-    //    }
     
     public func removePeriodicTimer() {
         if let ob = _time_observer {
@@ -467,28 +268,9 @@ public class PTAudioPlayer: NSObject {
     }
     
     deinit {
-        audioPlayer?.delegate = nil
         remoteAudioPlayer = nil
         self.stop()
         //        ZKLog("\(self) dealloc\(String(describing: remoteAudioPlayer))")
-    }
-    
-    
-}
-
-extension PTAudioPlayer: AVAudioPlayerDelegate {
-    public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        if loop {
-            
-        } else {
-            player.delegate = nil
-            self.stop(true)
-        }
-        
-        
-        //        self.status = .Ended
-        //        self.playEventsBlock?(.Ended)
-        
     }
 }
 
@@ -553,32 +335,12 @@ extension PTAudioPlayer {
 
 extension PTAudioPlayer: GXAudioPlayerProtocol {
     
-    //    public var loop: Bool = false {// false 不循环播放  true 循环播放
-    //        didSet {
-    //            if loop {
-    //                audioPlayer?.numberOfLoops = -1//零值表示只播放一次声音。值为1将导致声音播放两次，依此类推。任何负数将无限循环，直到停止。
-    //                remoteAudioPlayer?.actionAtItemEnd = .none
-    //            } else {
-    //                audioPlayer?.numberOfLoops = 0//零值表示只播放一次声音。值为1将导致声音播放两次，依此类推。任何负数将无限循环，直到停止。
-    //                remoteAudioPlayer?.actionAtItemEnd = .pause
-    //            }
-    //        }
-    //    }
-    
-    //    public func play(fileURL fileUrl: String) {
-    //
-    //    }
-    
-    
     public func play(url: String) {
         self.setAVAudioSession()
         status = PTAudioPlayerEvent.None
         
-        //将str
         let canUseCache = FileManager.default.fileExists(atPath: url)
-        
         var audioUrl: URL?
-        
         if canUseCache {
             var fileUrl : URL?
             if #available(iOS 16.0, *) {
@@ -603,11 +365,12 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
                 //                    self.disposeBag = DisposeBag()
             }
             remoteAudioPlayer?.pause()
-            self.playRemoteAudio(url: _url)
+//            self.playRemoteAudio(url: _url)
+            let playerItem = AVPlayerItem.init(url: _url)
+            self.addNotificationRX(playerItem: playerItem)
         } else {
             self.playEventsBlock?(PTAudioPlayerEvent.Error("url异常：\(url)"))
         }
-        //        }
     }
     
     public func play(fileURL fileUrl: URL) {
@@ -618,25 +381,15 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     public func pause() {
         self.playEventsBlock?(PTAudioPlayerEvent.Pause)
         self.status = .Pause
-        audioPlayer?.pause()
         remoteAudioPlayer?.pause()
     }
     
     /// 重新播放
     public func resume() {
-        if let _audioPlayer = audioPlayer  {
-            if _audioPlayer.currentTime == 0 || !_audioPlayer.play() {
-                self.stop(true)
-                return
-            }
-        }
         self.playEventsBlock?(.Playing(self.duration))
         self.status = .Playing(0)
         setAVAudioSession()
         remoteAudioPlayer?.rate = self.playSpeed
-        audioPlayer?.rate = self.playSpeed
-        //        audioPlayer?.volume = self.volume
-        //        remoteAudioPlayer?.volume = self.volume
     }
     
     public func setSeekToTime(seconds: Double)  {
@@ -661,10 +414,6 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
         remoteAudioPlayer?.pause()
         remoteAudioPlayer?.replaceCurrentItem(with: nil)
         //        self.remoteAudioPlayer = nil
-        audioPlayer?.stop()
-        self.audioPlayer?.delegate = nil
-        self.audioPlayer = nil
-        self.playEventsBlock = nil
         self.disposeBag = DisposeBag()
     }
 }

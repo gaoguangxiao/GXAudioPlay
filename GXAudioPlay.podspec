@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.2.7'
-  s.summary          = '重试播放失败-完成'
+  s.version          = '0.2.8'
+  s.summary          = 'fix：playItem初始化步骤'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
