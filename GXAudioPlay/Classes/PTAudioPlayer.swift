@@ -203,7 +203,11 @@ public class PTAudioPlayer: NSObject {
             guard let self else { return }
             interruptionTypeChanged(notic)
         }).disposed(by: self.disposeBag)
-        
+     
+        NotificationCenter.default.rx.notification(AVAudioSession.routeChangeNotification).subscribe { [weak self] notic in
+            guard let self else { return }
+            routeChangeTyptChanged(notic)
+        }.disposed(by: self.disposeBag)
     }
     
     /// 播放进度的监听
@@ -331,6 +335,70 @@ extension PTAudioPlayer {
         default: break
         }
     }
+    
+    ///耳机
+    @objc private func routeChangeTyptChanged(_ nof:Notification) {
+        print("audio session route change \(nof)")
+        
+        guard let userInfo = nof.userInfo else { return }
+        var seccReason = ""
+        guard let reason = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt else {return}
+        
+        switch reason {
+        case AVAudioSession.RouteChangeReason.newDeviceAvailable.rawValue:
+            seccReason = "有新设备可用"
+            // 一般为接入了耳机,参数为旧设备的信息。
+            guard let previousRoute = userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription  else {
+                return
+            }
+            if previousRoute.inputs.count <= 0 && previousRoute.outputs.count <= 0 {
+                return
+            }
+
+            let previousOutput = previousRoute.outputs[0]
+            let portType = previousOutput.portType
+            print("音频模式更改:有新设备可用通知- \(portType.rawValue)")
+            if portType == AVAudioSession.Port.headphones {
+                //在这里暂停播放, 更改输出设备，录音时背景音需要重置。否则无法消音
+                print("耳机🎧模式")
+            } else if portType == AVAudioSession.Port.builtInSpeaker {
+                print("Built-in speaker on an iOS device")
+            }
+        case AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue:
+            seccReason = "老设备不可用"
+            guard let previousRoute = userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription  else {
+                return
+            }
+            if previousRoute.inputs.count <= 0 && previousRoute.outputs.count <= 0 {
+                return
+            }
+            let previousOutput = previousRoute.outputs[0]
+            let portType = previousOutput.portType
+            print("音频模式更改:老设备不可用通知- \(portType.rawValue)")
+            if portType == AVAudioSession.Port.headphones {
+                print("耳机🎧模式")
+                if isPlaying {
+                    self.resume()
+                }
+            } else if portType == AVAudioSession.Port.builtInSpeaker {
+                
+            }
+        case AVAudioSession.RouteChangeReason.categoryChange.rawValue:
+            seccReason = "类别Cagetory改变了"
+        case AVAudioSession.RouteChangeReason.override.rawValue:
+            seccReason = "App重置了输出设置"
+        case AVAudioSession.RouteChangeReason.wakeFromSleep.rawValue:
+            seccReason = "从睡眠状态呼醒"
+        case AVAudioSession.RouteChangeReason.noSuitableRouteForCategory.rawValue:
+            seccReason = "当前Category下没有合适的设备"
+            
+        case AVAudioSession.RouteChangeReason.routeConfigurationChange.rawValue:
+            seccReason = "Rotuer的配置改变了"
+//        case AVAudioSession.RouteChangeReason.unknown,
+        default:
+            seccReason = "未知原因"
+        }
+    }
 }
 
 extension PTAudioPlayer: GXAudioPlayerProtocol {
@@ -415,5 +483,31 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
         remoteAudioPlayer?.replaceCurrentItem(with: nil)
         //        self.remoteAudioPlayer = nil
         self.disposeBag = DisposeBag()
+    }
+}
+
+extension PTAudioPlayer {
+    func getDeviceOutputInfo(portType: AVAudioSession.Port) -> String {
+        var type = ""
+        switch portType {
+        case .headsetMic:
+            type = "headsetMic"
+        case .builtInMic:
+            type = "内置麦克风"
+        case .builtInSpeaker:
+            type = "内置扬声器"
+        case .headphones:
+            type = "插线耳机"
+        case .bluetoothA2DP:
+            type = "蓝牙音频传输模型协议"
+        case .bluetoothLE:
+            type = "低功耗蓝牙"
+        case .airPlay:
+            type = "隔空播放"
+        
+        default:
+            type = "内置扬声器"
+        }
+        return type
     }
 }
