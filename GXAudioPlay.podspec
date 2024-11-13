@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.3.0'
+  s.version          = '0.3.1'
   s.summary          = 'fix：调速缓冲对播放速率失败'
 
 # This description is used to generate tags and improve search results.
