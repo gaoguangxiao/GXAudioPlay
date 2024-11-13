@@ -99,7 +99,9 @@ public class PTAudioPlayer: NSObject {
                     if status == AVPlayer.Status.readyToPlay {
                         self.status = PTAudioPlayerEvent.Playing(0)
                         self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
+                        self.remoteAudioPlayer?.play()
                         self.remoteAudioPlayer?.rate = self.playSpeed
+                        print("self.remoteAudioPlayer?.rate:\(self.remoteAudioPlayer?.rate)")
                     } else if status == AVPlayer.Status.failed {
                         self.status = PTAudioPlayerEvent.Error("")
                         self.playEventsBlock?(PTAudioPlayerEvent.Error("AVPlayer.failed--\(String(describing: playerItem.error))"))
@@ -123,6 +125,7 @@ public class PTAudioPlayer: NSObject {
             if  case .Waiting = self.status  {
                 self.status = PTAudioPlayerEvent.Playing(0)
                 self.remoteAudioPlayer?.play()
+                self.remoteAudioPlayer?.rate = self.playSpeed
                 self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
             }
         }).disposed(by: self.disposeBag)
@@ -138,12 +141,12 @@ public class PTAudioPlayer: NSObject {
         //            }).disposed(by: self.disposeBag)
         
         self.remoteAudioPlayer?.replaceCurrentItem(with: playerItem)
-        if #available(iOS 10, *) {
+//        if #available(iOS 10, *) {
             self.remoteAudioPlayer?.automaticallyWaitsToMinimizeStalling = false
-            self.remoteAudioPlayer?.rate = self.playSpeed
-        } else {
-            self.remoteAudioPlayer?.play()
-        }
+//            self.remoteAudioPlayer?.rate = self.playSpeed
+//        } else {
+//            self.remoteAudioPlayer?.play()
+//        }
         
         NotificationCenter.default.rx.notification(AVPlayerItem.didPlayToEndTimeNotification)
             .subscribe(onNext: { [weak self] (notic) in
@@ -338,7 +341,7 @@ extension PTAudioPlayer {
     
     ///耳机
     @objc private func routeChangeTyptChanged(_ nof:Notification) {
-        print("audio session route change \(nof)")
+//        print("audio session route change \(nof)")
         
         guard let userInfo = nof.userInfo else { return }
         var seccReason = ""

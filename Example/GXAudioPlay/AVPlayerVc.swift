@@ -21,6 +21,7 @@ class AVPlayerVc: UIViewController {
 
         play = PTAudioPlayer()
         
+        addAVPlayerEvent()
     }
     
     //
@@ -59,9 +60,9 @@ class AVPlayerVc: UIViewController {
 //        play?.play(url: urls[Int(index)])
 //        
 //        addAVPlayerEvent()
-        play?.volume = 0.3
-        play?.playSpeed = 1.0
-        play?.play(url: "https://file.risekid.cn/book/113/1/1/1.mp3")
+        play?.volume = 1.0
+        play?.playSpeed = 1.5
+        play?.play(url: "https://file.risekid.cn/book/165/2/1/1.mp3")
         audioControlBtn.setTitle("暂停播放", for: .normal)
     }
     
