@@ -23,7 +23,7 @@ public class PTAudioPlayer: NSObject {
     
     var status : PTAudioPlayerEvent = .None
     
-    private var disposeBag = DisposeBag()
+    public var disposeBag = DisposeBag()
     //播放器速度
     public var playSpeed: Float = 1.0
     //播放器音量
@@ -52,6 +52,8 @@ public class PTAudioPlayer: NSObject {
             remoteAudioPlayer?.actionAtItemEnd = .none
         }
     }
+    
+    public var startPlayTime: Double = 0
     
     public var track: String?
     
@@ -194,20 +196,12 @@ public class PTAudioPlayer: NSObject {
                     if case .Playing = self.status {
                         self.status = PTAudioPlayerEvent.Error("")
                         self.playEventsBlock?(PTAudioPlayerEvent.Error("media did not arrive in time to continue playback -" +  (playerItem.error?.localizedDescription ?? "")))
-                        self.stop(false)
+                        self.stop(true)
                     }
                 }
             }).disposed(by: self.disposeBag)
         
-        NotificationCenter.default.rx.notification(AVAudioSession.interruptionNotification).subscribe(onNext: { [weak self] (notic) in
-            guard let self else { return }
-            interruptionTypeChanged(notic)
-        }).disposed(by: self.disposeBag)
-     
-        NotificationCenter.default.rx.notification(AVAudioSession.routeChangeNotification).subscribe { [weak self] notic in
-            guard let self else { return }
-            routeChangeTyptChanged(notic)
-        }.disposed(by: self.disposeBag)
+        self.addAcSetionRX()
     }
     
     /// 播放进度的监听
@@ -253,21 +247,12 @@ public class PTAudioPlayer: NSObject {
         }
     }
     
-    func receviedEventEnterForeground() {
+    public func receviedEventEnterForeground() {
         if case .Pause = self.status , self._pauseForEnterBackground == true {
             self._pauseForEnterBackground = false
             self.resume()
         } else if case .Playing = self.status  {
             self.stop(true)
-        }
-    }
-    
-    ///  Audio session change notification
-    func mediaChangeInterruptionType(begin: Bool) {
-        if begin {
-            receviedEventEnterBackground()
-        } else {
-            receviedEventEnterForeground()
         }
     }
     
@@ -278,132 +263,11 @@ public class PTAudioPlayer: NSObject {
     }
 }
 
-/// 音频通知
-//MARK: - audio notification
-extension PTAudioPlayer {
-    
-    ///打断
-    @objc private func interruptionTypeChanged(_ nof:Notification) {
-        
-        guard let userInfo = nof.userInfo, let reasonValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt else { return }
-        
-        switch reasonValue {
-        case AVAudioSession.InterruptionType.began.rawValue://Began
-            var isAnotherAudioSuspend = false //是否是被其他音频会话打断
-            if #available(iOS 10.3, *) {
-                if #available(iOS 14.5, *) {
-                    // iOS 14.5之后使用InterruptionReasonKey
-                    let reasonKey = userInfo[AVAudioSessionInterruptionReasonKey] as! UInt
-                    switch reasonKey {
-                    case AVAudioSession.InterruptionReason.default.rawValue:
-                        //因为另一个会话被激活,音频中断
-                        isAnotherAudioSuspend = true
-                        break
-                    case AVAudioSession.InterruptionReason.appWasSuspended.rawValue:
-                        //由于APP被系统挂起，音频中断。
-                        break
-                    case AVAudioSession.InterruptionReason.builtInMicMuted.rawValue:
-                        //音频因内置麦克风静音而中断(例如iPad智能关闭套iPad's Smart Folio关闭)
-                        break
-                    default: break
-                    }
-                    print("AVAudioSessionInterruption: \(reasonKey)")
-                } else {
-                    // iOS10.3-14.5，InterruptionWasSuspendedKey为true表示中断是由于系统挂起，false是被另一音频打断
-                    let suspendedNumber:NSNumber = userInfo[AVAudioSessionInterruptionWasSuspendedKey] as! NSNumber
-                    isAnotherAudioSuspend = !suspendedNumber.boolValue
-                }
-            }
-            
-            if isAnotherAudioSuspend {
-                //                if (self.delegate != nil){
-                mediaChangeInterruptionType(begin: true)
-                print("mediaChangeInterruptionType: 开始")
-                //                }
-            }
-            break
-        case AVAudioSession.InterruptionType.ended.rawValue://End
-            let optionKey = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt
-            if optionKey == AVAudioSession.InterruptionOptions.shouldResume.rawValue {
-                //指示另一个音频会话的中断已结束，本应用程序可以恢复音频。
-                //                if (self.delegate != nil){
-                mediaChangeInterruptionType(begin: false)
-                print("mediaChangeInterruptionType: 结束")
-                //                }
-            }
-            break
-        default: break
-        }
-    }
-    
-    ///耳机
-    @objc private func routeChangeTyptChanged(_ nof:Notification) {
-        print("audio session route change \(nof)")
-        
-        guard let userInfo = nof.userInfo else { return }
-        var seccReason = ""
-        guard let reason = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt else {return}
-        
-        switch reason {
-        case AVAudioSession.RouteChangeReason.newDeviceAvailable.rawValue:
-            seccReason = "有新设备可用"
-            // 一般为接入了耳机,参数为旧设备的信息。
-            guard let previousRoute = userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription  else {
-                return
-            }
-            if previousRoute.inputs.count <= 0 && previousRoute.outputs.count <= 0 {
-                return
-            }
-
-            let previousOutput = previousRoute.outputs[0]
-            let portType = previousOutput.portType
-            print("音频模式更改:有新设备可用通知- \(portType.rawValue)")
-            if portType == AVAudioSession.Port.headphones {
-                //在这里暂停播放, 更改输出设备，录音时背景音需要重置。否则无法消音
-                print("耳机🎧模式")
-            } else if portType == AVAudioSession.Port.builtInSpeaker {
-                print("Built-in speaker on an iOS device")
-            }
-        case AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue:
-            seccReason = "老设备不可用"
-            guard let previousRoute = userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription  else {
-                return
-            }
-            if previousRoute.inputs.count <= 0 && previousRoute.outputs.count <= 0 {
-                return
-            }
-            let previousOutput = previousRoute.outputs[0]
-            let portType = previousOutput.portType
-            print("音频模式更改:老设备不可用通知- \(portType.rawValue)")
-            if portType == AVAudioSession.Port.headphones {
-                print("耳机🎧模式")
-                if isPlaying {
-                    self.resume()
-                }
-            } else if portType == AVAudioSession.Port.builtInSpeaker {
-                
-            }
-        case AVAudioSession.RouteChangeReason.categoryChange.rawValue:
-            seccReason = "类别Cagetory改变了"
-        case AVAudioSession.RouteChangeReason.override.rawValue:
-            seccReason = "App重置了输出设置"
-        case AVAudioSession.RouteChangeReason.wakeFromSleep.rawValue:
-            seccReason = "从睡眠状态呼醒"
-        case AVAudioSession.RouteChangeReason.noSuitableRouteForCategory.rawValue:
-            seccReason = "当前Category下没有合适的设备"
-            
-        case AVAudioSession.RouteChangeReason.routeConfigurationChange.rawValue:
-            seccReason = "Rotuer的配置改变了"
-//        case AVAudioSession.RouteChangeReason.unknown,
-        default:
-            seccReason = "未知原因"
-        }
-    }
-}
-
 extension PTAudioPlayer: GXAudioPlayerProtocol {
     
     public func play(url: String) {
+        self.startPlayTime = CFAbsoluteTimeGetCurrent()
+//        print("开始播放---\(self.startPlayTime)")
         self.setAVAudioSession()
         status = PTAudioPlayerEvent.None
         
@@ -433,7 +297,7 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
                 //                    self.disposeBag = DisposeBag()
             }
             remoteAudioPlayer?.pause()
-//            self.playRemoteAudio(url: _url)
+            //            self.playRemoteAudio(url: _url)
             let playerItem = AVPlayerItem.init(url: _url)
             self.addNotificationRX(playerItem: playerItem)
         } else {
@@ -481,33 +345,7 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
         self.status = .None
         remoteAudioPlayer?.pause()
         remoteAudioPlayer?.replaceCurrentItem(with: nil)
-        //        self.remoteAudioPlayer = nil
+        //self.remoteAudioPlayer = nil
         self.disposeBag = DisposeBag()
-    }
-}
-
-extension PTAudioPlayer {
-    func getDeviceOutputInfo(portType: AVAudioSession.Port) -> String {
-        var type = ""
-        switch portType {
-        case .headsetMic:
-            type = "headsetMic"
-        case .builtInMic:
-            type = "内置麦克风"
-        case .builtInSpeaker:
-            type = "内置扬声器"
-        case .headphones:
-            type = "插线耳机"
-        case .bluetoothA2DP:
-            type = "蓝牙音频传输模型协议"
-        case .bluetoothLE:
-            type = "低功耗蓝牙"
-        case .airPlay:
-            type = "隔空播放"
-        
-        default:
-            type = "内置扬声器"
-        }
-        return type
     }
 }

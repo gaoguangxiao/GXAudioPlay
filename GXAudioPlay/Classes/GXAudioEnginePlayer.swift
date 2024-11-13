@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import RxSwift
 
 //public protocol GXAudioEnginePlayerDelegate: NSObjectProtocol {
 //    //播放结束，手动停止，或者播放完毕
@@ -51,11 +52,28 @@ public class GXAudioEnginePlayer: NSObject {
     
     public var track: String?
     
+    ///The default number of current cycles is 0
+    private var currentNumberOfLoops: Int = 0
+    
+    public var numberOfLoops: Int = 1 {
+        didSet {
+            //reset to 0
+            currentNumberOfLoops = 0
+        }
+    }
+    
+    public var disposeBag = DisposeBag()
+    
+    public var startPlayTime: Double = 0.0
+    
+    //存储每个阶段的播放间隔
+    public var playStateTime: Dictionary<String, Double> = [:]
+    
     public override init() {
         //添加播放节点
         engine.attach(player)
         //添加第二个播放节点
-        engine.attach(player2)
+        //engine.attach(player2)
         //添加音量
         engine.attach(volumeEffect)
         //添加变速变调节点
@@ -67,7 +85,7 @@ public class GXAudioEnginePlayer: NSObject {
         //链接播放节点到引擎的`volumeEffect`
         engine.connect(player, to: volumeEffect, format: nil)
         //链接播放节点
-        engine.connect(player2, to: engine.mainMixerNode, format: nil)
+        //        engine.connect(player2, to: engine.mainMixerNode, format: nil)
         //        engine.connect(volumeEffect, to: engine.mainMixerNode, format: nil)
         
         //预先准备资源
@@ -107,7 +125,8 @@ public class GXAudioEnginePlayer: NSObject {
     }
     
     public var currentPlayTime: AVAudioTime? {
-        guard let lastRenderTime = player.lastRenderTime,let playerTime = player.playerTime(forNodeTime: lastRenderTime) else {
+        guard let lastRenderTime = player.lastRenderTime,
+              let playerTime = player.playerTime(forNodeTime: lastRenderTime) else {
             return nil
         }
         return playerTime
@@ -118,7 +137,7 @@ public class GXAudioEnginePlayer: NSObject {
         guard let playerTime = currentPlayTime else {
             return 0
         }
-        return playerTime.sampleTime + skipFrame
+        return (playerTime.sampleTime + skipFrame)
     }
     
     public var currentTime: Double {
@@ -158,51 +177,57 @@ public class GXAudioEnginePlayer: NSObject {
     }
     
     //播放本地URL
-    public func play(fileURL fileUrl: URL) {
+    public func play(fileURL fileUrl: URL,options:AVAudioPlayerNodeBufferOptions = .interrupts) {
+        self.startPlayTime = CFAbsoluteTimeGetCurrent()
+        print("开始播放---\(self.startPlayTime)")
         self.setAVAudioSession()
         if let audioFile = setPlayAudioFile(fileUrl: fileUrl) {
-            player.scheduleFile(audioFile, at: nil, completionHandler: nil)
             skipFrame = 0
+            player.scheduleFile(audioFile, at: nil) {
+                // 在这里处理播放完毕的逻辑
+                let timeInterval = CFAbsoluteTimeGetCurrent() - self.startPlayTime
+                print("缓冲区缓冲完毕：\(timeInterval * 1000)")
+            }
             self.playEventsBlock?(.Playing(duration))
             play()
         }
     }
     
     //辅助音轨播放
-    public func playSubAudio(fileURL fileUrl: URL) {
-        guard let audioFile = try? AVAudioFile(forReading: fileUrl) else { return }
-        player2.scheduleFile(audioFile, at: nil, completionHandler: nil)
-        self.player2.play()
-    }
-
-    //播放两种音频，一种主音，一种尾音，尾音在主音结束播放，主音会循环播放
-    public func playLoopMainAudio(fileMainURL fileUrl: URL , endFileUrl: URL) {
-        if let _ = setAudioPCMBuffer(fileUrl: fileUrl) {
-            self.playAudioBuffer(isLoop: true, endFileUrl: endFileUrl)
-        }
-    }
+    //    public func playSubAudio(fileURL fileUrl: URL) {
+    //        guard let audioFile = try? AVAudioFile(forReading: fileUrl) else { return }
+    //        player2.scheduleFile(audioFile, at: nil, completionHandler: nil)
+    //        self.player2.play()
+    //    }
+    //
+    //    //播放两种音频，一种主音，一种尾音，尾音在主音结束播放，主音会循环播放
+    //    public func playLoopMainAudio(fileMainURL fileUrl: URL , endFileUrl: URL) {
+    //        if let _ = setAudioPCMBuffer(fileUrl: fileUrl) {
+    //            self.playAudioBuffer(isLoop: true, endFileUrl: endFileUrl)
+    //        }
+    //    }
     
-    private func playAudioBuffer(isLoop: Bool,endFileUrl: URL) {
-        if let buffer = self.currentAudioPCMBuffer {
-            skipFrame = 0
-            player.scheduleBuffer(buffer, at: nil,options: .loops) {
-                if self.status != .Ended {
-                    if isLoop {
-//                        self.playSubNoteAudio(fileURL:endFileUrl)
-                        //
-//                        self.playAudioBuffer(isLoop: isLoop,endFileUrl: endFileUrl)
-                    }
-                }
-            }
-            play()
-        }
-    }
+    //    private func playAudioBuffer(isLoop: Bool,endFileUrl: URL) {
+    //        if let buffer = self.currentAudioPCMBuffer {
+    //            skipFrame = 0
+    //            player.scheduleBuffer(buffer, at: nil,options: .loops) {
+    //                if self.status != .Ended {
+    //                    if isLoop {
+    //                        //                        self.playSubNoteAudio(fileURL:endFileUrl)
+    //                        //
+    //                        //                        self.playAudioBuffer(isLoop: isLoop,endFileUrl: endFileUrl)
+    //                    }
+    //                }
+    //            }
+    //            play()
+    //        }
+    //    }
     //播放尾音
-    public func playSubNoteAudio(fileURL fileUrl: URL) {
-        guard let audioFile = try? AVAudioFile(forReading: fileUrl) else { return }
-        player2.scheduleFile(audioFile, at: nil, completionHandler: nil)
-        self.player2.play()
-    }
+    //    public func playSubNoteAudio(fileURL fileUrl: URL) {
+    //        guard let audioFile = try? AVAudioFile(forReading: fileUrl) else { return }
+    //        player2.scheduleFile(audioFile, at: nil, completionHandler: nil)
+    //        self.player2.play()
+    //    }
     
     //从某时刻 播放本地URL
     public func play(fileURL fileUrl: URL,time:Double) {
@@ -232,24 +257,30 @@ public class GXAudioEnginePlayer: NSObject {
     //        self.playpcm(fileURL: fileUrl, options: .interrupts)
     //    }
     
-    public func playpcm(fileURL fileUrl: URL,options:AVAudioPlayerNodeBufferOptions = .interrupts) {
-        if let buffer = setAudioPCMBuffer(fileUrl: fileUrl) {
-            skipFrame = 0
-            player.scheduleBuffer(buffer, at: nil,options: options) {
-                self.playEventsBlock?(.Ended)
-            }
-            play()
-        } else {
-            
-        }
-    }
-    
-    //播放pcm支持循环播放
-    public func playpcmLoop(fileURL fileUrl: URL,options:AVAudioPlayerNodeBufferOptions = .interrupts) {
-        if let _ = setAudioPCMBuffer(fileUrl: fileUrl) {
-            self.playAudioBuffer()
-        }
-    }
+    //    public func playpcm(fileURL fileUrl: URL,options:AVAudioPlayerNodeBufferOptions = .interrupts) {
+    //        if let buffer = setAudioPCMBuffer(fileUrl: fileUrl) {
+    //            self.startPlayTime = CFAbsoluteTimeGetCurrent()
+    //            skipFrame = 0
+    //            player.scheduleBuffer(buffer, at: nil,options: options) {
+    //                let timeInterval = CFAbsoluteTimeGetCurrent() - self.startPlayTime
+    //                self.playStateTime["end"] = timeInterval * 1000
+    //                for play in self.playStateTime {
+    //                    print("\(play.key): \(play.value)毫秒")
+    //                }
+    //                self.playEventsBlock?(.Ended)
+    //            }
+    //            play()
+    //        } else {
+    //            self.playEventsBlock?(.Error("pcm error"))
+    //        }
+    //    }
+    //
+    //    //播放pcm支持循环播放
+    //    public func playpcmLoop(fileURL fileUrl: URL,options:AVAudioPlayerNodeBufferOptions = .interrupts) {
+    //        if let _ = setAudioPCMBuffer(fileUrl: fileUrl) {
+    //            self.playAudioBuffer()
+    //        }
+    //    }
     
     /// URL 用PCM缓存播放
     /// - Parameter fileUrl: <#fileUrl description#>
@@ -273,18 +304,18 @@ public class GXAudioEnginePlayer: NSObject {
         }
     }
     
-    private func playAudioBuffer() {
-        if let buffer = self.currentAudioPCMBuffer {
-            skipFrame = 0
-            player.scheduleBuffer(buffer, at: nil,options: .interrupts) {
-                if self.loop {
-                    self.playEventsBlock?(.LoopEndSingle)
-                    self.playAudioBuffer()
-                }
-            }
-            play()
-        }
-    }
+    //    private func playAudioBuffer() {
+    //        if let buffer = self.currentAudioPCMBuffer {
+    //            skipFrame = 0
+    //            player.scheduleBuffer(buffer, at: nil,options: .interrupts) {
+    //                if self.loop {
+    //                    self.playEventsBlock?(.LoopEndSingle)
+    //                    self.playAudioBuffer()
+    //                }
+    //            }
+    //            play()
+    //        }
+    //    }
     
     //设置当前播放的AudioFile
     private func setPlayAudioFile(fileUrl: URL) -> AVAudioFile? {
@@ -293,31 +324,43 @@ public class GXAudioEnginePlayer: NSObject {
         return audioFile
     }
     
-    private func setAudioPCMBuffer(fileUrl: URL) -> AVAudioPCMBuffer? {
-        guard let audioFile = setPlayAudioFile(fileUrl: fileUrl) else { return nil }
-        guard let buffer = AVAudioPCMBuffer(pcmFormat: audioFile.processingFormat,
-                                            frameCapacity: AVAudioFrameCount(audioFile.length)) else { return nil }
-        try? audioFile.read(into: buffer)
-        self.currentAudioPCMBuffer = buffer
-        return buffer
-    }
+    //    private func setAudioPCMBuffer(fileUrl: URL) -> AVAudioPCMBuffer? {
+    //        guard let audioFile = setPlayAudioFile(fileUrl: fileUrl) else { return nil }
+    //        guard let buffer = AVAudioPCMBuffer(pcmFormat: audioFile.processingFormat,
+    //                                            frameCapacity: AVAudioFrameCount(audioFile.length)) else { return nil }
+    //        try? audioFile.read(into: buffer)
+    //        self.currentAudioPCMBuffer = buffer
+    //        return buffer
+    //    }
     
     //主动获取帧数变化 仅仅处理
+    //lastRenderTime每次播放都会增加，不会被自动重置
     @objc func monitorTimeChange() {
-        //        print("播放时间---\(self.currentFrame)---\(self.frameLength)")
-        if self.currentFrame >= self.frameLength {
-            print("播放结束---")
+        //        print("播放进度---\(currentFrame)---\(frameLength)")
+        if currentTime >= duration {
             if loop {
-                //                改为内部播放回调
-                //                player.stop()
-                //                playAudioBuffer()
+                guard numberOfLoops != 0 else {
+                    player.stop() //player的最后一帧才会置为0
+                    playAudioFile()
+                    return
+                }
+                //有次数的循环 0 1 2 end 3
+                currentNumberOfLoops += 1
+                guard currentNumberOfLoops < numberOfLoops else {
+                    if case .Playing = self.status {
+                        self.playEventsBlock?(.TimeUpdate(duration))
+                        stop(true)
+                    }
+                    return
+                }
+                player.stop() //player的最后一帧才会置为0
+                playAudioFile()
             } else {
                 if player.isPlaying {
-                    self.playEventsBlock?(.Ended)
-                   stop()
+                    self.playEventsBlock?(.TimeUpdate(duration))
+                    stop(true)
                 }
             }
-            return
         }
         
         if player.isPlaying , self.isPeriodicTimer {
@@ -327,55 +370,17 @@ public class GXAudioEnginePlayer: NSObject {
     
     //    -- MARK：功能键
     private func play() {
+        addAcSetionRX()
         startEndine()
-        self.player.play()
-        
+        player.play()
+        status = .Playing(duration)
         //增加定时回调
-        if let displayLink = displayLink {
-            //复用定时器
-            print("复用定时器")
-        } else {
-            //新建定时器
-            print("新建定时器")
-            //添加
+        if displayLink == nil {
             displayLink = CADisplayLink(target: self, selector: #selector(monitorTimeChange))
             displayLink?.add(to: .current, forMode: .common)
         }
-        
         displayLink?.isPaused = false
-        //        播放进度回调
-        
-        //repeats为true会持续调用
-        
-        //        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true, block: { [weak self] (_timer) in
-        //            guard let `self` = self else {
-        //                _timer.invalidate()
-        //                return
-        //            }
-        //            if currentTime >= duration {
-        //                print("播放结束---")
-        //                if loop {
-        //                    self.playAudioFile()
-        ////                    self.setSeekToTime(seconds: 0)
-        //                } else {
-        //                    _timer.invalidate()
-        //                    if player.isPlaying {
-        //                        self.playEventsBlock?(.Ended)
-        //                    }
-        //                }
-        //                return
-        //            }
-        //            if player.isPlaying {
-        //                self.playEventsBlock?(.TimeUpdate(currentTime))
-        //            }
-        //        })
     }
-    
-    //延迟多久播放
-    //    func play(time:AVAudioTime) {
-    //        startEndine()
-    //        self.player.play(at: time)
-    //    }
     
     public func startEndine(){
         if !self.engine.isRunning {
@@ -390,15 +395,31 @@ public class GXAudioEnginePlayer: NSObject {
 }
 
 extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
-//    public func playSubAudio(fileURL fileUrl: URL) {
-//        self.playSubAudio(fileURL: fileUrl)
-//    }
     
-    public var numberOfLoops: Int{
-        get {
-            1
+    public func receviedEventEnterBackground() {
+        var needPause = false
+        if case .Playing = self.status  { needPause = true }
+        if case .Waiting = self.status  { needPause = true }
+        if needPause  {
+            self.pause()
         }
-        set {}
+    }
+    
+    public func receviedEventEnterForeground() {
+        if case .Pause = self.status {
+            self.resume()
+        } else if case .Playing = self.status  {
+            self.stop(true)
+        }
+    }
+    
+    public var isPlaying: Bool {
+        get {
+            if case .Playing = self.status {
+                return true
+            }
+            return false
+        }
     }
     
     public var volume: Float {
@@ -409,11 +430,10 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
     public var playSpeed: Float {
         //        get { rateEffect.rate }
         //        set { rateEffect.rate = newValue }
-        get { timePitch.rate }
-        set { timePitch.rate = newValue }
-        //        get { player.rate }
-        //        set { player.rate = newValue }
-        
+        //        get { timePitch.rate }
+        //        set { timePitch.rate = newValue }
+        get { player.rate }
+        set { player.rate = newValue }
     }
     
     
@@ -429,12 +449,12 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
     //本地URL
     public func play(url: String) {
         
-        //        if let uurl = URL(fileURLWithPath: url) {
+        let uurl = URL(fileURLWithPath: url)
+        //                if  {
         //播放缓存
-        //        self.playpcm(fileURL: URL(fileURLWithPath: url), options: .interrupts)
-        //        }
-//        self.playpcm(fileURL: URL(fileURLWithPath: url))
-                self.play(fileURL:URL(fileURLWithPath: url))
+        //                }
+        //        self.playpcm(fileURL: uurl)
+        self.play(fileURL:uurl)
         
     }
     
@@ -484,14 +504,17 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
     }
     
     public func stop() {
-        status = .Ended
-        self.engine.stop()
-        self.player.stop()
-        //
-        displayLink?.isPaused = true
+        stop(false)
     }
     
     public func stop(_ issue: Bool) {
-        
+        status = .Ended
+        if issue {
+            self.playEventsBlock?(.Ended)
+        }
+        //        self.engine.stop()
+        self.player.stop()
+        displayLink?.isPaused = true
+        self.disposeBag = DisposeBag()
     }
 }

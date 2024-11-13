@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cwu-lz-8Ni">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cwu-lz-8Ni">
     <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-1726" y="53"/>
         </scene>
-        <!--View Controller-->
+        <!--Audio Engine Vc-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="GXAudioPlay_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="AVAudioEngineVc" customModule="GXAudioPlay_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -37,16 +37,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGl-EU-o5M">
-                                <rect key="frame" x="136.5" y="64" width="102" height="34"/>
+                                <rect key="frame" x="24" y="64" width="83" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Engie初始化"/>
+                                <state key="normal" title="Engie开始"/>
                                 <connections>
                                     <action selector="实例化Engine:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sTY-aM-oLK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLr-tq-sa3">
-                                <rect key="frame" x="65.5" y="168" width="84" height="34"/>
+                                <rect key="frame" x="24" y="108" width="83" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Engie播放"/>
@@ -54,8 +54,17 @@
                                     <action selector="播放Engine:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gU7-6y-bGO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHG-Ak-ad4">
+                                <rect key="frame" x="117" y="108" width="83" height="34"/>
+                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Engie暂停"/>
+                                <connections>
+                                    <action selector="暂停Engine:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="B1P-hQ-PxP"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A17-4K-xWx">
-                                <rect key="frame" x="253.5" y="168" width="84" height="34"/>
+                                <rect key="frame" x="117" y="64" width="83" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Engie停止"/>
@@ -64,7 +73,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PHI-h6-v4w">
-                                <rect key="frame" x="10" y="246" width="202" height="34"/>
+                                <rect key="frame" x="24" y="242" width="199" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Engie播放，从第5S播放"/>
@@ -72,26 +81,20 @@
                                     <action selector="从某时刻播放:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PFv-8Q-21P"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHG-Ak-ad4">
-                                <rect key="frame" x="159.5" y="148" width="84" height="34"/>
-                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Engie暂停"/>
-                                <connections>
-                                    <action selector="暂停Engine:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="B1P-hQ-PxP"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYY-sn-5aM">
-                                <rect key="frame" x="159.5" y="192" width="84" height="34"/>
-                                <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Engie继续"/>
-                                <connections>
-                                    <action selector="继续Engine:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7dH-L9-tRv"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="播放状态：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfK-Nd-aK0">
+                                <rect key="frame" x="24" y="152" width="68" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuA-rJ-8ES">
+                                <rect key="frame" x="97" y="152" width="15" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpz-JZ-1K3">
-                                <rect key="frame" x="26" y="290" width="147" height="34"/>
+                                <rect key="frame" x="26" y="286" width="143" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="获取当前播放时长"/>
@@ -100,7 +103,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Jj-Kw-kus">
-                                <rect key="frame" x="26" y="344" width="125" height="34"/>
+                                <rect key="frame" x="26" y="340" width="124" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Engie播放PCM"/>
@@ -109,7 +112,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B4H-bx-e6v">
-                                <rect key="frame" x="161" y="344" width="117" height="34"/>
+                                <rect key="frame" x="160" y="340" width="115" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="播放PCM中断"/>
@@ -118,7 +121,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiD-Jx-W11">
-                                <rect key="frame" x="26" y="388" width="74" height="34"/>
+                                <rect key="frame" x="26" y="384" width="72" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="串行播放"/>
@@ -127,7 +130,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dV-7n-8GJ">
-                                <rect key="frame" x="26" y="432" width="74" height="34"/>
+                                <rect key="frame" x="26" y="428" width="72" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="混合播放"/>
@@ -136,7 +139,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wTY-LW-8Vk">
-                                <rect key="frame" x="110" y="432" width="111" height="34"/>
+                                <rect key="frame" x="108" y="428" width="108" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="循环尾部插音"/>
@@ -145,16 +148,16 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QUB-qJ-X1f">
-                                <rect key="frame" x="16" y="476" width="343" height="70"/>
+                                <rect key="frame" x="16" y="472" width="343" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跳过时间：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4yG-pj-rNe">
-                                        <rect key="frame" x="10" y="10" width="78.5" height="21"/>
+                                        <rect key="frame" x="10" y="10" width="76" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9Z-N3-bu3">
-                                        <rect key="frame" x="183" y="3" width="160" height="35"/>
+                                        <rect key="frame" x="186.5" y="3" width="156.5" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="调至末尾最后5秒"/>
                                     </button>
@@ -184,37 +187,40 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="A17-4K-xWx" firstAttribute="leading" secondItem="iHG-Ak-ad4" secondAttribute="trailing" constant="10" id="0Vb-tE-3QF"/>
                             <constraint firstItem="9dV-7n-8GJ" firstAttribute="centerY" secondItem="wTY-LW-8Vk" secondAttribute="centerY" id="3Z3-OH-Gx1"/>
-                            <constraint firstItem="iHG-Ak-ad4" firstAttribute="leading" secondItem="LLr-tq-sa3" secondAttribute="trailing" constant="10" id="GWV-XY-Xz6"/>
+                            <constraint firstItem="PHI-h6-v4w" firstAttribute="leading" secondItem="QGl-EU-o5M" secondAttribute="leading" id="58X-na-K87"/>
+                            <constraint firstItem="QGl-EU-o5M" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="A0m-R7-QYh"/>
+                            <constraint firstItem="OfK-Nd-aK0" firstAttribute="leading" secondItem="LLr-tq-sa3" secondAttribute="leading" id="FnC-td-kKn"/>
                             <constraint firstItem="QUB-qJ-X1f" firstAttribute="top" secondItem="9dV-7n-8GJ" secondAttribute="bottom" constant="10" id="GXg-oN-c5k"/>
                             <constraint firstItem="QGl-EU-o5M" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="KTS-R0-F6D"/>
                             <constraint firstItem="aiD-Jx-W11" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="KdV-RS-Qyx"/>
-                            <constraint firstItem="LLr-tq-sa3" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" constant="-80" id="MVa-OV-7Rd"/>
-                            <constraint firstItem="PHI-h6-v4w" firstAttribute="top" secondItem="jYY-sn-5aM" secondAttribute="bottom" constant="20" id="MjH-0v-j5H"/>
                             <constraint firstItem="bpz-JZ-1K3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="N9D-xO-TbT"/>
+                            <constraint firstItem="iHG-Ak-ad4" firstAttribute="leading" secondItem="LLr-tq-sa3" secondAttribute="trailing" constant="10" id="PUE-IG-oVx"/>
+                            <constraint firstItem="PHI-h6-v4w" firstAttribute="top" secondItem="LLr-tq-sa3" secondAttribute="bottom" constant="100" id="QLU-vN-hcg"/>
                             <constraint firstItem="bpz-JZ-1K3" firstAttribute="top" secondItem="PHI-h6-v4w" secondAttribute="bottom" constant="10" id="RUi-wq-ACD"/>
+                            <constraint firstItem="iHG-Ak-ad4" firstAttribute="top" secondItem="LLr-tq-sa3" secondAttribute="top" id="T2o-Rm-Yvo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QUB-qJ-X1f" secondAttribute="trailing" id="U7k-YG-PML"/>
+                            <constraint firstItem="kuA-rJ-8ES" firstAttribute="leading" secondItem="OfK-Nd-aK0" secondAttribute="trailing" constant="5" id="VNo-6f-AHt"/>
                             <constraint firstItem="aiD-Jx-W11" firstAttribute="top" secondItem="4Jj-Kw-kus" secondAttribute="bottom" constant="10" id="Vm9-GC-Nif"/>
                             <constraint firstItem="wTY-LW-8Vk" firstAttribute="leading" secondItem="9dV-7n-8GJ" secondAttribute="trailing" constant="10" id="Vsv-wT-RS4"/>
                             <constraint firstItem="QUB-qJ-X1f" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="WN6-be-TcG"/>
                             <constraint firstItem="9dV-7n-8GJ" firstAttribute="top" secondItem="aiD-Jx-W11" secondAttribute="bottom" constant="10" id="Wy0-Gy-8us"/>
                             <constraint firstItem="9dV-7n-8GJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="WzI-7Y-Aof"/>
+                            <constraint firstItem="A17-4K-xWx" firstAttribute="top" secondItem="QGl-EU-o5M" secondAttribute="top" id="dAR-oR-fQV"/>
+                            <constraint firstItem="A17-4K-xWx" firstAttribute="leading" secondItem="QGl-EU-o5M" secondAttribute="trailing" constant="10" id="dbH-YE-nCq"/>
                             <constraint firstItem="4Jj-Kw-kus" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="fxk-ZE-9ti"/>
-                            <constraint firstItem="iHG-Ak-ad4" firstAttribute="centerY" secondItem="LLr-tq-sa3" secondAttribute="centerY" constant="-20" id="h9b-Fl-nbU"/>
+                            <constraint firstItem="kuA-rJ-8ES" firstAttribute="centerY" secondItem="OfK-Nd-aK0" secondAttribute="centerY" id="gQQ-I6-DYF"/>
                             <constraint firstItem="B4H-bx-e6v" firstAttribute="leading" secondItem="4Jj-Kw-kus" secondAttribute="trailing" constant="10" id="mVc-i5-apk"/>
                             <constraint firstItem="4Jj-Kw-kus" firstAttribute="top" secondItem="bpz-JZ-1K3" secondAttribute="bottom" constant="20" id="nWP-em-jdT"/>
-                            <constraint firstItem="jYY-sn-5aM" firstAttribute="top" secondItem="iHG-Ak-ad4" secondAttribute="bottom" constant="10" id="soS-6p-hZi"/>
+                            <constraint firstItem="LLr-tq-sa3" firstAttribute="top" secondItem="QGl-EU-o5M" secondAttribute="bottom" constant="10" id="oiR-qR-KdF"/>
+                            <constraint firstItem="OfK-Nd-aK0" firstAttribute="top" secondItem="LLr-tq-sa3" secondAttribute="bottom" constant="10" id="ot5-1T-iME"/>
+                            <constraint firstItem="LLr-tq-sa3" firstAttribute="leading" secondItem="QGl-EU-o5M" secondAttribute="leading" id="u9k-Sq-vOG"/>
                             <constraint firstItem="B4H-bx-e6v" firstAttribute="centerY" secondItem="4Jj-Kw-kus" secondAttribute="centerY" id="wxR-ke-7tX"/>
-                            <constraint firstItem="iHG-Ak-ad4" firstAttribute="top" secondItem="QGl-EU-o5M" secondAttribute="bottom" constant="50" id="xzC-Yj-AdX"/>
-                            <constraint firstItem="QGl-EU-o5M" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="y7e-cv-515"/>
-                            <constraint firstItem="PHI-h6-v4w" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="yVu-Y6-sJC"/>
-                            <constraint firstItem="A17-4K-xWx" firstAttribute="centerY" secondItem="LLr-tq-sa3" secondAttribute="centerY" id="ykr-9D-Rd9"/>
-                            <constraint firstItem="jYY-sn-5aM" firstAttribute="centerX" secondItem="iHG-Ak-ad4" secondAttribute="centerX" id="zf6-B0-OaO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FIT-Eh-9Ms"/>
                     <connections>
+                        <outlet property="engineStatus" destination="kuA-rJ-8ES" id="BCh-j2-Gha"/>
                         <outlet property="playSlider" destination="22s-q6-m73" id="Q6d-Dm-lam"/>
                     </connections>
                 </viewController>
@@ -235,11 +241,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zts-ba-0np">
-                                <rect key="frame" x="147.5" y="316" width="80" height="35"/>
+                                <rect key="frame" x="137.5" y="316" width="100" height="35"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="8CZ-Zm-AHg"/>
-                                    <constraint firstAttribute="width" constant="80" id="GVn-nO-D6j"/>
+                                    <constraint firstAttribute="width" constant="100" id="GVn-nO-D6j"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -249,15 +255,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jdo-us-gbZ">
-                                <rect key="frame" x="147.5" y="361" width="80" height="35"/>
+                                <rect key="frame" x="137.5" y="361" width="100" height="35"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Y7h-Yc-rzs"/>
                                     <constraint firstAttribute="height" constant="35" id="Zxk-lD-ann"/>
-                                    <constraint firstAttribute="width" constant="80" id="iQb-4g-Plq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Engie"/>
+                                <state key="normal" title="AVAudioEngie"/>
                                 <connections>
                                     <segue destination="vXZ-lx-hvc" kind="push" id="gKL-0h-AzE"/>
                                 </connections>
@@ -303,7 +309,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLs-TG-HWJ">
-                                <rect key="frame" x="24" y="152" width="111" height="34"/>
+                                <rect key="frame" x="24" y="152" width="108" height="34"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="播放本地音频"/>
@@ -311,8 +317,8 @@
                                     <action selector="播放本地音频:" destination="QJT-J2-ULP" eventType="touchUpInside" id="slz-3d-Vbo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-BI-VLC">
-                                <rect key="frame" x="150.5" y="162" width="74" height="34"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDO-BI-VLC">
+                                <rect key="frame" x="151.5" y="152" width="72" height="34"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="暂停音频"/>
@@ -321,7 +327,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mmb-kr-HV0">
-                                <rect key="frame" x="265" y="152" width="74" height="34"/>
+                                <rect key="frame" x="267" y="152" width="72" height="34"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="停止音频"/>
@@ -330,67 +336,107 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CvC-EE-ACI">
-                                <rect key="frame" x="24" y="236" width="74" height="34"/>
+                                <rect key="frame" x="24" y="236" width="72" height="34"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="循环播放"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ0-Lw-yOo">
-                                <rect key="frame" x="118" y="236" width="111" height="34"/>
+                                <rect key="frame" x="116" y="236" width="108" height="34"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="循环播放二次"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mk-Cq-7O4">
-                                <rect key="frame" x="24" y="280" width="184" height="34"/>
+                                <rect key="frame" x="24" y="280" width="179" height="34"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="循环播放回调每次结束"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHS-Ns-gDa">
-                                <rect key="frame" x="24" y="324" width="184" height="34"/>
+                                <rect key="frame" x="24" y="324" width="179" height="34"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="循环播放，播放第二条"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEl-sM-W3s">
-                                <rect key="frame" x="24" y="368" width="325" height="70"/>
+                                <rect key="frame" x="24" y="368" width="325" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="播放速率：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhf-b2-vfM">
-                                        <rect key="frame" x="10" y="10" width="78.5" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="音量：1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG4-Qx-XxP">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="R0z-xe-l0X"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="30" translatesAutoresizingMaskIntoConstraints="NO" id="dkq-I8-bos">
-                                        <rect key="frame" x="-2" y="40" width="329" height="31"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="循环。默认3次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmA-Pb-1JA">
+                                        <rect key="frame" x="0.0" y="56" width="102.5" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Vb5-yy-ktw">
+                                        <rect key="frame" x="224.5" y="49.5" width="51" height="31"/>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="播放速率：1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhf-b2-vfM">
+                                        <rect key="frame" x="0.0" y="28" width="120" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="A3s-Pa-nQI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.20000000000000001" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="dkq-I8-bos">
+                                        <rect key="frame" x="168" y="22" width="159" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="eVW-hq-haE"/>
                                         </constraints>
+                                        <connections>
+                                            <action selector="SpeedSliderChange:" destination="QJT-J2-ULP" eventType="valueChanged" id="82k-DE-Uuf"/>
+                                        </connections>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="3fb-E3-6nl">
+                                        <rect key="frame" x="148" y="-6" width="179" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="qap-dU-Jud"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="VolumeSliderChange:" destination="QJT-J2-ULP" eventType="valueChanged" id="M4m-qs-obn"/>
+                                        </connections>
                                     </slider>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="dkq-I8-bos" secondAttribute="bottom" id="33m-3Q-sC3"/>
+                                    <constraint firstItem="3fb-E3-6nl" firstAttribute="centerY" secondItem="hG4-Qx-XxP" secondAttribute="centerY" id="3kp-j7-60m"/>
                                     <constraint firstAttribute="trailing" secondItem="dkq-I8-bos" secondAttribute="trailing" id="7v5-Mc-aP8"/>
-                                    <constraint firstItem="fhf-b2-vfM" firstAttribute="top" secondItem="bEl-sM-W3s" secondAttribute="top" constant="10" id="UXY-rw-UKd"/>
-                                    <constraint firstAttribute="height" constant="70" id="cKG-3S-FIB"/>
-                                    <constraint firstItem="fhf-b2-vfM" firstAttribute="leading" secondItem="bEl-sM-W3s" secondAttribute="leading" constant="10" id="d8c-1g-SUg"/>
-                                    <constraint firstItem="dkq-I8-bos" firstAttribute="leading" secondItem="bEl-sM-W3s" secondAttribute="leading" id="pZ9-lK-veI"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fhf-b2-vfM" secondAttribute="trailing" constant="20" symbolic="YES" id="qWT-R0-sxQ"/>
+                                    <constraint firstItem="dkq-I8-bos" firstAttribute="leading" secondItem="fhf-b2-vfM" secondAttribute="trailing" constant="50" id="8Uc-Em-XDY"/>
+                                    <constraint firstItem="hG4-Qx-XxP" firstAttribute="top" secondItem="bEl-sM-W3s" secondAttribute="top" id="LPQ-fG-6sz"/>
+                                    <constraint firstAttribute="trailing" secondItem="3fb-E3-6nl" secondAttribute="trailing" id="OGA-o1-eNm"/>
+                                    <constraint firstItem="fhf-b2-vfM" firstAttribute="top" secondItem="hG4-Qx-XxP" secondAttribute="bottom" constant="10" id="PgJ-Sd-TYO"/>
+                                    <constraint firstItem="dkq-I8-bos" firstAttribute="centerY" secondItem="fhf-b2-vfM" secondAttribute="centerY" id="VDT-E0-srX"/>
+                                    <constraint firstItem="wmA-Pb-1JA" firstAttribute="top" secondItem="fhf-b2-vfM" secondAttribute="bottom" constant="10" id="YoS-10-c9m"/>
+                                    <constraint firstItem="wmA-Pb-1JA" firstAttribute="leading" secondItem="fhf-b2-vfM" secondAttribute="leading" id="arL-4Q-whX"/>
+                                    <constraint firstAttribute="height" constant="100" id="cKG-3S-FIB"/>
+                                    <constraint firstItem="Vb5-yy-ktw" firstAttribute="centerY" secondItem="wmA-Pb-1JA" secondAttribute="centerY" id="e2F-yL-xpJ"/>
+                                    <constraint firstItem="Vb5-yy-ktw" firstAttribute="leading" secondItem="wmA-Pb-1JA" secondAttribute="trailing" constant="122" id="ipr-SI-jTe"/>
+                                    <constraint firstItem="3fb-E3-6nl" firstAttribute="leading" secondItem="hG4-Qx-XxP" secondAttribute="trailing" constant="30" id="qbl-4o-lEV"/>
+                                    <constraint firstItem="hG4-Qx-XxP" firstAttribute="leading" secondItem="bEl-sM-W3s" secondAttribute="leading" id="ybV-lr-hDK"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvO-ZL-uUZ">
-                                <rect key="frame" x="36" y="438" width="303" height="70"/>
+                                <rect key="frame" x="36" y="468" width="303" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跳过时间：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v9U-QP-czp">
-                                        <rect key="frame" x="10" y="10" width="78.5" height="21"/>
+                                        <rect key="frame" x="10" y="10" width="76" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMe-y9-x0j">
-                                        <rect key="frame" x="143" y="3" width="160" height="35"/>
+                                        <rect key="frame" x="146.5" y="3" width="156.5" height="35"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="调至末尾最后5秒"/>
                                     </button>
@@ -415,15 +461,15 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KLC-7Y-uIJ">
-                                <rect key="frame" x="16" y="518" width="343" height="60"/>
+                                <rect key="frame" x="16" y="548" width="343" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="音轨信息：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xd8-vU-xQ2">
-                                        <rect key="frame" x="10" y="10" width="78.5" height="20.5"/>
+                                        <rect key="frame" x="10" y="10" width="76" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Oca-Jv-KY2">
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="Oca-Jv-KY2">
                                         <rect key="frame" x="10" y="56" width="323" height="4"/>
                                     </progressView>
                                 </subviews>
@@ -438,13 +484,22 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rww-RN-C2d">
-                                <rect key="frame" x="265" y="196" width="74" height="34"/>
+                                <rect key="frame" x="267" y="196" width="72" height="34"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="音频时长"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="02l-pD-TMI">
+                                <rect key="frame" x="24" y="196" width="84" height="34"/>
+                                <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="预加载WA"/>
+                                <connections>
+                                    <action selector="预加载网络音频:" destination="QJT-J2-ULP" eventType="touchUpInside" id="uzb-Yb-Eg7"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YaL-dc-UB3">
-                                <rect key="frame" x="24" y="196" width="111" height="34"/>
+                                <rect key="frame" x="118" y="196" width="108" height="34"/>
                                 <color key="backgroundColor" red="0.32549019610000002" green="0.59999999999999998" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="播放网络音频"/>
@@ -457,12 +512,13 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="KLC-7Y-uIJ" secondAttribute="trailing" id="0RW-Lc-mB5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Mmb-kr-HV0" secondAttribute="trailing" constant="20" id="2Yj-o1-tZN"/>
+                            <constraint firstItem="fhf-b2-vfM" firstAttribute="leading" secondItem="pLs-TG-HWJ" secondAttribute="leading" id="5Py-vf-IZQ"/>
                             <constraint firstItem="mvO-ZL-uUZ" firstAttribute="leading" secondItem="jRU-5i-M1y" secondAttribute="leadingMargin" constant="20" id="6dj-Wv-vNM"/>
                             <constraint firstItem="CHS-Ns-gDa" firstAttribute="leading" secondItem="pLs-TG-HWJ" secondAttribute="leading" id="7VB-zH-qfO"/>
-                            <constraint firstItem="YaL-dc-UB3" firstAttribute="leading" secondItem="pLs-TG-HWJ" secondAttribute="leading" id="CBQ-96-Crx"/>
                             <constraint firstItem="rww-RN-C2d" firstAttribute="top" secondItem="Mmb-kr-HV0" secondAttribute="bottom" constant="10" id="CUW-pu-DHn"/>
                             <constraint firstItem="zDO-BI-VLC" firstAttribute="centerX" secondItem="jRU-5i-M1y" secondAttribute="centerX" id="Dsp-I9-SCt"/>
                             <constraint firstItem="bEl-sM-W3s" firstAttribute="top" secondItem="CHS-Ns-gDa" secondAttribute="bottom" constant="10" id="EJB-LP-vWc"/>
+                            <constraint firstItem="02l-pD-TMI" firstAttribute="top" secondItem="YaL-dc-UB3" secondAttribute="top" id="Li8-8h-yW0"/>
                             <constraint firstItem="KLC-7Y-uIJ" firstAttribute="leading" secondItem="jRU-5i-M1y" secondAttribute="leadingMargin" id="Opi-TQ-T5y"/>
                             <constraint firstItem="6Mk-Cq-7O4" firstAttribute="leading" secondItem="CvC-EE-ACI" secondAttribute="leading" id="TCk-et-93l"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mvO-ZL-uUZ" secondAttribute="trailing" constant="20" id="Wx3-iW-egp"/>
@@ -476,7 +532,9 @@
                             <constraint firstItem="zDO-BI-VLC" firstAttribute="centerY" secondItem="pLs-TG-HWJ" secondAttribute="centerY" id="m2h-eD-J6c"/>
                             <constraint firstItem="CHS-Ns-gDa" firstAttribute="top" secondItem="6Mk-Cq-7O4" secondAttribute="bottom" constant="10" id="mQm-2T-ZJe"/>
                             <constraint firstItem="CvC-EE-ACI" firstAttribute="leading" secondItem="pLs-TG-HWJ" secondAttribute="leading" id="oY4-Y3-Tg2"/>
+                            <constraint firstItem="YaL-dc-UB3" firstAttribute="leading" secondItem="02l-pD-TMI" secondAttribute="trailing" constant="10" id="pw7-FZ-A3M"/>
                             <constraint firstItem="mvO-ZL-uUZ" firstAttribute="top" secondItem="bEl-sM-W3s" secondAttribute="bottom" id="qIe-vP-n1K"/>
+                            <constraint firstItem="02l-pD-TMI" firstAttribute="leading" secondItem="pLs-TG-HWJ" secondAttribute="leading" id="sVb-sI-Aat"/>
                             <constraint firstItem="YaL-dc-UB3" firstAttribute="top" secondItem="pLs-TG-HWJ" secondAttribute="bottom" constant="10" id="u97-Ko-R8v"/>
                             <constraint firstItem="SZ0-Lw-yOo" firstAttribute="leading" secondItem="CvC-EE-ACI" secondAttribute="trailing" constant="20" id="ucB-u3-WkI"/>
                             <constraint firstItem="pLs-TG-HWJ" firstAttribute="top" secondItem="0wM-Hy-84v" secondAttribute="bottom" constant="88" id="wXi-TY-Az0"/>
@@ -487,11 +545,17 @@
                     <navigationItem key="navigationItem" id="bfa-S3-A1D"/>
                     <connections>
                         <outlet property="audioControlBtn" destination="zDO-BI-VLC" id="11j-EH-TN0"/>
+                        <outlet property="loopSlider" destination="Vb5-yy-ktw" id="6YM-CY-mBP"/>
+                        <outlet property="playProgress" destination="Oca-Jv-KY2" id="nXU-qu-L4b"/>
+                        <outlet property="speedSlider" destination="dkq-I8-bos" id="eGV-6G-JOw"/>
+                        <outlet property="speedSliderTxt" destination="fhf-b2-vfM" id="Vau-UL-dWU"/>
+                        <outlet property="volumeSlider" destination="3fb-E3-6nl" id="gsQ-th-OGz"/>
+                        <outlet property="volumeSliderTxt" destination="hG4-Qx-XxP" id="ObE-eT-oKO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MOU-kG-nje" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="-681"/>
+            <point key="canvasLocation" x="901.60000000000002" y="-681.40929535232385"/>
         </scene>
     </scenes>
     <resources>
