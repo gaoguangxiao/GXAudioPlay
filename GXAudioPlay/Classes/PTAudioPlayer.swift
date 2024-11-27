@@ -185,17 +185,15 @@ public class PTAudioPlayer: NSObject {
             }).disposed(by: self.disposeBag)
         
         
-        NotificationCenter.default.rx.notification(AVPlayerItem.playbackStalledNotification)
-            .subscribe(onNext: { [weak self] (notic) in
-                guard let `self` = self else {return}
-                if (notic.object as? AVPlayerItem ?? nil) === playerItem {
-                    if case .Playing = self.status {
-                        self.status = PTAudioPlayerEvent.Error("")
-                        self.playEventsBlock?(PTAudioPlayerEvent.Error("media did not arrive in time to continue playback -" +  (playerItem.error?.localizedDescription ?? "")))
-                        self.stop(false)
-                    }
-                }
-            }).disposed(by: self.disposeBag)
+        //播放器在播放过程中遇到问题，无法继续流畅播放，播放停滞时触发
+//        NotificationCenter.default.rx.notification(AVPlayerItem.playbackStalledNotification)
+//            .subscribe(onNext: { [weak self] (notic) in
+//                guard let `self` = self else {return}
+//                if (notic.object as? AVPlayerItem ?? nil) === playerItem {
+//                    if case .Playing = self.status {
+//                    }
+//                }
+//            }).disposed(by: self.disposeBag)
         
         NotificationCenter.default.rx.notification(AVAudioSession.interruptionNotification).subscribe(onNext: { [weak self] (notic) in
             guard let self else { return }
