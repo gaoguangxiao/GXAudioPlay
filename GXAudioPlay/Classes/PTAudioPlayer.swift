@@ -110,24 +110,24 @@ public class PTAudioPlayer: NSObject {
             }).disposed(by: self.disposeBag)
         
         // 缓冲不足暂停
-        playerItem.rx.observe(Bool.self, "playbackBufferEmpty").subscribe(onNext: { [weak self] (value) in
-            guard let `self` = self else {return}
-            if case .Playing = self.status  {
-                self.status = PTAudioPlayerEvent.Waiting
-                self.playEventsBlock?(PTAudioPlayerEvent.Waiting)
-            }
-        }).disposed(by: self.disposeBag)
+//        playerItem.rx.observe(Bool.self, "playbackBufferEmpty").subscribe(onNext: { [weak self] (value) in
+//            guard let `self` = self else {return}
+//            if case .Playing = self.status  {
+//                self.status = PTAudioPlayerEvent.Waiting
+//                self.playEventsBlock?(PTAudioPlayerEvent.Waiting)
+//            }
+//        }).disposed(by: self.disposeBag)
         
         //缓冲可以播放
-        playerItem.rx.observe(Bool.self, "playbackLikelyToKeepUp").subscribe(onNext: { [weak self] (value) in
-            guard let `self` = self else {return}
-            if  case .Waiting = self.status  {
-                self.status = PTAudioPlayerEvent.Playing(0)
-                self.remoteAudioPlayer?.play()
-                self.remoteAudioPlayer?.rate = self.playSpeed
-                self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
-            }
-        }).disposed(by: self.disposeBag)
+//        playerItem.rx.observe(Bool.self, "playbackLikelyToKeepUp").subscribe(onNext: { [weak self] (value) in
+//            guard let `self` = self else {return}
+//            if  case .Waiting = self.status  {
+//                self.status = PTAudioPlayerEvent.Playing(0)
+//                self.remoteAudioPlayer?.play()
+//                self.remoteAudioPlayer?.rate = self.playSpeed
+//                self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
+//            }
+//        }).disposed(by: self.disposeBag)
         
         //        NotificationCenter.default.rx.notification(AVPlayerItem.newErrorLogEntryNotification)
         //            .subscribe(onNext: { (notic) in
