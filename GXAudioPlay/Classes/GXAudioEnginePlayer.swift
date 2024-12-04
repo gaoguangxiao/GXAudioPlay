@@ -158,8 +158,8 @@ public class GXAudioEnginePlayer: NSObject {
     }
     
     //播放本地URL
-    public func play(fileURL fileUrl: URL) {
-        self.setAVAudioSession()
+    public func play(fileURL fileUrl: URL) throws {
+        try self.setAVAudioSession()
         if let audioFile = setPlayAudioFile(fileUrl: fileUrl) {
             player.scheduleFile(audioFile, at: nil, completionHandler: nil)
             skipFrame = 0
@@ -427,14 +427,14 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
     }
     
     //本地URL
-    public func play(url: String) {
+    public func play(url: String) throws {
         
         //        if let uurl = URL(fileURLWithPath: url) {
         //播放缓存
         //        self.playpcm(fileURL: URL(fileURLWithPath: url), options: .interrupts)
         //        }
 //        self.playpcm(fileURL: URL(fileURLWithPath: url))
-                self.play(fileURL:URL(fileURLWithPath: url))
+        try self.play(fileURL:URL(fileURLWithPath: url))
         
     }
     
@@ -465,9 +465,9 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
         
     }
     
-    public func resume() {
+    public func resume() throws {
         //恢复播放，那么引擎必须处于运行状态，如果被`stop`，那么调用失败
-        self.setAVAudioSession()
+        try self.setAVAudioSession()
         if self.engine.isRunning {
             self.player.play()
         } else {

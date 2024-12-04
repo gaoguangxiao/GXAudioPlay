@@ -18,6 +18,7 @@ public enum PTAudioPlayerEvent: Equatable {
     case Ended
     case LoopEndSingle   //单次循环结束
     case Error(String)
+    case LogError(String) //播放器错误日志
 }
 
 public protocol GXAudioPlayerProtocol: NSObjectProtocol{
@@ -39,13 +40,13 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     //播放本地URL
     
     //播放网络
-    func play(url: String)
+    func play(url: String) throws
 
     //暂停
     func pause()
     
     //继续播放
-    func resume()
+    func resume() throws
     
     func stop()
     
@@ -64,23 +65,14 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
 //MARK: 控制音频会话
 extension GXAudioPlayerProtocol {
     
-    public func setAVAudioSession() {
+    public func setAVAudioSession() throws {
         if AVAudioSession.sharedInstance().category != AVAudioSession.Category.playAndRecord  {
-            do {
-                if #available(iOS 10.0, *) {//iOS 新增.allowAirPlay .allowBluetoothA2DP
-                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .allowBluetoothA2DP])
-                } else {
-                    try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord, options: [.defaultToSpeaker, .allowBluetooth])
-                }
-
-            } catch {
-
-            }
-        }
-        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playAndRecord,
+                                                            options: [.defaultToSpeaker,
+                                                                .allowBluetooth,
+                                                                .allowAirPlay,
+                                                                .allowBluetoothA2DP])
             try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-
         }
     }
 }

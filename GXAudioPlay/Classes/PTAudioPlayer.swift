@@ -110,24 +110,24 @@ public class PTAudioPlayer: NSObject {
             }).disposed(by: self.disposeBag)
         
         // 缓冲不足暂停
-//        playerItem.rx.observe(Bool.self, "playbackBufferEmpty").subscribe(onNext: { [weak self] (value) in
-//            guard let `self` = self else {return}
-//            if case .Playing = self.status  {
-//                self.status = PTAudioPlayerEvent.Waiting
-//                self.playEventsBlock?(PTAudioPlayerEvent.Waiting)
-//            }
-//        }).disposed(by: self.disposeBag)
+        playerItem.rx.observe(Bool.self, "playbackBufferEmpty").subscribe(onNext: { [weak self] (value) in
+            guard let `self` = self else {return}
+            if case .Playing = self.status  {
+                self.status = PTAudioPlayerEvent.Waiting
+                self.playEventsBlock?(PTAudioPlayerEvent.Waiting)
+            }
+        }).disposed(by: self.disposeBag)
         
         //缓冲可以播放
-//        playerItem.rx.observe(Bool.self, "playbackLikelyToKeepUp").subscribe(onNext: { [weak self] (value) in
-//            guard let `self` = self else {return}
-//            if  case .Waiting = self.status  {
-//                self.status = PTAudioPlayerEvent.Playing(0)
-//                self.remoteAudioPlayer?.play()
-//                self.remoteAudioPlayer?.rate = self.playSpeed
-//                self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
-//            }
-//        }).disposed(by: self.disposeBag)
+        playerItem.rx.observe(Bool.self, "playbackLikelyToKeepUp").subscribe(onNext: { [weak self] (value) in
+            guard let `self` = self else {return}
+            if  case .Waiting = self.status  {
+                self.status = PTAudioPlayerEvent.Playing(0)
+                self.remoteAudioPlayer?.play()
+                self.remoteAudioPlayer?.rate = self.playSpeed
+                self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
+            }
+        }).disposed(by: self.disposeBag)
         
         //        NotificationCenter.default.rx.notification(AVPlayerItem.newErrorLogEntryNotification)
         //            .subscribe(onNext: { (notic) in
@@ -142,7 +142,7 @@ public class PTAudioPlayer: NSObject {
         self.remoteAudioPlayer?.replaceCurrentItem(with: playerItem)
         self.remoteAudioPlayer?.automaticallyWaitsToMinimizeStalling = false
         self.remoteAudioPlayer?.rate = self.playSpeed
-
+        
         NotificationCenter.default.rx.notification(AVPlayerItem.didPlayToEndTimeNotification)
             .subscribe(onNext: { [weak self] (notic) in
                 guard let self else {return}
@@ -174,32 +174,33 @@ public class PTAudioPlayer: NSObject {
                 }
             }).disposed(by: self.disposeBag)
         
+        //        当 AVPlayerItem 未能播放到结尾时触发。
         NotificationCenter.default.rx.notification(AVPlayerItem.failedToPlayToEndTimeNotification)
             .subscribe(onNext: { [weak self] (notic) in
-                guard let `self` = self else {return}
-                if (notic.object as? AVPlayerItem ?? nil) === playerItem {
-                    if case .Playing = self.status {
-                        self.stop(true)
-                    }
-                }
+                guard let self else { return }
+                handleFailedToPlayToEndTime(notic)
             }).disposed(by: self.disposeBag)
         
+        //当播放器生成新的错误日志条目时触发。错误日志提供关于播放问题的更多信息。
+        NotificationCenter.default.rx.notification(AVPlayerItem.newErrorLogEntryNotification)
+            .subscribe(onNext: { [weak self] (notic) in
+                guard let self else { return }
+                handleErrorLog(notic)
+            }).disposed(by: self.disposeBag)
         
-        //播放器在播放过程中遇到问题，无法继续流畅播放，播放停滞时触发
-//        NotificationCenter.default.rx.notification(AVPlayerItem.playbackStalledNotification)
-//            .subscribe(onNext: { [weak self] (notic) in
-//                guard let `self` = self else {return}
-//                if (notic.object as? AVPlayerItem ?? nil) === playerItem {
-//                    if case .Playing = self.status {
-//                    }
-//                }
-//            }).disposed(by: self.disposeBag)
+        //播放器在播放过程中遇到问题，无法继续流畅播放，播放停滞时触发-旧版认为错误，新版将日志上报
+        NotificationCenter.default.rx.notification(AVPlayerItem.playbackStalledNotification)
+            .subscribe(onNext: { [weak self] (notic) in
+                guard let self else { return }
+                handlePlaybackStalled(notic)
+            }).disposed(by: self.disposeBag)
         
+        // 播放器被中断
         NotificationCenter.default.rx.notification(AVAudioSession.interruptionNotification).subscribe(onNext: { [weak self] (notic) in
             guard let self else { return }
             interruptionTypeChanged(notic)
         }).disposed(by: self.disposeBag)
-     
+        
         NotificationCenter.default.rx.notification(AVAudioSession.routeChangeNotification).subscribe { [weak self] notic in
             guard let self else { return }
             routeChangeTyptChanged(notic)
@@ -252,7 +253,7 @@ public class PTAudioPlayer: NSObject {
     func receviedEventEnterForeground() {
         if case .Pause = self.status , self._pauseForEnterBackground == true {
             self._pauseForEnterBackground = false
-            self.resume()
+            try? self.resume()
         } else if case .Playing = self.status  {
             self.stop(true)
         }
@@ -277,6 +278,36 @@ public class PTAudioPlayer: NSObject {
 /// 音频通知
 //MARK: - audio notification
 extension PTAudioPlayer {
+    
+    @objc private func handleErrorLog(_ nof:Notification) {
+        //        LogError
+        if let playerItem = nof.object as? AVPlayerItem,
+           let errorLog = playerItem.errorLog() {
+            self.playEventsBlock?(.LogError("newErrorLogEntry:\(errorLog.description)"))
+        }
+    }
+    
+    @objc private func handlePlaybackStalled(_ notification: Notification) {
+        // 判断具体的播放项（如果有多个 AVPlayerItem）
+        if let playerItem = notification.object as? AVPlayerItem {
+            // 可以在这里检查当前缓冲区状态
+            self.playEventsBlock?(.LogError("playbackStalled：播放暂停，可能是缓冲不足"))
+        }
+    }
+    
+    @objc private func handleFailedToPlayToEndTime(_ nof:Notification) {
+        if let error = nof.userInfo?[AVPlayerItemFailedToPlayToEndTimeErrorKey] as? NSError {
+            let errorStr = "failedToPlayToEndTime：\(error.localizedDescription)"
+            print(errorStr)
+            self.status = PTAudioPlayerEvent.Error(errorStr)
+            self.playEventsBlock?(self.status)
+        } else {
+            let errorStr = "failedToPlayToEndTime：未知错误"
+            print(errorStr)
+            self.status = PTAudioPlayerEvent.Error(errorStr)
+            self.playEventsBlock?(self.status)
+        }
+    }
     
     ///打断
     @objc private func interruptionTypeChanged(_ nof:Notification) {
@@ -334,7 +365,7 @@ extension PTAudioPlayer {
     
     ///耳机
     @objc private func routeChangeTyptChanged(_ nof:Notification) {
-//        print("audio session route change \(nof)")
+        //        print("audio session route change \(nof)")
         
         guard let userInfo = nof.userInfo else { return }
         var seccReason = ""
@@ -350,7 +381,7 @@ extension PTAudioPlayer {
             if previousRoute.inputs.count <= 0 && previousRoute.outputs.count <= 0 {
                 return
             }
-
+            
             let previousOutput = previousRoute.outputs[0]
             let portType = previousOutput.portType
             print("音频模式更改:有新设备可用通知- \(portType.rawValue)")
@@ -374,7 +405,7 @@ extension PTAudioPlayer {
             if portType == AVAudioSession.Port.headphones {
                 print("耳机🎧模式")
                 if isPlaying {
-                    self.resume()
+                    try? self.resume()
                 }
             } else if portType == AVAudioSession.Port.builtInSpeaker {
                 
@@ -390,7 +421,7 @@ extension PTAudioPlayer {
             
         case AVAudioSession.RouteChangeReason.routeConfigurationChange.rawValue:
             seccReason = "Rotuer的配置改变了"
-//        case AVAudioSession.RouteChangeReason.unknown,
+            //        case AVAudioSession.RouteChangeReason.unknown,
         default:
             seccReason = "未知原因"
         }
@@ -398,9 +429,9 @@ extension PTAudioPlayer {
 }
 
 extension PTAudioPlayer: GXAudioPlayerProtocol {
-    
-    public func play(url: String) {
-        self.setAVAudioSession()
+    public func play(url: String) throws {
+        try self.setAVAudioSession()
+        
         status = PTAudioPlayerEvent.None
         
         let canUseCache = FileManager.default.fileExists(atPath: url)
@@ -416,25 +447,26 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
             audioUrl = fileUrl
         } else {
             guard let escapedURLString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
-                return
+                throw NSError(domain: "PercentEncoding.error", code: -1)
             }
             audioUrl = URL(string: escapedURLString)
         }
         
-        if let _url = audioUrl {
-            self._remoteAudioUrl = url
-            if self.remoteAudioPlayer == nil {
-                self.remoteAudioPlayer = AVPlayer.init()
-            } else {
-                //                    self.disposeBag = DisposeBag()
-            }
-            remoteAudioPlayer?.pause()
-//            self.playRemoteAudio(url: _url)
-            let playerItem = AVPlayerItem.init(url: _url)
-            self.addNotificationRX(playerItem: playerItem)
-        } else {
-            self.playEventsBlock?(PTAudioPlayerEvent.Error("url异常：\(url)"))
+        guard let audioUrl else {
+            throw NSError(domain: "url error", code: -1)
         }
+        
+        self._remoteAudioUrl = url
+        if self.remoteAudioPlayer == nil {
+            self.remoteAudioPlayer = AVPlayer.init()
+        } else {
+            //                    self.disposeBag = DisposeBag()
+        }
+        remoteAudioPlayer?.pause()
+        //            self.playRemoteAudio(url: _url)
+        let playerItem = AVPlayerItem.init(url: audioUrl)
+        self.addNotificationRX(playerItem: playerItem)
+        
     }
     
     public func play(fileURL fileUrl: URL) {
@@ -449,10 +481,10 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     }
     
     /// 重新播放
-    public func resume() {
+    public func resume() throws {
+        try setAVAudioSession()
         self.playEventsBlock?(.Playing(self.duration))
         self.status = .Playing(0)
-        setAVAudioSession()
         remoteAudioPlayer?.rate = self.playSpeed
     }
     
@@ -500,7 +532,7 @@ extension PTAudioPlayer {
             type = "低功耗蓝牙"
         case .airPlay:
             type = "隔空播放"
-        
+            
         default:
             type = "内置扬声器"
         }
