@@ -159,7 +159,7 @@ public class GXAudioEnginePlayer: NSObject {
     
     //播放本地URL
     public func play(fileURL fileUrl: URL) throws {
-        try self.setAVAudioSession()
+//        try self.setAVAudioSession()
         if let audioFile = setPlayAudioFile(fileUrl: fileUrl) {
             player.scheduleFile(audioFile, at: nil, completionHandler: nil)
             skipFrame = 0
@@ -467,7 +467,6 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
     
     public func resume() throws {
         //恢复播放，那么引擎必须处于运行状态，如果被`stop`，那么调用失败
-        try self.setAVAudioSession()
         if self.engine.isRunning {
             self.player.play()
         } else {

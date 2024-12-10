@@ -354,6 +354,13 @@ extension PTAudioPlayer {
             if optionKey == AVAudioSession.InterruptionOptions.shouldResume.rawValue {
                 //指示另一个音频会话的中断已结束，本应用程序可以恢复音频。
                 //                if (self.delegate != nil){
+                do {
+                    try AVAudioSession.sharedInstance().setActive(true)
+                    // 恢复播放或录制
+                } catch {
+                    print("无法激活音频会话: \(error.localizedDescription)")
+                    self.playEventsBlock?(.LogError("setActive:\(error.localizedDescription)"))
+                }
                 mediaChangeInterruptionType(begin: false)
                 print("mediaChangeInterruptionType: 结束")
                 //                }
@@ -430,7 +437,7 @@ extension PTAudioPlayer {
 
 extension PTAudioPlayer: GXAudioPlayerProtocol {
     public func play(url: String) throws {
-        try self.setAVAudioSession()
+//        try self.configureAudioSessionForPlayback()
         
         status = PTAudioPlayerEvent.None
         
@@ -482,7 +489,6 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     
     /// 重新播放
     public func resume() throws {
-        try setAVAudioSession()
         self.playEventsBlock?(.Playing(self.duration))
         self.status = .Playing(0)
         remoteAudioPlayer?.rate = self.playSpeed

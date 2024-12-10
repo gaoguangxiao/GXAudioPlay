@@ -26,9 +26,53 @@ class AVPlayerVc: UIViewController {
     
     //
     func addAVPlayerEvent() {
-        play?.playEventsBlock = { event in
-            print(event)
+        play?.playEventsBlock = { [self] event in
+            switch event {
+            case .Ended:
+                print("播放结束：：：：：")
+                //第二次播放
+//                play?.play(fileURL: filePath)
+//                self.startPlayOneAudioFile()
+//                play?.stop()
+
+                break
+            case .Playing(let duration):
+                print("音频时长\(duration)")
+
+            case .TimeUpdate(let currentTime):
+                break
+
+            default: break
+
+            }
         }
+        
+        //        play?.playEventsBlock = { [self] event in
+        //                switch event {
+        //                case .Ended:
+        //                    print("播放结束：：：：：")
+        //                    //第二次播放
+        //                    play?.play(fileURL: filePath)
+        ////                    self.startPlayOneAudioFile()
+        //                    break
+        //                case .Playing(let duration):
+        //        //            print("音频时长\(curentTiem)")
+        //                    DispatchQueue.main.async {
+        //                        self.playSlider.minimumValue = 0
+        //                        self.playSlider.maximumValue = Float(duration)
+        //                    }
+        //                case .TimeUpdate(let currentTime):
+        //                    let str = "音轨名字：" + "播放时间" + "\(currentTime)"
+        ////                    self.audioTrackText.text = str
+        //                    self.playSlider.value = Float(currentTime)
+        //                    break
+        //
+        //                default: break
+        //
+        //                }
+        //            }
+        
+        //        play?.delegateEngine = self
     }
     
     @IBAction func 播放本地音频(_ sender: Any) {
@@ -60,11 +104,29 @@ class AVPlayerVc: UIViewController {
 //        play?.play(url: urls[Int(index)])
 //        
 //        addAVPlayerEvent()
-        play?.volume = 1.0
-        play?.playSpeed = 1.5
-        play?.play(url: "https://file.risekid.cn/book/165/2/1/1.mp3")
-        audioControlBtn.setTitle("暂停播放", for: .normal)
+//        play?.volume = 1.0
+//        play?.playSpeed = 1.0
+////        try? play?.play(url: "https://file.risekid.cn/book/165/2/1/1.mp3")
+//        try? play?.play(url: "https://file.risekid.cn/web/adventure/static/step.a8e0e8f2.mp3")
+//        audioControlBtn.setTitle("暂停播放", for: .normal)
+        
+        startTimer()
     }
+    
+    func startTimer() {
+        // 定时每隔0.5秒执行一次
+        timer = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(playAudio), userInfo: nil, repeats: true)
+    }
+
+    @objc func playAudio() {
+        do {
+            try play?.play(url: "https://file.risekid.cn/web/adventure/static/step.a8e0e8f2.mp3")
+        } catch {
+            print("play error: \(error)")
+        }
+    }
+    
+    var timer: Timer?
     
     @IBAction func 暂停音频(_ sender: Any) {
         
@@ -74,14 +136,14 @@ class AVPlayerVc: UIViewController {
         } else {
             play?.volume = 1.0
             play?.playSpeed = 1.5
-            play?.resume()
+            try? play?.resume()
             audioControlBtn.setTitle("暂停播放", for: .normal)
         }
         
     }
     
     @IBAction func 停止音频(_ sender: Any) {
-        play?.play(url: "https://file.risekid.cn/web/adventure/static/voice_107_1.624644f1.mp3")
+        try? play?.play(url: "https://file.risekid.cn/web/adventure/static/voice_107_1.624644f1.mp3")
         play?.stop()
     }
 }

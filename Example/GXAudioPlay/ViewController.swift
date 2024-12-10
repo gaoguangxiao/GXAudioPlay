@@ -111,7 +111,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func 播放Engine(_ sender: Any) {
-        play?.play(url: filePath)
+        try? play?.play(url: filePath)
     }
     
     @IBAction func 从某时刻播放(_ sender: Any) {
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func 继续Engine(_ sender: Any) {
-        play?.resume()
+        try? play?.resume()
     }
     
     @IBAction func 调节播放时间(_ sender: UISlider) {
@@ -201,7 +201,7 @@ class ViewController: UIViewController {
 //        play?.playpcm(fileURL: url1, options: .loops) // 
         play?.loop = true
 //        play?.playpcm(fileURL: url)
-        play?.play(url: filePath)
+        try? play?.play(url: filePath)
         //传入插入尾音
         
         //
