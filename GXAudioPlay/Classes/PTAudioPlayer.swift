@@ -21,9 +21,9 @@ public class PTAudioPlayer: NSObject {
     
     public var playEventsBlock: ((PTAudioPlayerEvent)->())?
     
-    var status : PTAudioPlayerEvent = .None
+    public var status : PTAudioPlayerEvent = .None
     
-    private var disposeBag = DisposeBag()
+    public var disposeBag = DisposeBag()
     //播放器速度
     public var playSpeed: Float = 1.0
     //播放器音量
@@ -76,14 +76,14 @@ public class PTAudioPlayer: NSObject {
     }
     
     /// 是否正在播放
-    public var isPlaying: Bool {
-        get {
-            if case .Playing = self.status {
-                return true
-            }
-            return false
-        }
-    }
+//    public var isPlaying: Bool {
+//        get {
+//            if case .Playing = self.status {
+//                return true
+//            }
+//            return false
+//        }
+//    }
     
     public override init() {
         super.init()
@@ -534,18 +534,24 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     }
     
     /// 暂停播放
-    public func pause() {
-        self.playEventsBlock?(PTAudioPlayerEvent.Pause)
-        self.status = .Pause
-        remoteAudioPlayer?.pause()
-    }
-    
-    /// 重新播放
-    public func resume() throws {
-        self.playEventsBlock?(.Playing(self.duration))
-        self.status = .Playing(0)
-        remoteAudioPlayer?.rate = self.playSpeed
-    }
+    public func pause(isSystemControls: Bool = false) {
+           remoteAudioPlayer?.pause()
+           if isSystemControls {
+               self.playEventsBlock?(PTAudioPlayerEvent.Pause)
+           } else {
+               self.status = .Pause
+           }
+       }
+       
+       /// 重新播放
+       public func resume(isSystemControls: Bool = false){
+           remoteAudioPlayer?.rate = self.playSpeed
+           if isSystemControls {
+               self.playEventsBlock?(.Playing(self.duration))
+           } else {
+               self.status = .Playing(0)
+           }
+       }
     
     public func setSeekToTime(seconds: Double)  {
         // 拖动改变播放进度

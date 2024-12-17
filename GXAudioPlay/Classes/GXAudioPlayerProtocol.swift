@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFAudio
+import RxSwift
 
 public enum PTAudioPlayerEvent: Equatable {
     case None
@@ -31,39 +32,241 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     
     //是否支持循环播放
     var loop: Bool {get set}
-  
+    
     ///循环次数
     var numberOfLoops: Int{get set}
     
     var playEventsBlock: ((PTAudioPlayerEvent)->())? { get set }
     
-    //播放本地URL
+    var status : PTAudioPlayerEvent {get set}
+    
+    //是否播放
+    var isPlaying: Bool{get}
     
     //播放网络
     func play(url: String) throws
-
+    
     //暂停
-    func pause()
+    func pause(isSystemControls: Bool)
     
     //继续播放
-    func resume() throws
+    func resume(isSystemControls: Bool)
     
     func stop()
     
     func stop(_ issue : Bool)
-//
-//    //拖动到某秒进行播放
-//    public func setSeekToTime(seconds: Double)
-    func setSeekToTime(seconds: Double)
     
-    //时间
-    func addPeriodicTimer ()
+    //
+    var disposeBag: DisposeBag {get set}
     
-    func removePeriodicTimer()
+    //实现`AudioSession`通知
+//    func handleAudioSessionNotification()
 }
 
 //MARK: 控制音频会话
+public extension GXAudioPlayerProtocol {
+    
+    //
+    //    //拖动到某秒进行播放
+    //    public func setSeekToTime(seconds: Double)
+    func setSeekToTime(seconds: Double) {
+        
+    }
+    
+    //时间
+    func addPeriodicTimer () {
+        
+    }
+    
+    func removePeriodicTimer() {
+        
+    }
+    
+    var isPlaying: Bool {
+        get {
+            if case .Playing = self.status {
+                return true
+            }
+            return false
+        }
+    }
+}
+
 extension GXAudioPlayerProtocol {
     
-  
+    public func handleAudioSessionNotification() {
+        // 播放器被中断
+        NotificationCenter.default.rx.notification(AVAudioSession.interruptionNotification).subscribe(onNext: { [weak self] (notic) in
+            guard let self else { return }
+            interruptionTypeChanged(notic)
+        }).disposed(by: self.disposeBag)
+        
+        //耳机插拔
+        NotificationCenter.default.rx.notification(AVAudioSession.routeChangeNotification).subscribe { [weak self] notic in
+            guard let self else { return }
+            routeChangeTyptChanged(notic)
+        }.disposed(by: self.disposeBag)
+        
+    }
+    
+    ///打断
+    public func interruptionTypeChanged(_ nof:Notification) {
+        
+        guard let userInfo = nof.userInfo, let reasonValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt else { return }
+        
+        switch reasonValue {
+        case AVAudioSession.InterruptionType.began.rawValue://Began
+            var isAnotherAudioSuspend = false //是否是被其他音频会话打断
+            if #available(iOS 10.3, *) {
+                if #available(iOS 14.5, *) {
+                    // iOS 14.5之后使用InterruptionReasonKey
+                    let reasonKey = userInfo[AVAudioSessionInterruptionReasonKey] as! UInt
+                    switch reasonKey {
+                    case AVAudioSession.InterruptionReason.default.rawValue:
+                        //因为另一个会话被激活,音频中断
+                        isAnotherAudioSuspend = true
+                        break
+                    case AVAudioSession.InterruptionReason.appWasSuspended.rawValue:
+                        //由于APP被系统挂起，音频中断。
+                        break
+                    case AVAudioSession.InterruptionReason.builtInMicMuted.rawValue:
+                        //音频因内置麦克风静音而中断(例如iPad智能关闭套iPad's Smart Folio关闭)
+                        break
+                    default: break
+                    }
+                    print("AVAudioSessionInterruption: \(reasonKey)")
+                } else {
+                    // iOS10.3-14.5，InterruptionWasSuspendedKey为true表示中断是由于系统挂起，false是被另一音频打断
+                    let suspendedNumber:NSNumber = userInfo[AVAudioSessionInterruptionWasSuspendedKey] as! NSNumber
+                    isAnotherAudioSuspend = !suspendedNumber.boolValue
+                }
+            }
+            
+            if isAnotherAudioSuspend {
+                //                if (self.delegate != nil){
+                mediaChangeInterruptionType(begin: true)
+                print("mediaChangeInterruptionType: 开始")
+                //                }
+            }
+            break
+        case AVAudioSession.InterruptionType.ended.rawValue://End
+            let optionKey = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt
+            if optionKey == AVAudioSession.InterruptionOptions.shouldResume.rawValue {
+                //指示另一个音频会话的中断已结束，本应用程序可以恢复音频。
+                //                if (self.delegate != nil){
+                do {
+                    try AVAudioSession.sharedInstance().setActive(true)
+                    // 恢复播放或录制
+                } catch {
+                    print("无法激活音频会话: \(error.localizedDescription)")
+                    self.playEventsBlock?(.LogError("setActive:\(error.localizedDescription)"))
+                }
+                mediaChangeInterruptionType(begin: false)
+                print("mediaChangeInterruptionType: 结束")
+                //                }
+            }
+            break
+        default: break
+        }
+    }
+    
+//    public func receviedEventEnterBackground() {
+//        var needPause = false
+//        if case .Playing = self.status  { needPause = true }
+//        if case .Waiting = self.status  { needPause = true }
+//        if needPause  {
+//            self.pause(isSystemControls: true)
+//        }
+//    }
+//    
+//    func receviedEventEnterForeground() {
+//        if case .Pause = self.status {
+//            self.resume(isSystemControls: true)
+//        } else if case .Playing = self.status  {
+//            self.stop(true)
+//        }
+//    }
+    
+    ///  Audio session change notification
+    func mediaChangeInterruptionType(begin: Bool) {
+        var needPause = false
+        if case .Playing = self.status  { needPause = true }
+        if case .Waiting = self.status  { needPause = true }
+        if begin {
+            if needPause  {
+                self.pause(isSystemControls: true)
+            }
+        } else {
+//            if case .Pause = self.status {
+                self.resume(isSystemControls: true)
+//            } else if case .Playing = self.status  {
+//                self.stop(true)
+//            }
+        }
+    }
+    
+    
+    ///耳机
+    public func routeChangeTyptChanged(_ nof:Notification) {
+        //        print("audio session route change \(nof)")
+        
+        guard let userInfo = nof.userInfo else { return }
+        var seccReason = ""
+        guard let reason = userInfo[AVAudioSessionRouteChangeReasonKey] as? UInt else {return}
+        
+        switch reason {
+        case AVAudioSession.RouteChangeReason.newDeviceAvailable.rawValue:
+            seccReason = "有新设备可用"
+            // 一般为接入了耳机,参数为旧设备的信息。
+            guard let previousRoute = userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription  else {
+                return
+            }
+            if previousRoute.inputs.count <= 0 && previousRoute.outputs.count <= 0 {
+                return
+            }
+            
+            let previousOutput = previousRoute.outputs[0]
+            let portType = previousOutput.portType
+            print("音频模式更改:有新设备可用通知- \(portType.rawValue)")
+            if portType == AVAudioSession.Port.headphones {
+                //在这里暂停播放, 更改输出设备，录音时背景音需要重置。否则无法消音
+                print("耳机🎧模式")
+            } else if portType == AVAudioSession.Port.builtInSpeaker {
+                print("Built-in speaker on an iOS device")
+            }
+        case AVAudioSession.RouteChangeReason.oldDeviceUnavailable.rawValue:
+            seccReason = "老设备不可用"
+            guard let previousRoute = userInfo[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription  else {
+                return
+            }
+            if previousRoute.inputs.count <= 0 && previousRoute.outputs.count <= 0 {
+                return
+            }
+            let previousOutput = previousRoute.outputs[0]
+            let portType = previousOutput.portType
+            print("音频模式更改:老设备不可用通知- \(portType.rawValue)")
+            if portType == AVAudioSession.Port.headphones {
+                print("耳机🎧模式")
+                if case .Playing = self.status {
+                    self.resume(isSystemControls: true)
+                }
+            } else if portType == AVAudioSession.Port.builtInSpeaker {
+                
+            }
+        case AVAudioSession.RouteChangeReason.categoryChange.rawValue:
+            seccReason = "类别Cagetory改变了"
+        case AVAudioSession.RouteChangeReason.override.rawValue:
+            seccReason = "App重置了输出设置"
+        case AVAudioSession.RouteChangeReason.wakeFromSleep.rawValue:
+            seccReason = "从睡眠状态呼醒"
+        case AVAudioSession.RouteChangeReason.noSuitableRouteForCategory.rawValue:
+            seccReason = "当前Category下没有合适的设备"
+            
+        case AVAudioSession.RouteChangeReason.routeConfigurationChange.rawValue:
+            seccReason = "Rotuer的配置改变了"
+            //        case AVAudioSession.RouteChangeReason.unknown,
+        default:
+            seccReason = "未知原因"
+        }
+    }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import RxSwift
 
 //public protocol GXAudioEnginePlayerDelegate: NSObjectProtocol {
 //    //播放结束，手动停止，或者播放完毕
@@ -43,7 +44,9 @@ public class GXAudioEnginePlayer: NSObject {
     public var playEventsBlock: ((PTAudioPlayerEvent)->())?
     //    var playerEventDelegate: GXAudioPlayerEventProtocol?
     
-    var status : PTAudioPlayerEvent = .None
+    public var status : PTAudioPlayerEvent = .None
+    
+    public var disposeBag = DisposeBag()
     
     var displayLink: CADisplayLink?
     //遵循播放协议，但是存储属性不能写入扩展，因此写入实体
@@ -333,10 +336,10 @@ public class GXAudioEnginePlayer: NSObject {
         //增加定时回调
         if let displayLink = displayLink {
             //复用定时器
-            print("复用定时器")
+//            print("复用定时器")
         } else {
             //新建定时器
-            print("新建定时器")
+//            print("新建定时器")
             //添加
             displayLink = CADisplayLink(target: self, selector: #selector(monitorTimeChange))
             displayLink?.add(to: .current, forMode: .common)
@@ -390,6 +393,15 @@ public class GXAudioEnginePlayer: NSObject {
 }
 
 extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
+    public var isPlaying: Bool {
+        get {
+            if case .Playing = self.status {
+                return true
+            }
+            return false
+        }
+    }
+    
 //    public func playSubAudio(fileURL fileUrl: URL) {
 //        self.playSubAudio(fileURL: fileUrl)
 //    }
@@ -465,8 +477,8 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
         
     }
     
-    public func resume() throws {
-        //恢复播放，那么引擎必须处于运行状态，如果被`stop`，那么调用失败
+    public func resume(isSystemControls: Bool) {
+    //恢复播放，那么引擎必须处于运行状态，如果被`stop`，那么调用失败
         if self.engine.isRunning {
             self.player.play()
         } else {
@@ -477,7 +489,7 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
         status = .Playing(0)
     }
     
-    public func pause() {
+    public func pause(isSystemControls: Bool) {
         status = .Pause
         self.player.pause()
     }

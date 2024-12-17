@@ -119,7 +119,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func 暂停Engine(_ sender: Any) {
-        play?.pause()
+        play?.pause(isSystemControls: false)
     }
     
     @IBAction func 停止Engine(_ sender: Any) {
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func 继续Engine(_ sender: Any) {
-        try? play?.resume()
+        play?.resume(isSystemControls: false)
     }
     
     @IBAction func 调节播放时间(_ sender: UISlider) {

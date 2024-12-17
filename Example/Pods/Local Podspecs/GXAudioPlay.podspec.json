@@ -1,7 +1,7 @@
 {
   "name": "GXAudioPlay",
-  "version": "0.2.4",
-  "summary": "播放录音回放修改会话",
+  "version": "0.3.6",
+  "summary": "fix：音频中断的会话恢复",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/gaoguangxiao",
   "license": {
@@ -13,11 +13,11 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GXAudioPlay.git",
-    "tag": "0.2.4"
+    "tag": "0.3.6"
   },
   "swift_versions": "5.0",
   "platforms": {
-    "ios": "10.0"
+    "ios": "13.0"
   },
   "source_files": "GXAudioPlay/Classes/**/*",
   "dependencies": {
