@@ -104,13 +104,15 @@ class AVPlayerVc: UIViewController {
 //        play?.play(url: urls[Int(index)])
 //        
 //        addAVPlayerEvent()
-//        play?.volume = 1.0
-//        play?.playSpeed = 1.0
+        play = PTAudioPlayer()
+                
+        play?.volume = 1.0
+        play?.playSpeed = 1.0
 ////        try? play?.play(url: "https://file.risekid.cn/book/165/2/1/1.mp3")
-//        try? play?.play(url: "https://file.risekid.cn/web/adventure/static/step.a8e0e8f2.mp3")
+        try? play?.play(url: "https://file.risekid.cn/web/adventure/static/step.a8e0e8f2.mp3")
 //        audioControlBtn.setTitle("暂停播放", for: .normal)
         
-        startTimer()
+//        startTimer()
     }
     
     func startTimer() {

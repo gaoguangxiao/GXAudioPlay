@@ -88,6 +88,26 @@ public class PTAudioPlayer: NSObject {
     public override init() {
         super.init()
         self.remoteAudioPlayer = AVPlayer()
+        print("init----")
+    }
+    
+    func configureAudioSessionForPlayback() throws {
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        do {
+            // 设置音频会话为播放模式，不涉及录音
+//            try audioSession.setCategory(.playback, options: [
+//                .allowBluetooth,     // 如果允许通过蓝牙播放
+//                .allowAirPlay        // 如果允许通过 AirPlay 播放
+//            ])
+            try audioSession.setCategory(.playback, mode: .default)
+            // 激活音频会话
+            try audioSession.setActive(true)
+            print("AVAudioSession 已激活为 playback 模式")
+        } catch {
+            print("configureAudioSessionForPlayback 配置 AVAudioSession 失败: \(error.localizedDescription)")
+            throw error
+        }
     }
     
     func addNotificationRX(playerItem: AVPlayerItem) {
@@ -102,9 +122,13 @@ public class PTAudioPlayer: NSObject {
                         self.remoteAudioPlayer?.play()
                         self.remoteAudioPlayer?.rate = self.playSpeed
                     } else if status == AVPlayer.Status.failed {
+                        stop(false)
                         self.status = PTAudioPlayerEvent.Error("")
                         self.playEventsBlock?(PTAudioPlayerEvent.Error("AVPlayer.failed--\(String(describing: playerItem.error))"))
                         print("AVPlayer.error--\(String(describing: playerItem.error))")
+                        try? AVAudioSession.sharedInstance().setActive(false)
+                        try? configureAudioSessionForPlayback()
+                        
                     }
                 }
             }).disposed(by: self.disposeBag)
@@ -201,6 +225,12 @@ public class PTAudioPlayer: NSObject {
             interruptionTypeChanged(notic)
         }).disposed(by: self.disposeBag)
         
+        //添加音频会话通知监听
+        NotificationCenter.default.rx.notification(.AVCaptureSessionRuntimeError).subscribe { [weak self] notic in
+            guard let self else { return }
+            handleCaptureSessionError(notic)
+        }.disposed(by: self.disposeBag)
+        
         NotificationCenter.default.rx.notification(AVAudioSession.routeChangeNotification).subscribe { [weak self] notic in
             guard let self else { return }
             routeChangeTyptChanged(notic)
@@ -271,6 +301,7 @@ public class PTAudioPlayer: NSObject {
     deinit {
         remoteAudioPlayer = nil
         self.stop()
+        print("dealloc--\(self)")
         //        ZKLog("\(self) dealloc\(String(describing: remoteAudioPlayer))")
     }
 }
@@ -278,6 +309,28 @@ public class PTAudioPlayer: NSObject {
 /// 音频通知
 //MARK: - audio notification
 extension PTAudioPlayer {
+    
+    // 错误音频会话处理函数
+    @objc func handleCaptureSessionError(_ nof: Notification) {
+        if let error = nof.userInfo?[AVCaptureSessionErrorKey] as? AVError {
+            print("Capture session runtime error: \(error.localizedDescription)")
+            // 根据错误类型做相应的处理
+            self.playEventsBlock?(.LogError("newErrorLogEntry:\(error.localizedDescription)"))
+            
+            if error.code == .mediaServicesWereReset {
+                
+            } else {
+                
+                do {
+                    try AVAudioSession.sharedInstance().setActive(true)
+                    // 恢复播放或录制
+                } catch {
+                    print("无法激活音频会话: \(error.localizedDescription)")
+                    self.playEventsBlock?(.LogError("captureSession setActive:\(error.localizedDescription)"))
+                }
+            }
+        }
+    }
     
     @objc private func handleErrorLog(_ nof:Notification) {
         //        LogError
