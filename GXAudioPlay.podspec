@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.4.0'
+  s.version          = '0.4.1'
   s.summary          = 'fix：添加支持本地播放器'
 
 # This description is used to generate tags and improve search results.
