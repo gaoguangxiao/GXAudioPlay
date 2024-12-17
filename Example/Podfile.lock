@@ -1,6 +1,6 @@
 PODS:
   - GGXSwiftExtension (0.2.3)
-  - GXAudioPlay (0.3.6):
+  - GXAudioPlay (0.4.2):
     - RxCocoa
   - RxCocoa (6.6.0):
     - RxRelay (= 6.6.0)
@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   GGXSwiftExtension: 6b2c728c53d6c4a561d676b951e54cedcf3074fa
-  GXAudioPlay: d468a01f8fdf2b2d74c44e74126b700742bc558c
+  GXAudioPlay: efe84a36d7a91e83bf1b565fcbf17819cf82fc0f
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632

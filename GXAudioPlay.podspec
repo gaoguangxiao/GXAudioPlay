@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.4.2'
-  s.summary          = 'fix：本地播放器错误移除抛出'
+  s.version          = '0.4.3'
+  s.summary          = 'fix：最小系统12'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -30,7 +30,7 @@ TODO: Add long description of the pod here.
 
   s.swift_version = '5.0'
   
-  s.ios.deployment_target = '13.0'
+  s.ios.deployment_target = '12.0'
 
   s.source_files = 'GXAudioPlay/Classes/**/*'
   
