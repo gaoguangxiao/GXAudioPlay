@@ -123,8 +123,16 @@ public class PTAudioPlayer: NSObject {
                         self.remoteAudioPlayer?.rate = self.playSpeed
                     } else if status == AVPlayer.Status.failed {
                         stop(false)
-                        self.status = PTAudioPlayerEvent.Error("")
-                        self.playEventsBlock?(PTAudioPlayerEvent.Error("AVPlayer.failed--\(String(describing: playerItem.error))"))
+                        
+                        if let error = playerItem.error as? NSError {
+                            let nsError = NSError(domain: error.domain, code: error.code)
+                            self.status = PTAudioPlayerEvent.Error(nsError)
+                            self.playEventsBlock?(PTAudioPlayerEvent.Error(nsError))
+                        } else {
+                            let nsError = NSError(domain: "AVPlayer.failed-\(String(describing: playerItem.error))", code: -1000)
+                            self.playEventsBlock?(PTAudioPlayerEvent.Error(nsError))
+//                            print("AVPlayer.error--\(String(describing: playerItem.error))")
+                        }
                         print("AVPlayer.error--\(String(describing: playerItem.error))")
                         try? AVAudioSession.sharedInstance().setActive(false)
                         try? configureAudioSessionForPlayback()
@@ -352,13 +360,13 @@ extension PTAudioPlayer {
         if let error = nof.userInfo?[AVPlayerItemFailedToPlayToEndTimeErrorKey] as? NSError {
             let errorStr = "failedToPlayToEndTime：\(error.localizedDescription)"
             print(errorStr)
-            self.status = PTAudioPlayerEvent.Error(errorStr)
+            self.status = PTAudioPlayerEvent.Error(error)
             self.playEventsBlock?(self.status)
         } else {
-            let errorStr = "failedToPlayToEndTime：未知错误"
-            print(errorStr)
-            self.status = PTAudioPlayerEvent.Error(errorStr)
-            self.playEventsBlock?(self.status)
+//            let errorStr = "failedToPlayToEndTime：未知错误"
+//            print(errorStr)
+//            self.status = PTAudioPlayerEvent.Error(errorStr)
+//            self.playEventsBlock?(self.status)
         }
     }
     

@@ -18,7 +18,7 @@ public enum PTAudioPlayerEvent: Equatable {
     case Interruption    //音频被中断
     case Ended
     case LoopEndSingle   //单次循环结束
-    case Error(String)
+    case Error(NSError) //错误信息
     case LogError(String) //播放器错误日志
 }
 
@@ -170,23 +170,6 @@ extension GXAudioPlayerProtocol {
         }
     }
     
-//    public func receviedEventEnterBackground() {
-//        var needPause = false
-//        if case .Playing = self.status  { needPause = true }
-//        if case .Waiting = self.status  { needPause = true }
-//        if needPause  {
-//            self.pause(isSystemControls: true)
-//        }
-//    }
-//    
-//    func receviedEventEnterForeground() {
-//        if case .Pause = self.status {
-//            self.resume(isSystemControls: true)
-//        } else if case .Playing = self.status  {
-//            self.stop(true)
-//        }
-//    }
-    
     ///  Audio session change notification
     func mediaChangeInterruptionType(begin: Bool) {
         var needPause = false
@@ -197,11 +180,9 @@ extension GXAudioPlayerProtocol {
                 self.pause(isSystemControls: true)
             }
         } else {
-//            if case .Pause = self.status {
+            if needPause  {
                 self.resume(isSystemControls: true)
-//            } else if case .Playing = self.status  {
-//                self.stop(true)
-//            }
+            }
         }
     }
     

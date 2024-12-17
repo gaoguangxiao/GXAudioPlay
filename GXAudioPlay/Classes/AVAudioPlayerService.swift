@@ -174,8 +174,7 @@ extension AVAudioPlayerService: AVAudioPlayerDelegate {
 
     public func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         if let error {
-//            print("Audio playback error occurred: \(error.localizedDescription)")
-            self.playEventsBlock?(.Error(error.localizedDescription))
+            self.playEventsBlock?(.Error(error as NSError))
         }
     }
 }
