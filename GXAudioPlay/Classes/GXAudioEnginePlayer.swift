@@ -42,7 +42,8 @@ public class GXAudioEnginePlayer: NSObject {
     var currentAudioPCMBuffer: AVAudioPCMBuffer? //当前播放引擎播放的文件缓存
     
     public var playEventsBlock: ((PTAudioPlayerEvent)->())?
-    //    var playerEventDelegate: GXAudioPlayerEventProtocol?
+    
+    public var timeEvent: Bool = false
     
     public var status : PTAudioPlayerEvent = .None
     
@@ -51,9 +52,7 @@ public class GXAudioEnginePlayer: NSObject {
     var displayLink: CADisplayLink?
     //遵循播放协议，但是存储属性不能写入扩展，因此写入实体
     public var loop: Bool = false
-    
-    public var track: String?
-    
+        
     public override init() {
         //添加播放节点
         engine.attach(player)
@@ -393,15 +392,7 @@ public class GXAudioEnginePlayer: NSObject {
 }
 
 extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
-    public var isPlaying: Bool {
-        get {
-            if case .Playing = self.status {
-                return true
-            }
-            return false
-        }
-    }
-    
+
 //    public func playSubAudio(fileURL fileUrl: URL) {
 //        self.playSubAudio(fileURL: fileUrl)
 //    }

@@ -23,9 +23,7 @@ public enum PTAudioPlayerEvent: Equatable {
 }
 
 public protocol GXAudioPlayerProtocol: NSObjectProtocol{
-    
-    var track: String? {get set}
-    
+        
     var playSpeed: Float {get set}
     
     var volume: Float {get set}
@@ -36,9 +34,16 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     ///循环次数
     var numberOfLoops: Int{get set}
     
+    // Callback playback progress
+    var timeEvent: Bool{get set}
+    
+    ///
     var playEventsBlock: ((PTAudioPlayerEvent)->())? { get set }
     
     var status : PTAudioPlayerEvent {get set}
+    
+    //
+    var disposeBag: DisposeBag {get set}
     
     //是否播放
     var isPlaying: Bool{get}
@@ -56,33 +61,14 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     
     func stop(_ issue : Bool)
     
-    //
-    var disposeBag: DisposeBag {get set}
-    
-    //实现`AudioSession`通知
-//    func handleAudioSessionNotification()
+    // Slide a second to play
+    func setSeekToTime(seconds: Double)
 }
 
 //MARK: 控制音频会话
-public extension GXAudioPlayerProtocol {
+extension GXAudioPlayerProtocol {
     
-    //
-    //    //拖动到某秒进行播放
-    //    public func setSeekToTime(seconds: Double)
-    func setSeekToTime(seconds: Double) {
-        
-    }
-    
-    //时间
-    func addPeriodicTimer () {
-        
-    }
-    
-    func removePeriodicTimer() {
-        
-    }
-    
-    var isPlaying: Bool {
+    public var isPlaying: Bool {
         get {
             if case .Playing = self.status {
                 return true

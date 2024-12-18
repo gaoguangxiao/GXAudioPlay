@@ -13,7 +13,7 @@ import RxSwift
 public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     
     public var status: PTAudioPlayerEvent = .None
-        
+    
     public var disposeBag = DisposeBag()
     
     public var track: String?
@@ -28,30 +28,68 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     
     public  var playEventsBlock: ((PTAudioPlayerEvent) -> ())?
     
-//    public var isPlaying: Bool = false
-    
     private var audioPlayer: AVAudioPlayer?
     private var startTime: Date?
     
+    public var timeEvent: Bool = false {
+        didSet {
+            if timeEvent {
+                addPeriodicTimer()
+            } else {
+                removePeriodicTimer()
+            }
+        }
+    }
+    
+    // MARK: - Private Methods
+    
+    /// Logs the duration of audio playback.
+    private func logPlaybackDuration() {
+        if let startTime = startTime {
+            let endTime = Date()
+            let duration = endTime.timeIntervalSince(startTime)
+            print("Audio playback duration: \(duration) seconds")
+            self.startTime = nil
+        }
+    }
+    
+    
+    private var progressTimer: Timer?
+    // add Periodic timer
+    public func addPeriodicTimer () {
+        self.removePeriodicTimer()
+        progressTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(0.1), repeats: true) { [weak self] t in
+            guard let self else {
+                return
+            }
+            // 在这里更新 UI 或执行其他操作
+            if let audioPlayer = self.audioPlayer {
+                let progress = audioPlayer.currentTime
+                //let duration = audioPlayer.duration
+                guard case .Playing = self.status else {
+                    return
+                }
+                playEventsBlock?(PTAudioPlayerEvent.TimeUpdate(progress))
+            }
+        }
+        if !Thread.isMainThread {
+            if let progressTimer {
+                RunLoop.current.add(progressTimer, forMode: .common)
+                RunLoop.current.run()
+            }
+        }
+    }
+    
+    public func removePeriodicTimer() {
+        progressTimer?.invalidate()
+        progressTimer = nil
+    }
+    
+    // MARK: - Public Methods
+    
     public func play(url: String) throws {
         
-        let canUseCache = FileManager.default.fileExists(atPath: url)
-        var audioUrl: URL?
-        if canUseCache {
-            var fileUrl : URL?
-            if #available(iOS 16.0, *) {
-                fileUrl = URL(filePath: url)
-            } else {
-                // Fallback on earlier versions
-                fileUrl = URL(fileURLWithPath: url)
-            }
-            audioUrl = fileUrl
-        } else {
-            guard let escapedURLString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
-                throw NSError(domain: "PercentEncoding.error", code: -1)
-            }
-            audioUrl = URL(string: escapedURLString)
-        }
+        let audioUrl =  url.encodeLocalOrRemoteForUrl
         
         guard let audioUrl else {
             throw NSError(domain: "url error", code: -1)
@@ -67,13 +105,12 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             audioPlayer?.prepareToPlay()
             startTime = Date()
             status = .Playing(0)
-//            isPlaying = true
             handleAudioSessionNotification()
             audioPlayer?.play()
         } catch {
             print("Error: Failed to initialize AVAudioPlayer. \(error.localizedDescription)")
             throw error
-        }        
+        }
     }
     
     /// Stops the currently playing audio.
@@ -81,26 +118,24 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
         stop(false)
     }
     
-    /// 停止播放
+    /// Stops the currently playing audio.
     public func stop(_ issue : Bool = false) {
         NotificationCenter.default.removeObserver(self)
-        self.removePeriodicTimer()
+        //        self.removePeriodicTimer()
         if issue {
             self.playEventsBlock?(.Ended)
         }
         self.status = .None
         audioPlayer?.pause()
+        audioPlayer = nil
         self.disposeBag = DisposeBag()
     }
     
-
-    // MARK: - Public Methods
-
     /// Pauses the currently playing audio.
     public func pause(isSystemControls: Bool = false) {
         if let audioPlayer {
             audioPlayer.pause()
-//            logPlaybackDuration()
+            //            logPlaybackDuration()
             if isSystemControls {
                 self.playEventsBlock?(PTAudioPlayerEvent.Pause)
             } else {
@@ -115,10 +150,9 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     /// Resumes the currently paused audio.
     public func resume(isSystemControls: Bool = false) {
         if let audioPlayer {
-//            startTime = Date()
-            audioPlayer.play()
             audioPlayer.rate = self.playSpeed
             audioPlayer.volume = self.volume
+            audioPlayer.play()
             if isSystemControls {
                 self.playEventsBlock?(.Playing(audioPlayer.duration))
             } else {
@@ -136,7 +170,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
         audioPlayer?.volume = volume
         print("Volume set to \(volume).")
     }
-
+    
     /// Adjusts the playback rate.
     /// - Parameter rate: The playback speed (e.g., 1.0 for normal speed, 2.0 for double speed).
     func setRate(_ rate: Float) {
@@ -147,16 +181,13 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             print("Rate adjustment is not supported.")
         }
     }
-
-    // MARK: - Private Methods
-
-    /// Logs the duration of audio playback.
-    private func logPlaybackDuration() {
-        if let startTime = startTime {
-            let endTime = Date()
-            let duration = endTime.timeIntervalSince(startTime)
-            print("Audio playback duration: \(duration) seconds")
-            self.startTime = nil
+    
+    public func setSeekToTime(seconds: Double) {
+        if let audioPlayer {
+            // 设置音频开始播放的时间
+            audioPlayer.currentTime = seconds
+            // 播放音频
+            audioPlayer.play()
         }
     }
 }
@@ -165,13 +196,10 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
 
 extension AVAudioPlayerService: AVAudioPlayerDelegate {
     public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-//        logPlaybackDuration()
-//        isPlaying = false
+        //        logPlaybackDuration()
         stop(true)
-//        print("Audio finished playing. Success: \(flag)")
-//        self.playEventsBlock?(.Ended)
     }
-
+    
     public func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         if let error {
             self.playEventsBlock?(.Error(error as NSError))
