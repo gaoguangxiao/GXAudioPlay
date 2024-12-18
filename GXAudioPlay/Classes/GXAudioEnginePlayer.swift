@@ -49,6 +49,10 @@ public class GXAudioEnginePlayer: NSObject {
     
     public var disposeBag = DisposeBag()
     
+    public var startTime: Date = Date()
+    
+    public var playbackDuration: Double = 0
+    
     var displayLink: CADisplayLink?
     //遵循播放协议，但是存储属性不能写入扩展，因此写入实体
     public var loop: Bool = false

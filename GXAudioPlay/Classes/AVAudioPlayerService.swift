@@ -29,7 +29,13 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     public  var playEventsBlock: ((PTAudioPlayerEvent) -> ())?
     
     private var audioPlayer: AVAudioPlayer?
-    private var startTime: Date?
+    
+    //音频时长
+    public var duration: Double { audioPlayer?.duration ?? 0 }
+    
+    public var startTime: Date = Date()
+    
+    public var playbackDuration: Double = 0
     
     public var timeEvent: Bool = false {
         didSet {
@@ -42,18 +48,6 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     }
     
     // MARK: - Private Methods
-    
-    /// Logs the duration of audio playback.
-    private func logPlaybackDuration() {
-        if let startTime = startTime {
-            let endTime = Date()
-            let duration = endTime.timeIntervalSince(startTime)
-            print("Audio playback duration: \(duration) seconds")
-            self.startTime = nil
-        }
-    }
-    
-    
     private var progressTimer: Timer?
     // add Periodic timer
     public func addPeriodicTimer () {
@@ -104,6 +98,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             audioPlayer?.volume = volume
             audioPlayer?.prepareToPlay()
             startTime = Date()
+            self.playbackDuration = 0
             status = .Playing(0)
             handleAudioSessionNotification()
             audioPlayer?.play()
@@ -196,7 +191,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
 
 extension AVAudioPlayerService: AVAudioPlayerDelegate {
     public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        //        logPlaybackDuration()
+        logPlaybackDuration()
         stop(true)
     }
     

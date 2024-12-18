@@ -66,12 +66,15 @@ public class PTAudioPlayer: NSObject {
     // 播放进度监听
     private var _time_observer: Any? = nil
 
+    public var startTime: Date = Date()
+    
+    public var playbackDuration: Double = 0
+    
     //获取audio时长
-    private var duration: Double {
+    public var duration: Double {
         get {
             if let audioPlayer = remoteAudioPlayer {
-                let duration = CMTimeGetSeconds(audioPlayer.currentItem?.duration ?? CMTime.zero)
-                return duration
+                return CMTimeGetSeconds(audioPlayer.currentItem?.duration ?? CMTime.zero)
             }
             return 0
         }
@@ -131,8 +134,7 @@ public class PTAudioPlayer: NSObject {
             }
         }).disposed(by: self.disposeBag)
         
-        self.remoteAudioPlayer?.replaceCurrentItem(with: playerItem)
-        self.remoteAudioPlayer?.automaticallyWaitsToMinimizeStalling = false
+
         self.remoteAudioPlayer?.rate = self.playSpeed
         
         NotificationCenter.default.rx.notification(AVPlayerItem.didPlayToEndTimeNotification)
@@ -305,7 +307,10 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
         }
         status = PTAudioPlayerEvent.None
         let playerItem = AVPlayerItem.init(url: audioUrl)
+        self.remoteAudioPlayer?.replaceCurrentItem(with: playerItem)
+        self.remoteAudioPlayer?.automaticallyWaitsToMinimizeStalling = false
         self.addNotificationRX(playerItem: playerItem)
+        startTime = Date()
     }
     
     /// 暂停播放
@@ -343,6 +348,7 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     public func stop(_ issue : Bool = false) {
         NotificationCenter.default.removeObserver(self)
         self.removePeriodicTimer()
+        logPlaybackDuration()
         if issue {
             self.playEventsBlock?(.Ended)
         }

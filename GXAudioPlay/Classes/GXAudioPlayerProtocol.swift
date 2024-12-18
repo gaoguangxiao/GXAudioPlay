@@ -23,7 +23,7 @@ public enum PTAudioPlayerEvent: Equatable {
 }
 
 public protocol GXAudioPlayerProtocol: NSObjectProtocol{
-        
+    
     var playSpeed: Float {get set}
     
     var volume: Float {get set}
@@ -41,6 +41,15 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     var playEventsBlock: ((PTAudioPlayerEvent)->())? { get set }
     
     var status : PTAudioPlayerEvent {get set}
+    
+    /// audio duration
+    var duration: Double {get}
+    
+    //开始播放
+    var startTime: Date {get set}
+    
+    /// 播放完毕时间
+    var playbackDuration: Double{get set}
     
     //
     var disposeBag: DisposeBag {get set}
@@ -235,5 +244,15 @@ extension GXAudioPlayerProtocol {
         default:
             seccReason = "未知原因"
         }
+    }
+}
+
+extension GXAudioPlayerProtocol {
+    
+    /// Logs the duration of audio playback.
+    public func logPlaybackDuration() {
+        let endTime = Date()
+        self.playbackDuration = endTime.timeIntervalSince(startTime)
+        //print("Audio playback duration: \(duration) seconds")
     }
 }
