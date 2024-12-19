@@ -119,7 +119,7 @@ public class PTAudioPlayer: NSObject {
             guard let `self` = self else {return}
             if case .Playing = self.status  {
                 self.status = PTAudioPlayerEvent.Waiting
-                self.playEventsBlock?(PTAudioPlayerEvent.Waiting)
+//                self.playEventsBlock?(PTAudioPlayerEvent.Waiting)
             }
         }).disposed(by: self.disposeBag)
         
@@ -130,7 +130,7 @@ public class PTAudioPlayer: NSObject {
                 self.status = PTAudioPlayerEvent.Playing(0)
                 self.remoteAudioPlayer?.play()
                 self.remoteAudioPlayer?.rate = self.playSpeed
-                self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
+//                self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
             }
         }).disposed(by: self.disposeBag)
         
