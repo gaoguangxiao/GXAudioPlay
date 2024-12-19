@@ -11,6 +11,13 @@ import RxSwift
 
 /// A utility class to manage audio playback using AVAudioPlayer.
 public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
+    public var isRunning: Bool = false
+    
+    public var canPlayResultCount: Double = 1
+    
+    public var playOutCount: Double = 0
+    
+    public var currentPlayCount: Double = 0
     
     public var status: PTAudioPlayerEvent = .None
     
@@ -46,6 +53,10 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             }
         }
     }
+    
+    public var overTimer: Timer?
+    
+    public var canPlayResult: Bool = false
     
     // MARK: - Private Methods
     private var progressTimer: Timer?
@@ -101,7 +112,9 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             self.playbackDuration = 0
             status = .Playing(0)
             handleAudioSessionNotification()
-            audioPlayer?.play()
+            if let b = audioPlayer?.play(), b {
+                initOverTimer(overDuration: duration + 5,canPlay: true)
+            }
         } catch {
             print("Error: Failed to initialize AVAudioPlayer. \(error.localizedDescription)")
             throw error
@@ -116,7 +129,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     /// Stops the currently playing audio.
     public func stop(_ issue : Bool = false) {
         NotificationCenter.default.removeObserver(self)
-        //        self.removePeriodicTimer()
+        //elf.removePeriodicTimer()
         if issue {
             self.playEventsBlock?(.Ended)
         }
@@ -124,6 +137,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
         audioPlayer?.pause()
         audioPlayer = nil
         self.disposeBag = DisposeBag()
+        removeOverTimer()
     }
     
     /// Pauses the currently playing audio.
@@ -137,6 +151,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
                 self.status = .Pause
             }
             print("Audio playback paused.")
+            pauseOverTimer()
         } else {
             print("No audio is currently playing to pause.")
         }
@@ -153,6 +168,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             } else {
                 self.status = .Playing(0)
             }
+            resumeOverTimer()
             print("Audio playback resumed.")
         } else {
             print("No paused audio to resume.")
@@ -191,13 +207,16 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
 
 extension AVAudioPlayerService: AVAudioPlayerDelegate {
     public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("audioPlayerDidFinishPlaying:\(flag)")
         logPlaybackDuration()
         stop(true)
     }
     
     public func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+        print("audioPlayerDecodeErrorDidOccur:\(error)")
         if let error {
             self.playEventsBlock?(.Error(error as NSError))
         }
+        removeOverTimer()
     }
 }

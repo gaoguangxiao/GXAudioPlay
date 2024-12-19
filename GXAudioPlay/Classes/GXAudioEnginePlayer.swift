@@ -57,6 +57,18 @@ public class GXAudioEnginePlayer: NSObject {
     //遵循播放协议，但是存储属性不能写入扩展，因此写入实体
     public var loop: Bool = false
         
+    public var overTimer: Timer?
+    
+    public var canPlayResult: Bool = false
+    
+    public var isRunning: Bool = false
+    
+    public var canPlayResultCount: Double = 1
+    
+    public var playOutCount: Double = 0
+    
+    public var currentPlayCount: Double = 0
+    
     public override init() {
         //添加播放节点
         engine.attach(player)
@@ -396,6 +408,7 @@ public class GXAudioEnginePlayer: NSObject {
 }
 
 extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
+   
 
 //    public func playSubAudio(fileURL fileUrl: URL) {
 //        self.playSubAudio(fileURL: fileUrl)

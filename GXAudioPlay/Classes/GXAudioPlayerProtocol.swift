@@ -72,6 +72,23 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     
     // Slide a second to play
     func setSeekToTime(seconds: Double)
+    
+    var isRunning: Bool {get set}
+    
+    //超时定时器
+    var overTimer: Timer?{get set}
+
+    // 准备播放时间 超时
+    var canPlayResultCount: Double {get set}
+    
+    //开始播放
+    var canPlayResult: Bool{get set}
+    
+    // 超时时间音频时间+ 2.5秒容错
+    var playOutCount: Double {get set}
+    
+    // 合计播放时间
+    var currentPlayCount: Double {get set}
 }
 
 //MARK: 控制音频会话
@@ -254,5 +271,65 @@ extension GXAudioPlayerProtocol {
         let endTime = Date()
         self.playbackDuration = endTime.timeIntervalSince(startTime)
         //print("Audio playback duration: \(duration) seconds")
+    }
+    
+    public func addOverTimer() {
+        isRunning = true
+        overTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] t in
+            guard let self else {
+                return
+            }
+            currentPlayCount += 0.1
+//            print("计时：\(currentPlayCount)、addOverTimer:\(playOutCount)")
+            // 在这里更新 UI 或执行其他操作
+            // 不可播放，准备时间超时了
+            if !canPlayResult, currentPlayCount > canPlayResultCount {
+                //规定时间不可播放
+                playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "overTimer.canplay\(playOutCount)", code: -1,userInfo: ["dutaion":playOutCount])))
+                removeOverTimer()
+            }
+            //已经开始播放，超时未停止
+            if canPlayResult, currentPlayCount >= playOutCount {
+                //
+                playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "overTimer.end\(playOutCount)", code: -1, userInfo: ["dutaion":playOutCount])))
+                removeOverTimer()
+            }
+        }
+        if !Thread.isMainThread {
+            if let overTimer {
+                RunLoop.current.add(overTimer, forMode: .common)
+                RunLoop.current.run()
+            }
+        }
+    }
+    
+    //初始化超时
+    func initOverTimer(overDuration: Double, canPlay: Bool) {
+        self.removeOverTimer()
+        canPlayResult = canPlay
+        canPlayResultCount = overDuration
+        playOutCount = overDuration
+        currentPlayCount = 0
+        //开始计数
+        addOverTimer()
+    }
+    
+    public func pauseOverTimer() {
+        guard isRunning else { return }
+        isRunning = false
+        removeOverTimer()
+    }
+    
+    public func resumeOverTimer() {
+        //移除
+        removeOverTimer()
+        //重新创建
+        addOverTimer()
+    }
+    
+    public func removeOverTimer() {
+        isRunning = false
+        overTimer?.invalidate()
+        overTimer = nil
     }
 }

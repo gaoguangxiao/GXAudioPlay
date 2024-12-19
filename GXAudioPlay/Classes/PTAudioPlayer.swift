@@ -70,6 +70,21 @@ public class PTAudioPlayer: NSObject {
     
     public var playbackDuration: Double = 0
     
+    //超时时间
+    public var overTimer: Timer?
+    
+    //得到播放结果
+    public var canPlayResult: Bool = false
+    
+    //定时器是否运行
+    public var isRunning: Bool = false
+    
+    public var canPlayResultCount: Double = 1
+    
+    public var playOutCount: Double = 0
+    
+    public var currentPlayCount: Double = 0
+    
     //获取audio时长
     public var duration: Double {
         get {
@@ -86,7 +101,8 @@ public class PTAudioPlayer: NSObject {
     }
     
     func addNotificationRX(playerItem: AVPlayerItem) {
-        
+        //1.0s准备时间
+        initOverTimer(overDuration: 5.0,canPlay: false)
         playerItem.rx.observeWeakly(AVPlayer.Status.self, "status").asObservable()
             .subscribe(onNext: {[weak self] (event) in
                 guard let `self` = self else { return }
@@ -96,9 +112,11 @@ public class PTAudioPlayer: NSObject {
                         self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
                         self.remoteAudioPlayer?.play()
                         self.remoteAudioPlayer?.rate = self.playSpeed
+                        canPlayResult = true
+                        //playOutTime
+                        initOverTimer(overDuration: duration + 5,canPlay: true)
                     } else if status == AVPlayer.Status.failed {
                         stop(false)
-                        
                         if let error = playerItem.error as? NSError {
                             let nsError = NSError(domain: error.domain, code: error.code)
                             self.status = PTAudioPlayerEvent.Error(nsError)
@@ -321,6 +339,7 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
         } else {
             self.status = .Pause
         }
+        pauseOverTimer()
     }
     
     /// 重新播放
@@ -331,6 +350,7 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
         } else {
             self.status = .Playing(0)
         }
+        resumeOverTimer()
     }
     
     public func setSeekToTime(seconds: Double)  {
@@ -357,5 +377,6 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
         remoteAudioPlayer?.replaceCurrentItem(with: nil)
         //        self.remoteAudioPlayer = nil
         self.disposeBag = DisposeBag()
+        removeOverTimer()
     }
 }
