@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.4.5'
+  s.version          = '0.4.6'
   s.summary          = 'fix：Waiting事件不抛出'
 
 # This description is used to generate tags and improve search results.
