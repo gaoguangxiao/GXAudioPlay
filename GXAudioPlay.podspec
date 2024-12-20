@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.5.1'
+  s.version          = '0.5.2'
   s.summary          = 'fix：timerOut错误码-1001区分'
 
 # This description is used to generate tags and improve search results.
