@@ -159,7 +159,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             audioPlayer.pause()
             //            logPlaybackDuration()
             if isSystemControls {
-                self.playEventsBlock?(PTAudioPlayerEvent.Pause)
+//                self.playEventsBlock?(PTAudioPlayerEvent.Pause)
             } else {
                 self.status = .Pause
             }
@@ -177,7 +177,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             audioPlayer.volume = self.volume
             audioPlayer.play()
             if isSystemControls {
-                self.playEventsBlock?(.Playing(audioPlayer.duration))
+//                self.playEventsBlock?(.Playing(audioPlayer.duration))
             } else {
                 self.status = .Playing(0)
             }

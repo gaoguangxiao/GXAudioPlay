@@ -351,7 +351,7 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     public func pause(isSystemControls: Bool = false) {
         remoteAudioPlayer?.pause()
         if isSystemControls {
-            self.playEventsBlock?(PTAudioPlayerEvent.Pause)
+//            self.playEventsBlock?(PTAudioPlayerEvent.Pause)
         } else {
             self.status = .Pause
         }
@@ -362,7 +362,7 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     public func resume(isSystemControls: Bool = false){
         remoteAudioPlayer?.rate = self.playSpeed
         if isSystemControls {
-            self.playEventsBlock?(.Playing(self.duration))
+//            self.playEventsBlock?(.Playing(self.duration))
         } else {
             self.status = .Playing(0)
         }

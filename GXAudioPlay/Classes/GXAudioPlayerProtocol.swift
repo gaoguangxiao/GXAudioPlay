@@ -136,17 +136,16 @@ extension GXAudioPlayerProtocol {
         NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else {return}
-                self.pauseOverTimer()
+//                self.pauseOverTimer()
+                mediaChangeInterruptionType(begin: true)
             }).disposed(by: disposeBag)
         
         //进入前台
         NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else {return}
-                //如果播放中，开启
-                if case .Playing = self.status {
-                    resumeOverTimer()
-                }
+                //中断恢复
+                mediaChangeInterruptionType(begin: false)
             }).disposed(by: disposeBag)
     }
     
@@ -212,6 +211,7 @@ extension GXAudioPlayerProtocol {
     }
     
     ///  Audio session change notification
+    ///   audio play by status
     func mediaChangeInterruptionType(begin: Bool) {
         var needPause = false
         if case .Playing = self.status  { needPause = true }
@@ -269,9 +269,10 @@ extension GXAudioPlayerProtocol {
             print("音频模式更改:老设备不可用通知- \(portType.rawValue)")
             if portType == AVAudioSession.Port.headphones {
                 print("耳机🎧模式")
-                if case .Playing = self.status {
-                    self.resume(isSystemControls: true)
-                }
+//                if case .Playing = self.status {
+//                    self.resume(isSystemControls: true)
+//                }
+                mediaChangeInterruptionType(begin: false)
             } else if portType == AVAudioSession.Port.builtInSpeaker {
                 
             }
@@ -309,7 +310,7 @@ extension GXAudioPlayerProtocol {
                 return
             }
             currentPlayCount += 0.1
-            print("track：\(track)、\(audioPath)、计时：\(currentPlayCount)、Playing：\(canPlayResult)、canPlayResultCount：\(canPlayResultCount)、dutaion:\(duration)、playingEndTime:\(playingEndTime)")
+//            print("track：\(track)、\(audioPath)、计时：\(currentPlayCount)、Playing：\(canPlayResult)、canPlayResultCount：\(canPlayResultCount)、dutaion:\(duration)、playingEndTime:\(playingEndTime)")
             // 在这里更新 UI 或执行其他操作
             // 不可播放，准备时间超时了
             if !canPlayResult, currentPlayCount > canPlayResultCount {
