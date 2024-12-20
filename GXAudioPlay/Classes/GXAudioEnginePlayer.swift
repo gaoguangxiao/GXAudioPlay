@@ -18,6 +18,8 @@ import RxSwift
 
 public class GXAudioEnginePlayer: NSObject {
     
+    public var track: String = ""
+    
     private let engine = AVAudioEngine()//音频引擎
     private let player = AVAudioPlayerNode() //播放节点
     
@@ -57,6 +59,8 @@ public class GXAudioEnginePlayer: NSObject {
     //遵循播放协议，但是存储属性不能写入扩展，因此写入实体
     public var loop: Bool = false
         
+    public var isLaunchOverTimer: Bool = false
+    
     public var overTimer: Timer?
     
     public var canPlayResult: Bool = false
@@ -65,7 +69,7 @@ public class GXAudioEnginePlayer: NSObject {
     
     public var canPlayResultCount: Double = 1
     
-    public var playOutCount: Double = 0
+    public var playingEndTime: Double = 0
     
     public var currentPlayCount: Double = 0
     

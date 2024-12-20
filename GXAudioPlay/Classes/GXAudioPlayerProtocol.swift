@@ -24,6 +24,8 @@ public enum PTAudioPlayerEvent: Equatable {
 
 public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     
+    var track: String {get set}
+    
     var playSpeed: Float {get set}
     
     var volume: Float {get set}
@@ -75,6 +77,9 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     
     var isRunning: Bool {get set}
     
+    //是否具备超时定时器
+    var isLaunchOverTimer: Bool {get set}
+    
     //超时定时器
     var overTimer: Timer?{get set}
 
@@ -84,8 +89,8 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     //开始播放
     var canPlayResult: Bool{get set}
     
-    // 超时时间音频时间+ 2.5秒容错
-    var playOutCount: Double {get set}
+    // 播放音频时间超时+ 5秒容错
+    var playingEndTime: Double {get set}
     
     // 合计播放时间
     var currentPlayCount: Double {get set}
@@ -119,6 +124,23 @@ extension GXAudioPlayerProtocol {
             routeChangeTyptChanged(notic)
         }.disposed(by: self.disposeBag)
         
+        
+        //进入后台
+        NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else {return}
+                self.pauseOverTimer()
+            }).disposed(by: disposeBag)
+        
+        //进入前台
+        NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
+            .subscribe(onNext: { [weak self] _ in
+                guard let `self` = self else {return}
+                //如果播放中，开启
+                if case .Playing = self.status {
+                    resumeOverTimer()
+                }
+            }).disposed(by: disposeBag)
     }
     
     ///打断
@@ -157,7 +179,7 @@ extension GXAudioPlayerProtocol {
             if isAnotherAudioSuspend {
                 //                if (self.delegate != nil){
                 mediaChangeInterruptionType(begin: true)
-                print("mediaChangeInterruptionType: 开始")
+                print("\(track)、mediaChangeInterruptionType: 开始")
                 //                }
             }
             break
@@ -174,7 +196,7 @@ extension GXAudioPlayerProtocol {
                     self.playEventsBlock?(.LogError("setActive:\(error.localizedDescription)"))
                 }
                 mediaChangeInterruptionType(begin: false)
-                print("mediaChangeInterruptionType: 结束")
+                print("\(track)、mediaChangeInterruptionType: 结束")
                 //                }
             }
             break
@@ -280,19 +302,21 @@ extension GXAudioPlayerProtocol {
                 return
             }
             currentPlayCount += 0.1
-//            print("计时：\(currentPlayCount)、addOverTimer:\(playOutCount)")
+//            print("track：\(track)、计时：\(currentPlayCount)、dutaion:\(duration)、OverTimer:\(playingEndTime)")
             // 在这里更新 UI 或执行其他操作
             // 不可播放，准备时间超时了
             if !canPlayResult, currentPlayCount > canPlayResultCount {
                 //规定时间不可播放
-                playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "overTimer.canplay\(playOutCount)", code: -1,userInfo: ["dutaion":playOutCount])))
+                playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "timerOut.Playing\(playingEndTime)", code: -1,userInfo: ["dutaion":playingEndTime])))
                 removeOverTimer()
+                stop()
             }
             //已经开始播放，超时未停止
-            if canPlayResult, currentPlayCount >= playOutCount {
+            if canPlayResult, currentPlayCount >= playingEndTime {
                 //
-                playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "overTimer.end\(playOutCount)", code: -1, userInfo: ["dutaion":playOutCount])))
+                playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "timerOut.End\(playingEndTime)", code: -1, userInfo: ["dutaion":playingEndTime])))
                 removeOverTimer()
+                stop()
             }
         }
         if !Thread.isMainThread {
@@ -305,22 +329,32 @@ extension GXAudioPlayerProtocol {
     
     //初始化超时
     func initOverTimer(overDuration: Double, canPlay: Bool) {
+        isLaunchOverTimer = true
         self.removeOverTimer()
         canPlayResult = canPlay
         canPlayResultCount = overDuration
-        playOutCount = overDuration
+        //播放超时
+        playingEndTime = overDuration
         currentPlayCount = 0
         //开始计数
         addOverTimer()
     }
     
     public func pauseOverTimer() {
-        guard isRunning else { return }
+        guard isLaunchOverTimer else {
+            return
+        }
+        guard isRunning else {
+            return
+        }
         isRunning = false
         removeOverTimer()
     }
     
     public func resumeOverTimer() {
+        guard isLaunchOverTimer else {
+            return
+        }
         //移除
         removeOverTimer()
         //重新创建

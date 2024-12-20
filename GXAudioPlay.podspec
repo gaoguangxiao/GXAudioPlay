@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.4.7'
-  s.summary          = 'fix：增加音频播放超时处理'
+  s.version          = '0.4.8'
+  s.summary          = 'fix：增加音频播放超时处理，暂停，中断、进入后台暂停。非循环模式具备超时'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

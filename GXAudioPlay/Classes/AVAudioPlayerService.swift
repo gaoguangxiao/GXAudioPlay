@@ -11,20 +11,21 @@ import RxSwift
 
 /// A utility class to manage audio playback using AVAudioPlayer.
 public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
+    
+    public var track: String = ""
+    
     public var isRunning: Bool = false
     
     public var canPlayResultCount: Double = 1
     
-    public var playOutCount: Double = 0
+    public var playingEndTime: Double = 0
     
     public var currentPlayCount: Double = 0
     
     public var status: PTAudioPlayerEvent = .None
     
     public var disposeBag = DisposeBag()
-    
-    public var track: String?
-    
+        
     public var playSpeed: Float = 1.0
     
     public var volume: Float = 1.0
@@ -53,6 +54,8 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             }
         }
     }
+    
+    public var isLaunchOverTimer: Bool = false
     
     public var overTimer: Timer?
     
@@ -113,7 +116,12 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             status = .Playing(0)
             handleAudioSessionNotification()
             if let b = audioPlayer?.play(), b {
-                initOverTimer(overDuration: duration + 5,canPlay: true)
+                if !loop {
+                    //没有开启循环
+                    initOverTimer(overDuration: (duration/Double(self.playSpeed)) + 5,canPlay: true)
+                }
+            } else {
+                throw NSError(domain: "not play", code: -1)
             }
         } catch {
             print("Error: Failed to initialize AVAudioPlayer. \(error.localizedDescription)")
@@ -217,6 +225,14 @@ extension AVAudioPlayerService: AVAudioPlayerDelegate {
         if let error {
             self.playEventsBlock?(.Error(error as NSError))
         }
-        removeOverTimer()
+        stop(false)
+    }
+    
+    public func audioPlayerBeginInterruption(_ player: AVAudioPlayer) {
+//        print("audioPlayerBeginInterruption:\(track)")
+    }
+    
+    public func audioPlayerEndInterruption(_ player: AVAudioPlayer, withOptions flags: Int) {
+//        print("audioPlayerEndInterruption:\(track)、flags:\(flags)")
     }
 }

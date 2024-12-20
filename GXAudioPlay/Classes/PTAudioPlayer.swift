@@ -14,6 +14,8 @@ import RxSwift
 
 public class PTAudioPlayer: NSObject {
     
+    public var track: String = ""
+    
     public static let shared = PTAudioPlayer()
     
     /// An instance object of AVPlayer
@@ -70,6 +72,8 @@ public class PTAudioPlayer: NSObject {
     
     public var playbackDuration: Double = 0
     
+    public var isLaunchOverTimer: Bool = false
+    
     //超时时间
     public var overTimer: Timer?
     
@@ -81,7 +85,7 @@ public class PTAudioPlayer: NSObject {
     
     public var canPlayResultCount: Double = 1
     
-    public var playOutCount: Double = 0
+    public var playingEndTime: Double = 0
     
     public var currentPlayCount: Double = 0
     
@@ -113,8 +117,11 @@ public class PTAudioPlayer: NSObject {
                         self.remoteAudioPlayer?.play()
                         self.remoteAudioPlayer?.rate = self.playSpeed
                         canPlayResult = true
-                        //playOutTime
-                        initOverTimer(overDuration: duration + 5,canPlay: true)
+                        //playOutTime playSpeed为1、0.7速率。10
+                        if !loop {
+                            //没有开启循环
+                            initOverTimer(overDuration: (duration/Double(self.playSpeed)) + 5,canPlay: true)
+                        }
                     } else if status == AVPlayer.Status.failed {
                         stop(false)
                         if let error = playerItem.error as? NSError {
@@ -138,6 +145,7 @@ public class PTAudioPlayer: NSObject {
             if case .Playing = self.status  {
                 self.status = PTAudioPlayerEvent.Waiting
 //                self.playEventsBlock?(PTAudioPlayerEvent.Waiting)
+                pauseOverTimer()
             }
         }).disposed(by: self.disposeBag)
         
@@ -148,6 +156,7 @@ public class PTAudioPlayer: NSObject {
                 self.status = PTAudioPlayerEvent.Playing(0)
                 self.remoteAudioPlayer?.play()
                 self.remoteAudioPlayer?.rate = self.playSpeed
+                resumeOverTimer()
 //                self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
             }
         }).disposed(by: self.disposeBag)
@@ -300,6 +309,7 @@ extension PTAudioPlayer {
             print(errorStr)
             self.status = PTAudioPlayerEvent.Error(error)
             self.playEventsBlock?(self.status)
+            stop(false)
         } else {
             //            let errorStr = "failedToPlayToEndTime：未知错误"
             //            print(errorStr)
