@@ -14,6 +14,8 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     
     public var track: String = ""
     
+    public var audioPath: String = ""
+    
     public var isRunning: Bool = false
     
     public var canPlayResultCount: Double = 1
@@ -103,6 +105,10 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             throw NSError(domain: "url error", code: -1)
         }
         
+        isLaunchOverTimer = false
+        playbackDuration = 0
+        audioPath = url
+        
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioUrl)
             audioPlayer?.delegate = self
@@ -112,7 +118,6 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             audioPlayer?.volume = volume
             audioPlayer?.prepareToPlay()
             startTime = Date()
-            self.playbackDuration = 0
             status = .Playing(0)
             handleAudioSessionNotification()
             if let b = audioPlayer?.play(), b {

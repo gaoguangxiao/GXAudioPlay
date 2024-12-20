@@ -16,6 +16,8 @@ public class PTAudioPlayer: NSObject {
     
     public var track: String = ""
     
+    public var audioPath: String = ""
+    
     public static let shared = PTAudioPlayer()
     
     /// An instance object of AVPlayer
@@ -116,7 +118,6 @@ public class PTAudioPlayer: NSObject {
                         self.playEventsBlock?(PTAudioPlayerEvent.Playing(self.duration))
                         self.remoteAudioPlayer?.play()
                         self.remoteAudioPlayer?.rate = self.playSpeed
-                        canPlayResult = true
                         //playOutTime playSpeed为1、0.7速率。10
                         if !loop {
                             //没有开启循环
@@ -334,6 +335,11 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
             self.remoteAudioPlayer = AVPlayer.init()
         }
         status = PTAudioPlayerEvent.None
+        
+        //重置状态
+        audioPath = url
+        isLaunchOverTimer = false
+        
         let playerItem = AVPlayerItem.init(url: audioUrl)
         self.remoteAudioPlayer?.replaceCurrentItem(with: playerItem)
         self.remoteAudioPlayer?.automaticallyWaitsToMinimizeStalling = false
@@ -388,5 +394,6 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
         //        self.remoteAudioPlayer = nil
         self.disposeBag = DisposeBag()
         removeOverTimer()
+        isLaunchOverTimer = false
     }
 }

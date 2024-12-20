@@ -9,6 +9,11 @@ import Foundation
 import AVFAudio
 import RxSwift
 
+enum AudioPlayerErrorStatus: Int, Error {
+    case timerOutPlaying = 1
+    case timerOutEnd
+}
+
 public enum PTAudioPlayerEvent: Equatable {
     case None
     case Playing(Double)         // 在媒体开始播放时触发（不论是初次播放、在暂停后恢复、或是在结束后重新开始）
@@ -25,6 +30,8 @@ public enum PTAudioPlayerEvent: Equatable {
 public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     
     var track: String {get set}
+    
+    var audioPath: String {get set}
     
     var playSpeed: Float {get set}
     
@@ -302,19 +309,30 @@ extension GXAudioPlayerProtocol {
                 return
             }
             currentPlayCount += 0.1
-//            print("track：\(track)、计时：\(currentPlayCount)、dutaion:\(duration)、OverTimer:\(playingEndTime)")
+            print("track：\(track)、\(audioPath)、计时：\(currentPlayCount)、Playing：\(canPlayResult)、canPlayResultCount：\(canPlayResultCount)、dutaion:\(duration)、playingEndTime:\(playingEndTime)")
             // 在这里更新 UI 或执行其他操作
             // 不可播放，准备时间超时了
             if !canPlayResult, currentPlayCount > canPlayResultCount {
                 //规定时间不可播放
-                playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "timerOut.Playing\(playingEndTime)", code: -1,userInfo: ["dutaion":playingEndTime])))
+                playEventsBlock?(PTAudioPlayerEvent.Error(
+                    NSError(domain: "com.gxaudioplay.app",
+                            code: -1001,
+                            userInfo: ["NSLocalizedDescriptionKey":"timerOut.Playing:\(audioPath)",
+                                       "NSLocalizedFailureReasonErrorKey":"timerOut.Playing",
+                                       "NSLocalizedRecoverySuggestionErrorKey":"Please check Networking"])
+                ))
                 removeOverTimer()
                 stop()
             }
             //已经开始播放，超时未停止
             if canPlayResult, currentPlayCount >= playingEndTime {
-                //
-                playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "timerOut.End\(playingEndTime)", code: -1, userInfo: ["dutaion":playingEndTime])))
+                //timerOut.End
+                playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "com.gxaudioplay.app",
+                                                                  code: -1002,
+                                                                  userInfo: ["NSLocalizedDescriptionKey":"timerOut.End:\(audioPath)",
+                                                                             "NSLocalizedFailureReasonErrorKey":"timerOut.End",
+                                                                             "NSLocalizedRecoverySuggestionErrorKey":"Please check Networking or reset app device"])
+                ))
                 removeOverTimer()
                 stop()
             }

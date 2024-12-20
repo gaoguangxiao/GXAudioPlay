@@ -73,6 +73,8 @@ public class GXAudioEnginePlayer: NSObject {
     
     public var currentPlayCount: Double = 0
     
+    public var audioPath: String = ""
+    
     public override init() {
         //添加播放节点
         engine.attach(player)
