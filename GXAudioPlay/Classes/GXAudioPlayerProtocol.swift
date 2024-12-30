@@ -349,9 +349,7 @@ extension GXAudioPlayerProtocol {
                 //timerOut.End
                 playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "com.gxaudioplay.app",
                                                                   code: -1002,
-                                                                  userInfo: [NSLocalizedDescriptionKey:"\(track),\(audioPath)、playerName：\(self)、计时：\(currentPlayCount)_\(currentTime)/\(duration)",
-                                                                             NSLocalizedFailureReasonErrorKey:"timerOut.End",
-                                                                             NSLocalizedRecoverySuggestionErrorKey:"Please check Networking or reset app device"])
+                                                                  userInfo: [NSLocalizedDescriptionKey:"\(status)计时：\(currentPlayCount)_\(currentTime)/\(duration)"])
                 ))
                 removeOverTimer()
                 stop()
