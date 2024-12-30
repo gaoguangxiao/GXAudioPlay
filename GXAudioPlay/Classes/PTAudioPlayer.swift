@@ -69,7 +69,9 @@ public class PTAudioPlayer: NSObject {
     
     // 播放进度监听
     private var _time_observer: Any? = nil
-
+    
+    public var canPlayCount: Int = 1
+    
     public var startTime: Date = Date()
     
     public var playbackDuration: Double = 0
@@ -85,7 +87,7 @@ public class PTAudioPlayer: NSObject {
     //定时器是否运行
     public var isRunning: Bool = false
     
-    public var canPlayResultCount: Double = 1
+    public var canPlayResultTime: Double = 1
     
     public var playingEndTime: Double = 0
     
@@ -95,7 +97,16 @@ public class PTAudioPlayer: NSObject {
     public var duration: Double {
         get {
             if let audioPlayer = remoteAudioPlayer {
-                return CMTimeGetSeconds(audioPlayer.currentItem?.duration ?? CMTime.zero)
+                return CMTimeGetSeconds(audioPlayer.currentItem?.duration ?? .zero)
+            }
+            return 0
+        }
+    }
+    
+    public var currentTime: Double {
+        get {
+            if let audioPlayer = remoteAudioPlayer {
+                return CMTimeGetSeconds(audioPlayer.currentItem?.currentTime() ?? .zero)
             }
             return 0
         }
@@ -325,6 +336,30 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
     
     public func play(url: String) throws {
         
+//        let audioUrl =  url.encodeLocalOrRemoteForUrl
+//        
+//        guard let audioUrl else {
+//            throw NSError(domain: "url error", code: -1)
+//        }
+//        
+//        if self.remoteAudioPlayer == nil {
+//            self.remoteAudioPlayer = AVPlayer.init()
+//        }
+//        status = PTAudioPlayerEvent.None
+        
+        //重置状态
+        canPlayCount = 2
+        try replay(url: url)
+//        let playerItem = AVPlayerItem.init(url: audioUrl)
+//        self.remoteAudioPlayer?.replaceCurrentItem(with: playerItem)
+//        self.remoteAudioPlayer?.automaticallyWaitsToMinimizeStalling = false
+//        self.addNotificationRX(playerItem: playerItem)
+//        startTime = Date()
+    }
+    
+    public func replay(url: String) throws {
+        
+        
         let audioUrl =  url.encodeLocalOrRemoteForUrl
         
         guard let audioUrl else {
@@ -336,6 +371,7 @@ extension PTAudioPlayer: GXAudioPlayerProtocol {
         }
         status = PTAudioPlayerEvent.None
         
+        canPlayCount -= 1
         //重置状态
         audioPath = url
         isLaunchOverTimer = false

@@ -8,6 +8,7 @@
 import Foundation
 import AVFAudio
 import RxSwift
+import GGXSwiftExtension
 
 enum AudioPlayerErrorStatus: Int, Error {
     case timerOutPlaying = 1
@@ -17,6 +18,7 @@ enum AudioPlayerErrorStatus: Int, Error {
 public enum PTAudioPlayerEvent: Equatable {
     case None
     case Playing(Double)         // 在媒体开始播放时触发（不论是初次播放、在暂停后恢复、或是在结束后重新开始）
+    case PlayingOut              //`canPlayResultTime`时间内未完成`Playing`操作
     case TimeUpdate(Double)
     case Waiting         //在一个待执行的操作（如回放）因等待另一个操作（如跳跃或下载）被延迟时触发
     case Pause
@@ -51,6 +53,9 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     
     var status : PTAudioPlayerEvent {get set}
     
+    /// audio currentTime
+    var currentTime:Double {get}
+    
     /// audio duration
     var duration: Double {get}
     
@@ -66,8 +71,11 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     //是否播放
     var isPlaying: Bool{get}
     
-    //播放网络
+    //播放URL 本地或者网络
     func play(url: String) throws
+    
+    //重新播放
+    func replay(url: String) throws
     
     //暂停
     func pause(isSystemControls: Bool)
@@ -90,8 +98,11 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     //超时定时器
     var overTimer: Timer?{get set}
 
+    //Playing次数，默认2次，首次，二次重试
+    var canPlayCount: Int {get set}
+    
     // 准备播放时间 超时
-    var canPlayResultCount: Double {get set}
+    var canPlayResultTime: Double {get set}
     
     //开始播放
     var canPlayResult: Bool{get set}
@@ -310,29 +321,37 @@ extension GXAudioPlayerProtocol {
                 return
             }
             currentPlayCount += 0.1
-//            print("track：\(track)、\(audioPath)、计时：\(currentPlayCount)、Playing：\(canPlayResult)、canPlayResultCount：\(canPlayResultCount)、dutaion:\(duration)、playingEndTime:\(playingEndTime)")
+            LogInfo("\(self)重试次数\(canPlayCount)_\(audioPath)、Playing：\(canPlayResult)、计时：\(currentPlayCount)_\(currentTime)/\(duration) \ncanPlayResultTime：\(canPlayResultTime)、playingEndTime:\(playingEndTime)")
             // 在这里更新 UI 或执行其他操作
             // 不可播放，准备时间超时了
-            if !canPlayResult, currentPlayCount > canPlayResultCount {
+            if !canPlayResult, currentPlayCount > canPlayResultTime {
                 //规定时间不可播放
-                playEventsBlock?(PTAudioPlayerEvent.Error(
-                    NSError(domain: "com.gxaudioplay.app",
-                            code: -1001,
-                            userInfo: ["NSLocalizedDescriptionKey":"timerOut.Playing:\(audioPath)",
-                                       "NSLocalizedFailureReasonErrorKey":"timerOut.Playing",
-                                       "NSLocalizedRecoverySuggestionErrorKey":"Please check Networking"])
-                ))
                 removeOverTimer()
                 stop()
+                //
+                if canPlayCount <= 0 {
+                    //PlayingOut
+                    playEventsBlock?(PTAudioPlayerEvent.PlayingOut)
+                } else {
+                    //内部播放器对同一个URL进行重试
+                    do {
+                        let replayStr = "\(track),\(audioPath),replay"
+                        LogInfo(replayStr)
+                        try replay(url: audioPath)
+                        playEventsBlock?(.LogError(replayStr))
+                    } catch  {
+                        playEventsBlock?(.Error(error as NSError))
+                    }
+                }
             }
             //已经开始播放，超时未停止
             if canPlayResult, currentPlayCount >= playingEndTime {
                 //timerOut.End
                 playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "com.gxaudioplay.app",
                                                                   code: -1002,
-                                                                  userInfo: ["NSLocalizedDescriptionKey":"timerOut.End:\(audioPath)",
-                                                                             "NSLocalizedFailureReasonErrorKey":"timerOut.End",
-                                                                             "NSLocalizedRecoverySuggestionErrorKey":"Please check Networking or reset app device"])
+                                                                  userInfo: [NSLocalizedDescriptionKey:"\(track),\(audioPath)、playerName：\(self)、计时：\(currentPlayCount)_\(currentTime)/\(duration)",
+                                                                             NSLocalizedFailureReasonErrorKey:"timerOut.End",
+                                                                             NSLocalizedRecoverySuggestionErrorKey:"Please check Networking or reset app device"])
                 ))
                 removeOverTimer()
                 stop()
@@ -351,7 +370,7 @@ extension GXAudioPlayerProtocol {
         isLaunchOverTimer = true
         self.removeOverTimer()
         canPlayResult = canPlay
-        canPlayResultCount = overDuration
+        canPlayResultTime = overDuration
         //播放超时
         playingEndTime = overDuration
         currentPlayCount = 0

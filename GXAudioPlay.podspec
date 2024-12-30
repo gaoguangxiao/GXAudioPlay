@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.5.2'
-  s.summary          = 'fix：timerOut错误码-1001区分'
+  s.version          = '0.6.0'
+  s.summary          = 'fix：网络音频增加重试机制'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -42,5 +42,6 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'RxCocoa'
+  s.dependency 'GGXSwiftExtension'
   
 end

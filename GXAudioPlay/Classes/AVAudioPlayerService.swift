@@ -18,7 +18,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     
     public var isRunning: Bool = false
     
-    public var canPlayResultCount: Double = 1
+    public var canPlayResultTime: Double = 1
     
     public var playingEndTime: Double = 0
     
@@ -40,6 +40,9 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     
     private var audioPlayer: AVAudioPlayer?
     
+    //当前播放进度
+    public var currentTime:Double { audioPlayer?.currentTime ?? 0}
+    
     //音频时长
     public var duration: Double { audioPlayer?.duration ?? 0 }
     
@@ -58,6 +61,8 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     }
     
     public var isLaunchOverTimer: Bool = false
+    
+    public var canPlayCount: Int = 1
     
     public var overTimer: Timer?
     
@@ -96,8 +101,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     }
     
     // MARK: - Public Methods
-    
-    public func play(url: String) throws {
+    public func replay(url: String) throws {
         
         let audioUrl =  url.encodeLocalOrRemoteForUrl
         
@@ -105,9 +109,9 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             throw NSError(domain: "url error", code: -1)
         }
         
-        isLaunchOverTimer = false
-        playbackDuration = 0
+        canPlayCount -= 1
         audioPath = url
+        isLaunchOverTimer = false
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioUrl)
@@ -132,6 +136,12 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             print("Error: Failed to initialize AVAudioPlayer. \(error.localizedDescription)")
             throw error
         }
+    }
+    
+    public func play(url: String) throws {
+        canPlayCount = 2
+        try replay(url: url)
+        
     }
     
     /// Stops the currently playing audio.

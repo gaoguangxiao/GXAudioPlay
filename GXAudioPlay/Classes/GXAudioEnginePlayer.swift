@@ -67,7 +67,9 @@ public class GXAudioEnginePlayer: NSObject {
     
     public var isRunning: Bool = false
     
-    public var canPlayResultCount: Double = 1
+    public var canPlayCount: Int = 1
+    
+    public var canPlayResultTime: Double = 1
     
     public var playingEndTime: Double = 0
     
@@ -450,6 +452,11 @@ extension GXAudioEnginePlayer: GXAudioPlayerProtocol{
     
     public func addPeriodicTimer() {
         isPeriodicTimer = true
+    }
+    
+    public func replay(url: String) throws {
+        canPlayCount -= 1
+        try play(url: url)
     }
     
     //本地URL
