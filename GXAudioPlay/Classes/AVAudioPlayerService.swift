@@ -127,7 +127,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             if let b = audioPlayer?.play(), b {
                 if !loop {
                     //没有开启循环
-                    initOverTimer(overDuration: (duration/Double(self.playSpeed)) + 5,canPlay: true)
+                    initOverTimer(overDuration: (duration/Double(self.playSpeed)) + 10,canPlay: true)
                 }
             } else {
                 throw NSError(domain: "not play", code: -1)
@@ -161,6 +161,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
         audioPlayer = nil
         self.disposeBag = DisposeBag()
         removeOverTimer()
+        isLaunchOverTimer = false
     }
     
     /// Pauses the currently playing audio.
@@ -183,9 +184,9 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     /// Resumes the currently paused audio.
     public func resume(isSystemControls: Bool = false) {
         if let audioPlayer {
-            audioPlayer.rate = self.playSpeed
             audioPlayer.volume = self.volume
             audioPlayer.play()
+            audioPlayer.rate = self.playSpeed
             if isSystemControls {
 //                self.playEventsBlock?(.Playing(audioPlayer.duration))
             } else {

@@ -316,12 +316,12 @@ extension GXAudioPlayerProtocol {
     
     public func addOverTimer() {
         isRunning = true
-        overTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] t in
+        overTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] t in
             guard let self else {
                 return
             }
-            currentPlayCount += 0.1
-            LogInfo("\(self)重试次数\(canPlayCount)_\(audioPath)、Playing：\(canPlayResult)、计时：\(currentPlayCount)_\(currentTime)/\(duration) \ncanPlayResultTime：\(canPlayResultTime)、playingEndTime:\(playingEndTime)")
+            currentPlayCount += 0.5
+//            LogInfo("\(self)重试次数\(canPlayCount)_\(audioPath)、Playing：\(canPlayResult)、计时：\(currentPlayCount)_\(currentTime)/\(duration) \ncanPlayResultTime：\(canPlayResultTime)、playingEndTime:\(playingEndTime)")
             // 在这里更新 UI 或执行其他操作
             // 不可播放，准备时间超时了
             if !canPlayResult, currentPlayCount > canPlayResultTime {
