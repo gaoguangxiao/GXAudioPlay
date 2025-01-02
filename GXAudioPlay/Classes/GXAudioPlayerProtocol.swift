@@ -97,7 +97,7 @@ public protocol GXAudioPlayerProtocol: NSObjectProtocol{
     
     //超时定时器
     var overTimer: Timer?{get set}
-
+    
     //Playing次数，默认2次，首次，二次重试
     var canPlayCount: Int {get set}
     
@@ -147,57 +147,66 @@ extension GXAudioPlayerProtocol {
         NotificationCenter.default.rx.notification(UIApplication.didEnterBackgroundNotification)
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else {return}
-//                self.pauseOverTimer()
+                //                self.pauseOverTimer()
                 mediaChangeInterruptionType(begin: true)
+                self.playEventsBlock?(.LogError("didEnterBackgroundNotification"))
             }).disposed(by: disposeBag)
         
         //进入前台
         NotificationCenter.default.rx.notification(UIApplication.willEnterForegroundNotification)
             .subscribe(onNext: { [weak self] _ in
                 guard let `self` = self else {return}
-                //中断恢复
                 mediaChangeInterruptionType(begin: false)
+                self.playEventsBlock?(.LogError("willEnterForegroundNotification"))
             }).disposed(by: disposeBag)
     }
     
     ///打断
     public func interruptionTypeChanged(_ nof:Notification) {
         
-        guard let userInfo = nof.userInfo, let reasonValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt else { return }
+        guard let userInfo = nof.userInfo, let reasonValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt else {
+            print("通知缺少必要的 userInfo 或 InterruptionTypeKey 无效")
+            return
+        }
         
         switch reasonValue {
         case AVAudioSession.InterruptionType.began.rawValue://Began
             var isAnotherAudioSuspend = false //是否是被其他音频会话打断
-            if #available(iOS 10.3, *) {
-                if #available(iOS 14.5, *) {
-                    // iOS 14.5之后使用InterruptionReasonKey
-                    let reasonKey = userInfo[AVAudioSessionInterruptionReasonKey] as! UInt
-                    switch reasonKey {
-                    case AVAudioSession.InterruptionReason.default.rawValue:
-                        //因为另一个会话被激活,音频中断
-                        isAnotherAudioSuspend = true
-                        break
-                    case AVAudioSession.InterruptionReason.appWasSuspended.rawValue:
-                        //由于APP被系统挂起，音频中断。
-                        break
-                    case AVAudioSession.InterruptionReason.builtInMicMuted.rawValue:
-                        //音频因内置麦克风静音而中断(例如iPad智能关闭套iPad's Smart Folio关闭)
-                        break
-                    default: break
-                    }
-                    print("AVAudioSessionInterruption: \(reasonKey)")
-                } else {
-                    // iOS10.3-14.5，InterruptionWasSuspendedKey为true表示中断是由于系统挂起，false是被另一音频打断
-                    let suspendedNumber:NSNumber = userInfo[AVAudioSessionInterruptionWasSuspendedKey] as! NSNumber
+            
+            if #available(iOS 14.5, *) {
+                // iOS 14.5之后使用InterruptionReasonKey
+                let reasonKey = userInfo[AVAudioSessionInterruptionReasonKey] as! UInt
+                switch reasonKey {
+                case AVAudioSession.InterruptionReason.default.rawValue:
+                    //因为另一个会话被激活,音频中断
+                    isAnotherAudioSuspend = true
+                    break
+                case AVAudioSession.InterruptionReason.appWasSuspended.rawValue:
+                    //由于APP被系统挂起，音频中断。
+                    self.playEventsBlock?(.LogError("InterruptionReason.appWasSuspended"))
+                    break
+                case AVAudioSession.InterruptionReason.builtInMicMuted.rawValue:
+                    //音频因内置麦克风静音而中断(例如iPad智能关闭套iPad's Smart Folio关闭)
+                    self.playEventsBlock?(.LogError("InterruptionReason.builtInMicMuted"))
+                    break
+                default: break
+                }
+                print("AVAudioSessionInterruption: \(reasonKey)")
+            } else {
+                // iOS10.3-14.5，InterruptionWasSuspendedKey为true表示中断是由于系统挂起，false是被另一音频打断
+                // 组件支持12.0以上，因此范围在12.0~14.5
+                if let suspendedNumber = userInfo[AVAudioSessionInterruptionWasSuspendedKey] as? NSNumber {
+                    print("InterruptionWasSuspendedKey.suspendedNumber:\(suspendedNumber)")
                     isAnotherAudioSuspend = !suspendedNumber.boolValue
+                } else {
+                    print("无法获取 InterruptionWasSuspendedKey")
+                    self.playEventsBlock?(.LogError("InterruptionReason.suspendedNumber no get"))
                 }
             }
             
             if isAnotherAudioSuspend {
-                //                if (self.delegate != nil){
                 mediaChangeInterruptionType(begin: true)
                 print("\(track)、mediaChangeInterruptionType: 开始")
-                //                }
             }
             break
         case AVAudioSession.InterruptionType.ended.rawValue://End
@@ -280,9 +289,9 @@ extension GXAudioPlayerProtocol {
             print("音频模式更改:老设备不可用通知- \(portType.rawValue)")
             if portType == AVAudioSession.Port.headphones {
                 print("耳机🎧模式")
-//                if case .Playing = self.status {
-//                    self.resume(isSystemControls: true)
-//                }
+                //                if case .Playing = self.status {
+                //                    self.resume(isSystemControls: true)
+                //                }
                 mediaChangeInterruptionType(begin: false)
             } else if portType == AVAudioSession.Port.builtInSpeaker {
                 
@@ -321,7 +330,7 @@ extension GXAudioPlayerProtocol {
                 return
             }
             currentPlayCount += 0.5
-//            LogInfo("\(self)重试次数\(canPlayCount)_\(audioPath)、Playing：\(canPlayResult)、计时：\(currentPlayCount)_\(currentTime)/\(duration) \ncanPlayResultTime：\(canPlayResultTime)、playingEndTime:\(playingEndTime)")
+            //            LogInfo("\(self)重试次数\(canPlayCount)_\(audioPath)、Playing：\(canPlayResult)、计时：\(currentPlayCount)_\(currentTime)/\(duration) \ncanPlayResultTime：\(canPlayResultTime)、playingEndTime:\(playingEndTime)")
             // 在这里更新 UI 或执行其他操作
             // 不可播放，准备时间超时了
             if !canPlayResult, currentPlayCount > canPlayResultTime {

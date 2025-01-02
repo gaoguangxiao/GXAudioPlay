@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.6.2'
-  s.summary          = 'fix：网络音频增加重试机制，Playing增加到10秒'
+  s.version          = '0.6.3'
+  s.summary          = 'fix：14.5系统以下，中断值`SuspendedKey`强制解包引发问题'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

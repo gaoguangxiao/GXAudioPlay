@@ -114,12 +114,18 @@ class AVPlayerVc: UIViewController {
         //        addAVPlayerEvent()
         //        play = PTAudioPlayer()
         
+//        progressAction = "";
+//        speed = "0.7";
+//        timeEvent = 0;
+//        track = problem;
+//        url = "https://qa3.risekid.cn/static/sound_203_3.5cbdfaf2.mp3";
+//        volume = 1;
         play?.volume = 1.0
-        play?.playSpeed = 1.0
+        play?.playSpeed = 0.7
         ////        try? play?.play(url: "https://file.risekid.cn/book/165/2/1/1.mp3")
         ///
         do {
-            try play?.play(url: "https://file.risekid.cn/web/adventure/static/step.a8e0e8f2.mp3")
+            try play?.play(url: "ttps://qa3.risekid.cn/static/sound_203_3.5cbdfaf2.mp3")
         } catch  {
             print("play \(error)")
         }
