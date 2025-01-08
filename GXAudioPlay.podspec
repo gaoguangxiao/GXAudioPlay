@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GXAudioPlay'
-  s.version          = '0.6.3'
-  s.summary          = 'fix：14.5系统以下，中断值`SuspendedKey`强制解包引发问题'
+  s.version          = '0.7.0'
+  s.summary          = 'fix：解决其他音频格式无法播放问题'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

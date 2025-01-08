@@ -113,8 +113,12 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
         audioPath = url
         isLaunchOverTimer = false
         
+        guard let audioData = audioUrl.contentFileData else {
+            throw NSError(domain: "com.gxaudioplay.app", code: -1,userInfo: [NSLocalizedDescriptionKey:"data fail"])
+        }
+        
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: audioUrl)
+            audioPlayer = try AVAudioPlayer(data: audioData)
             audioPlayer?.delegate = self
             audioPlayer?.numberOfLoops = loop ? -1 : 0
             audioPlayer?.enableRate = true  // Enable rate adjustment
@@ -132,8 +136,8 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             } else {
                 throw NSError(domain: "not play", code: -1)
             }
-        } catch {
-            print("Error: Failed to initialize AVAudioPlayer. \(error.localizedDescription)")
+        } catch let error as NSError {
+            print("Error: Failed to initialize AVAudioPlayer. \(error)")
             throw error
         }
     }
