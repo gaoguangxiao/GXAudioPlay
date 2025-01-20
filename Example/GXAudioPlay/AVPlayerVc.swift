@@ -25,6 +25,7 @@ class AVPlayerVc: UIViewController {
         addAVPlayerEvent()
     }
     
+//    var urls = []
     //
     func addAVPlayerEvent() {
         play?.playEventsBlock = { [self] event in
@@ -121,7 +122,7 @@ class AVPlayerVc: UIViewController {
 //        url = "https://qa3.risekid.cn/static/sound_203_3.5cbdfaf2.mp3";
 //        volume = 1;
         play?.volume = 1.0
-        play?.playSpeed = 0.7
+//        play?.playSpeed = 0.7
         ////        try? play?.play(url: "https://file.risekid.cn/book/165/2/1/1.mp3")
         ///
         do {
@@ -132,7 +133,7 @@ class AVPlayerVc: UIViewController {
         //        try?
         //        audioControlBtn.setTitle("暂停播放", for: .normal)
         
-        //        startTimer()
+                startTimer()
     }
     
     func startTimer() {

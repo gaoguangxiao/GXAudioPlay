@@ -235,7 +235,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
 
 extension AVAudioPlayerService: AVAudioPlayerDelegate {
     public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        print("audioPlayerDidFinishPlaying:\(flag)")
+//        print("audioPlayerDidFinishPlaying:\(flag)")
         logPlaybackDuration()
         stop(true)
     }
