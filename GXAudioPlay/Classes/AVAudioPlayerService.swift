@@ -101,24 +101,9 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     }
     
     // MARK: - Public Methods
-    public func replay(url: String) throws {
-        
-        let audioUrl =  url.encodeLocalOrRemoteForUrl
-        
-        guard let audioUrl else {
-            throw NSError(domain: "url error", code: -1)
-        }
-        
-        canPlayCount -= 1
-        audioPath = url
-        isLaunchOverTimer = false
-        
-        guard let audioData = audioUrl.contentFileData else {
-            throw NSError(domain: "com.gxaudioplay.app", code: -1,userInfo: [NSLocalizedDescriptionKey:"data fail"])
-        }
-        
+    public func play(data: Data) throws {
         do {
-            audioPlayer = try AVAudioPlayer(data: audioData)
+            audioPlayer = try AVAudioPlayer(data: data)
             audioPlayer?.delegate = self
             audioPlayer?.numberOfLoops = loop ? -1 : 0
             audioPlayer?.enableRate = true  // Enable rate adjustment
@@ -140,6 +125,25 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             print("Error: Failed to initialize AVAudioPlayer. \(error)")
             throw error
         }
+    }
+    
+    public func replay(url: String) throws {
+        
+        let audioUrl =  url.encodeLocalOrRemoteForUrl
+        
+        guard let audioUrl else {
+            throw NSError(domain: "url error", code: -1)
+        }
+        
+        canPlayCount -= 1
+        audioPath = url
+        isLaunchOverTimer = false
+        
+        guard let audioData = audioUrl.contentFileData else {
+            throw NSError(domain: "com.gxaudioplay.app", code: -1,userInfo: [NSLocalizedDescriptionKey:"data fail"])
+        }
+        
+        try play(data: audioData)
     }
     
     public func play(url: String) throws {
