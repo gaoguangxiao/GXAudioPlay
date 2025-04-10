@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-public let IS_55INCH_SCREEN = UIDevice.is55InchScreen
-public let IS_47INCH_SCREEN = UIDevice.is47InchScreen
-public let IS_40INCH_SCREEN = UIDevice.is40InchScreen
-public let IS_35INCH_SCREEN = UIDevice.is35InchScreen
+//public let IS_55INCH_SCREEN = UIDevice.is55InchScreen
+//public let IS_47INCH_SCREEN = UIDevice.is47InchScreen
+//public let IS_40INCH_SCREEN = UIDevice.is40InchScreen
+//public let IS_35INCH_SCREEN = UIDevice.is35InchScreen
 
 /// navigationBar相关frame
 /// https://www.jianshu.com/p/d7b8f831c1f1
@@ -21,8 +21,6 @@ public let NavigationBarHeight: CGFloat = {
         return 44
     } else {
         if #available(iOS 12.0, *) {
-            return 50
-        } else if UIDevice.isNoHomeIpad {
             return 50
         } else {
             return 44
@@ -208,7 +206,7 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         case "iPhone14,3":                              return "iPhone 13 Pro Max"
         case "iPhone14,4":                              return "iPhone 13 mini"
         case "iPhone14,5":                              return "iPhone 13"
-        
+            
         case "iPhone14,6":                              return "iPhone SE 3"
         case "iPhone14,7":                              return "iPhone 14"
         case "iPhone14,8":                              return "iPhone 14 Plus"
@@ -219,8 +217,13 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         case "iPhone15,5":                              return "iPhone 15 Plus"
         case "iPhone16,1":                              return "iPhone 15 Pro"
         case "iPhone16,2":                              return "iPhone 15 Pro Max"
-
-        // iPod
+            
+        case "iPhone17,3":                              return "iPhone 16"
+        case "iPhone17,4":                              return "iPhone 16 Plus"
+        case "iPhone17,1":                              return "iPhone 16 Pro"
+        case "iPhone17,2":                              return "iPhone 16 Pro Max"
+            
+            // iPod
         case "iPod1,1":                                 return "iPod Touch 1"
         case "iPod2,1":                                 return "iPod Touch 2"
         case "iPod3,1":                                 return "iPod Touch 3"
@@ -229,7 +232,7 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         case "iPod7,1":                                 return "iPod Touch 6"
         case "iPod9,1":                                 return "iPod Touch 7"
             
-        // iPad
+            // iPad
         case "iPad1,1":                                 return "iPad 1 (2010)"
         case "iPad2,1", "iPad2,2", "iPad2,3", "iPad2,4":return "iPad 2 (2011)"
         case "iPad3,1", "iPad3,2", "iPad3,3":           return "iPad 3 (2012)"
@@ -241,7 +244,7 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         case "iPad12,1", "iPad12,2":                    return "iPad 9 (2021)"
         case "iPad13,18", "iPad13,19":                  return "iPad 10 (2022)"
             
-        //iPad Mini
+            //iPad Mini
         case "iPad2,5", "iPad2,6", "iPad2,7":           return "iPad mini 1 (2012)"
         case "iPad4,4", "iPad4,5", "iPad4,6":           return "iPad mini 2"
         case "iPad4,7", "iPad4,8", "iPad4,9":           return "iPad mini 3"
@@ -249,20 +252,23 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         case "iPad11,1","iPad11,2":                     return "iPad mini 5 (2019)"
         case "iPad14,1","iPad14,2":                     return "iPad Mini 6 (2022)"
             
-        //iPad Air
+            //iPad Air
         case "iPad4,1", "iPad4,2", "iPad4,3":           return "iPad Air"
         case "iPad5,3", "iPad5,4":                      return "iPad Air 2 (2014)"
         case "iPad11,3", "iPad11,4":                    return "iPad Air 3 (2019)"
         case "iPad13,1", "iPad13,2":                    return "iPad Air 4 (2020)"
         case "iPad13,16", "iPad13,17":                  return "iPad Air 5 (2022)"
-        
-        //iPad Pro
+        case "iPad14,8", "iPad14,9":                    return "iPad Air 11-inch (M2) (2024)"
+        case "iPad14,10", "iPad14,11":                  return "iPad Air 13-inch (M2) (2024)"
+            
+            //iPad Pro
         case "iPad6,3", "iPad6,4":                       return "iPad Pro (9.7-inch) (2016)"
         case "iPad7,3", "iPad7,4":                       return "iPad Pro (10.5-inch) (2017)"
         case "iPad8,1", "iPad8,2", "iPad8,3", "iPad8,4": return "iPad Pro (11-inch) (2018)"
         case "iPad8,9", "iPad8,10":                      return "iPad Pro (11-inch) 2 (2020)"
         case "iPad13,4","iPad13,5","iPad13,6","iPad13,7":return "iPad Pro (11-inch) 3 (2021)"
         case "iPad14,3","iPad14,4":                      return "iPad Pro (11-inch) 4 (2022)"
+        case "iPad16,3","iPad16,4":                      return "iPad Pro 11-inch (M4) (2024)"
             
         case "iPad6,7", "iPad6,8":                          return "iPad Pro (12.9-inch) (2016)"
         case "iPad7,1", "iPad7,2":                          return "iPad Pro (12.9-inch) 2 (2017)"
@@ -270,6 +276,7 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         case "iPad8,11", "iPad8,12":                        return "iPad Pro (12.9-inch) 4 (2020)"
         case "iPad13,8","iPad13,9","iPad13,10","iPad13,11": return "iPad Pro (12.9-inch) 5（2021）"
         case "iPad14,5","iPad14,6"                        : return "iPad Pro (12.9-inch) 6（2022）"
+        case "iPad16,5","iPad16,6"                        : return "iPad Pro 13.0-inch (M4)（2024）"
             
         case "i386", "x86_64","arm64":                      return UIDevice.simulatorIdentiferViaSize()
         default:                                        return identifier
@@ -314,9 +321,13 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         } else if (width == 428 && height == 926) || (width == 926 && height == 428) {
             return "Simulator iPhone 12 Pro Max/13 Pro Max/14 Plus"
         } else if (width == 393 && height == 852) || (width == 852 && height == 393){
-            return "Simulator iPhone 14 Pro/15/15 Pro"
+            return "Simulator iPhone 14 Pro/15/15 Pro/16"
+        } else if (width == 402 && height == 874) || (width == 874 && height == 402){
+            return "Simulator iPhone 16 Pro"
         } else if (width == 430 && height == 932) || (width == 932 && height == 430){
-            return "Simulator iPhone 14 Pro Max/15 Plus/15 Pro Max"
+            return "Simulator iPhone 14 Pro Max/15 Plus/16 Plus/15 Pro Max"
+        } else if (width == 440 && height == 956) || (width == 956 && height == 440){
+            return "Simulator iPhone 16 Pro Max"
         }
         
         // iPad
@@ -337,8 +348,16 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
     
     /// 用户界面当前是否横屏,用户界面横屏了才会返回true
     @objc class func isInterfaceLandscape() -> Bool {
-        let orientation = UIApplication.shared.statusBarOrientation
-        return orientation == .landscapeLeft || orientation == .landscapeRight
+        if #available(iOS 13.0, *) {
+            if let tmpOrientation = UIApplication.windowScenes.first?.interfaceOrientation {
+                return tmpOrientation.isLandscape
+            }
+            return false
+        } else {
+            // Fallback on earlier versions
+            let orientation = UIApplication.shared.statusBarOrientation
+            return orientation == .landscapeLeft || orientation == .landscapeRight
+        }
     }
     
     /// 设备当前是否横屏无论支不支持横屏，只要设备横屏了，就会返回YES
@@ -379,20 +398,30 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
         return true
     }
     
-    @objc static var isIPhoneX: Bool {
-        return UIDevice.modelName.contains("iPhone X") ||
-        UIDevice.modelName.contains("iPhone 11") ||
-        UIDevice.modelName.contains("iPhone 12") ||
-        UIDevice.modelName.contains("iPhone 13")
+//    @objc static var isIPhoneX: Bool {
+//        return UIDevice.modelName.contains("iPhone X") ||
+//        UIDevice.modelName.contains("iPhone 11") ||
+//        UIDevice.modelName.contains("iPhone 12") ||
+//        UIDevice.modelName.contains("iPhone 13")
+//    }
+    
+    @available(iOS 11.0, *)
+    @objc static var isNotch: Bool {
+        guard let window = UIApplication.rootWindow else {
+            return false
+        }
+        
+        let safeArea = window.safeAreaInsets
+        return safeArea.top > 20
     }
     
     @objc static var isIPad: Bool {
         return UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad
     }
     
-    @objc static var isNoHomeIpad: Bool {
-        return systemModelName.contains("iPad8,") || systemModelName.contains("iPad13,")
-    }
+//    @objc static var isNoHomeIpad: Bool {
+//        return systemModelName.contains("iPad8,") || systemModelName.contains("iPad13,")
+//    }
     
     //    @objc static var isIPadPro: Bool {
     //        return isIPad && (width == 1024 && height == 1366)
@@ -403,82 +432,116 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
     }
     
     @objc static var isIPhone: Bool {
-        return UIDevice.current.model.contains("iPhone")
+        return UIDevice.current.userInterfaceIdiom == .phone
     }
     
     @objc static var isSimulator: Bool {
-        var isSim = false
-#if arch(i386) || arch(x86_64)
-        isSim = true
-#endif
-        return isSim
+        let isSim = systemModelName
+        if isSim.contains("i386") ||  isSim.contains("x86_64") ||  isSim.contains("arm64"){
+            return true
+        }
+        return false
     }
     
-    @objc static var is55InchScreen: Bool {
-        return CGSize(width: width, height: height) == screenSizeFor55Inch
-    }
-    
-    @objc static var is47InchScreen: Bool {
-        return CGSize(width: width, height: height) == screenSizeFor47Inch
-    }
-    
-    @objc static var is40InchScreen: Bool {
-        return CGSize(width: width, height: height) == screenSizeFor40Inch
-    }
-    
-    @objc static var is35InchScreen: Bool {
-        return CGSize(width: width, height: height) == screenSizeFor35Inch
-    }
+//    @objc static var is55InchScreen: Bool {
+//        return CGSize(width: width, height: height) == screenSizeFor55Inch
+//    }
+//    
+//    @objc static var is47InchScreen: Bool {
+//        return CGSize(width: width, height: height) == screenSizeFor47Inch
+//    }
+//    
+//    @objc static var is40InchScreen: Bool {
+//        return CGSize(width: width, height: height) == screenSizeFor40Inch
+//    }
+//    
+//    @objc static var is35InchScreen: Bool {
+//        return CGSize(width: width, height: height) == screenSizeFor35Inch
+//    }
     
     static let like4to3Screen = UIScreen.main.bounds.size.height / UIScreen.main.bounds.size.width <= 1.5
     static let isNarrowScreen = UIScreen.main.bounds.size.width < 375 ? true : false
     
-    @objc static var isPlus: Bool {
-        return width == 414 || width == 428
-    }
+//    @objc static var isPlus: Bool {
+//        return width == 414 || width == 428
+//    }
     
-    @objc static var screenSizeFor55Inch: CGSize {
-        return CGSize(width: 414, height: 736)
-    }
-    
-    @objc static var screenSizeFor47Inch: CGSize {
-        return CGSize(width: 375, height: 667)
-    }
-    
-    @objc static var screenSizeFor40Inch: CGSize {
-        return CGSize(width: 320, height: 568)
-    }
-    
-    @objc static var screenSizeFor35Inch: CGSize {
-        return CGSize(width: 320, height: 480)
-    }
+//    @objc static var screenSizeFor55Inch: CGSize {
+//        return CGSize(width: 414, height: 736)
+//    }
+//    
+//    @objc static var screenSizeFor47Inch: CGSize {
+//        return CGSize(width: 375, height: 667)
+//    }
+//    
+//    @objc static var screenSizeFor40Inch: CGSize {
+//        return CGSize(width: 320, height: 568)
+//    }
+//    
+//    @objc static var screenSizeFor35Inch: CGSize {
+//        return CGSize(width: 320, height: 480)
+//    }
     
     static var width: Int {
         return Int(UIScreen.main.bounds.width)
+    }
+    
+    static var widthf: CGFloat {
+        return UIScreen.main.bounds.width
     }
     
     static var height: Int {
         return Int(UIScreen.main.bounds.size.height)
     }
     
-    @objc static var currentSystemVersion: Double {
-        return Double(UIDevice.current.systemVersion) ?? 0
+    static var heightf: CGFloat { UIScreen.main.bounds.size.height }
+    
+    @objc static var currentSystemVersion: String {
+        return UIDevice.current.systemVersion
     }
     
     /// 获取状态栏高度
     @objc static var getStatusBarHeight: CGFloat {
         var statusH = UIApplication.shared.statusBarFrame.height
+        
+        guard let window = UIApplication.rootWindow else { return 0 }
+        var isLandscape = UIDevice.current.orientation.isLandscape
         if #available(iOS 13.0, *) {
-            statusH = UIApplication.rootWindow?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        }
-        if statusH == 0 {
-            if #available(iOS 11.0, *) {
-                statusH = UIApplication.rootWindow?.safeAreaInsets.top ?? 20
-            } else {
-                statusH = 20
+            if let windowScene = window.windowScene {
+                isLandscape = windowScene.interfaceOrientation.isLandscape
             }
         }
+        if #available(iOS 11.0, *) {
+            statusH = if isLandscape {
+                window.safeAreaInsets.left
+            } else {
+                window.safeAreaInsets.top
+            }
+        }
+        
+        //状态栏最小高度为20
+        if statusH == 0 { statusH = 20 }
         return statusH
+    }
+    
+    /// 获取window安全域左边间距
+    static var getSafeAreaLeft: CGFloat {
+        guard let window = UIApplication.rootWindow else { return 0 }
+        if #available(iOS 11.0, *) {
+            return window.safeAreaInsets.left
+        } else {
+            return 0
+        }
+    }
+    
+    /// 获取window安全域左边间距
+    static var getSafeAreaRight: CGFloat {
+        guard let window = UIApplication.rootWindow else { return 0 }
+        if #available(iOS 11.0, *) {
+            return window.safeAreaInsets.right
+        } else {
+            return 0
+        }
     }
     
     //底部安全域
@@ -489,5 +552,22 @@ public func flatSpecificScale(_ value: CGFloat, _ scale: CGFloat) -> CGFloat {
             UIApplication.rootWindow?.safeAreaInsets.bottom ?? 0
         }
         return touchBarH
+    }
+}
+
+
+//设备适配
+public extension UIDevice {
+    
+    static func deviceFactor(_ standardHeight: CGFloat = UIDevice.isIPad ? 768 : 414 ) -> CGFloat {
+        return SCREEN_WIDTH_STATIC/standardHeight
+    }
+    
+    /// 兼容横屏和竖屏 横屏只有44
+    static func TopBarHeighttRelative() -> CGFloat {
+        if UIDevice.isInterfaceLandscape() {
+            return NavigationBarHeight + 20
+        }
+        return StatusBarHeight + NavigationBarHeight
     }
 }

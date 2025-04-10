@@ -13,12 +13,33 @@ import UIKit
         return UIColor.init(_colorLiteralRed: Float(red)/255.0, green: Float(green)/255.0, blue: Float(blue)/255.0, alpha: Float(alpha));
     }
     
+    static func RGB(_ red:CGFloat,green:CGFloat,blue:CGFloat,alpha:CGFloat) -> UIColor {
+        return UIColor.init(red: red, green: green, blue: blue, alpha: alpha);
+    }
+    
     /// 16进制颜色
     convenience init(hex: Int, alpha: CGFloat = 1) {
         let red = CGFloat((hex & 0xFF0000) >> 16) / 255
         let green = CGFloat((hex & 0xFF00) >> 8) / 255
         let blue = CGFloat(hex & 0xFF) / 255
         self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+    
+    /// 16进制颜色
+    convenience init(hex: String,_ alpha: CGFloat = 1) {
+        let scanner = Scanner(string: hex)
+        scanner.scanLocation = 0
+        var rgbValue: UInt64 = 0
+        scanner.scanHexInt64(&rgbValue)
+        let r = (rgbValue & 0xff0000) >> 16
+        let g = (rgbValue & 0xff00) >> 8
+        let b = rgbValue & 0xff
+        
+        self.init(
+            red: CGFloat(r) / 0xff,
+            green: CGFloat(g) / 0xff,
+            blue: CGFloat(b) / 0xff, alpha: alpha
+        )
     }
     
     // for oc

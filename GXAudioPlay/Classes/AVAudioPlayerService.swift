@@ -8,6 +8,7 @@
 import Foundation
 import AVFoundation
 import RxSwift
+import GGXSwiftExtension
 
 /// A utility class to manage audio playback using AVAudioPlayer.
 public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
@@ -129,7 +130,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
     
     public func replay(url: String) throws {
         
-        let audioUrl =  url.encodeLocalOrRemoteForUrl
+        let audioUrl = url.encodeLocalOrRemoteForUrl
         
         guard let audioUrl else {
             throw NSError(domain: "url error", code: -1)

@@ -10,7 +10,10 @@ import UIKit
 
 @objc public extension UIApplication {
     @objc class var visibleViewController: UIViewController? {
-        return UIApplication.getVisibleViewController(from: UIApplication.shared.keyWindow?.rootViewController)
+        if let rootWindow {
+            return UIApplication.getVisibleViewController(from: rootWindow.rootViewController)
+        }
+        return nil
     }
 
     @objc class func getVisibleViewController(from vc: UIViewController?) -> UIViewController? {
@@ -39,12 +42,19 @@ import UIKit
             .map({$0 as? UIWindowScene}).compactMap({$0})
     }
     
+    @available(iOS 13.0, *)
+    static var windowScene: UIWindowScene? {
+        let _windowScene = UIApplication.shared.connectedScenes
+            .filter({$0.activationState == .foregroundActive}).first as? UIWindowScene
+        return _windowScene
+    }
+    
     /// 获取跟root窗口
     static var rootWindow: UIWindow? {
         var window: UIWindow?
         if #available(iOS 13.0, *) {
             outer: for s in windowScenes {
-                for w in s.windows where w.isMember(of: UIWindow.self) {
+                for w in s.windows where (w.isMember(of: UIWindow.self) && w.isKeyWindow) {
                     window = w
                     break outer
                 }

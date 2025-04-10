@@ -1,7 +1,7 @@
 {
   "name": "GXAudioPlay",
-  "version": "0.4.2",
-  "summary": "fix：本地播放器错误移除抛出",
+  "version": "0.8.0",
+  "summary": "change：提供音频播放Data",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/gaoguangxiao",
   "license": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/gaoguangxiao/GXAudioPlay.git",
-    "tag": "0.4.2"
+    "tag": "0.8.0"
   },
   "swift_versions": "5.0",
   "platforms": {
@@ -21,9 +21,8 @@
   },
   "source_files": "GXAudioPlay/Classes/**/*",
   "dependencies": {
-    "RxCocoa": [
-
-    ]
+    "RxCocoa": [],
+    "GGXSwiftExtension": []
   },
   "swift_version": "5.0"
 }
