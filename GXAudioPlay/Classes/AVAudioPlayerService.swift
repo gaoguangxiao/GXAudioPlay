@@ -115,6 +115,7 @@ public class AVAudioPlayerService: NSObject, GXAudioPlayerProtocol {
             status = .Playing(0)
             handleAudioSessionNotification()
             if let b = audioPlayer?.play(), b {
+                self.playEventsBlock?(.Playing(audioPlayer?.duration ?? 0))
                 if !loop {
                     //没有开启循环
                     initOverTimer(overDuration: (duration/Double(self.playSpeed)) + 10,canPlay: true)
