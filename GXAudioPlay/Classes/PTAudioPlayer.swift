@@ -146,7 +146,7 @@ public class PTAudioPlayer: NSObject {
                             //                            print("AVPlayer.error--\(String(describing: playerItem.error))")
                         }
                         print("AVPlayer.error--\(String(describing: playerItem.error))")
-                        try? AVAudioSession.sharedInstance().setActive(false)
+//                        try? AVAudioSession.sharedInstance().setActive(false)
                     }
                 }
             }).disposed(by: self.disposeBag)
