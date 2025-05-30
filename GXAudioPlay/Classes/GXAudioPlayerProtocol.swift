@@ -354,7 +354,7 @@ extension GXAudioPlayerProtocol {
                 }
             }
             //已经开始播放，超时未停止
-            if canPlayResult, currentPlayCount >= playingEndTime {
+            if canPlayResult, !loop, currentPlayCount >= playingEndTime {
                 //timerOut.End
                 playEventsBlock?(PTAudioPlayerEvent.Error(NSError(domain: "com.gxaudioplay.app",
                                                                   code: -1002,
@@ -381,7 +381,7 @@ extension GXAudioPlayerProtocol {
         //播放超时
         playingEndTime = overDuration
         currentPlayCount = 0
-        //开始计数
+        
         addOverTimer()
     }
     

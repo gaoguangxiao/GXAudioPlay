@@ -130,10 +130,10 @@ public class PTAudioPlayer: NSObject {
                         self.remoteAudioPlayer?.play()
                         self.remoteAudioPlayer?.rate = self.playSpeed
                         //playOutTime playSpeed为1、0.7速率。10
-                        if !loop {
+//                        if !loop {
                             //没有开启循环
                             initOverTimer(overDuration: (duration/Double(self.playSpeed)) + 10,canPlay: true)
-                        }
+//                        }
                     } else if status == AVPlayer.Status.failed {
                         stop(false)
                         if let error = playerItem.error as? NSError {
